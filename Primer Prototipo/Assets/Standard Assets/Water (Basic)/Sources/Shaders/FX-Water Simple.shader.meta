@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 9dccc8e8f0da4494991c26ef59019551
+ShaderImporter:
+  defaultTextures:
+  - _ColorControl: {fileID: 2800000, guid: 8044a9c4c6c364e4a9a1fcd449427eb4, type: 3}
+  - _ColorControlCube: {instanceID: 0}
+  - _BumpMap: {instanceID: 0}
+  - _MainTex: {fileID: 2800000, guid: d0c056cf8d4781341be6deccc5ed0578, type: 3}
+  userData: 

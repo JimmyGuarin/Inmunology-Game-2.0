@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 9d4f57b294b5af64aa56c9f1772fbb43
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - virus: {fileID: 117678, guid: 16ebdedbda0165841ba224d1355cd1b8, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

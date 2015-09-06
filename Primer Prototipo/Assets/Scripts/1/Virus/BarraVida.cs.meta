@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 9c13c401f9c4e4a468e8b3b920956107
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - sprite1: {fileID: 21300000, guid: 819b734be62006f46bb4d65e2302b84f, type: 3}
+  - sprite2: {fileID: 21300000, guid: 6b928a70906cbb6459edd7150064da16, type: 3}
+  - sprite3: {fileID: 21300000, guid: 71ad537634bb7bf41ab2ce8b0528eb8c, type: 3}
+  - sprite4: {fileID: 21300000, guid: 419dcdf8692c49d4f805923305fae7aa, type: 3}
+  - sprite5: {fileID: 21300000, guid: 10f44e49cdd42f64199de8509290fc84, type: 3}
+  - sprite6: {fileID: 21300000, guid: c20b1e3f69687624dbc4cc698c2da368, type: 3}
+  - sprite7: {fileID: 21300000, guid: 124c58ad444ace741b6dc5f563d4d90b, type: 3}
+  - sprite8: {fileID: 21300000, guid: c90f99617174cbe4c976569feebdf518, type: 3}
+  - sprite9: {fileID: 21300000, guid: d1e411f7162263047be457d8ecbd36c9, type: 3}
+  - sprite10: {fileID: 21300000, guid: f280e3a5da63f2242882aace2c864659, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

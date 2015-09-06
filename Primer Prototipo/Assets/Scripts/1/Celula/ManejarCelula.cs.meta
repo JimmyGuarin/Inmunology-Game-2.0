@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 0e1d33fa5c7fb7b4eb0a09bd226cf1c8
+timeCreated: 1440573710
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - sprite1: {instanceID: 0}
+  - sprite2: {instanceID: 0}
+  - sprite3: {instanceID: 0}
+  - sprite4: {instanceID: 0}
+  - sprite5: {instanceID: 0}
+  - sprite6: {instanceID: 0}
+  - sprite7: {instanceID: 0}
+  - audio1: {instanceID: 0}
+  - destruida: {instanceID: 0}
+  - viruss: {fileID: 175728, guid: b882b3f808bb8bb4fa1a473bfdea2daa, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

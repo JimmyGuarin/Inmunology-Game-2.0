@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 160196f0b0cb3e245b312b83bbee96c9
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - STCD4: {instanceID: 0}
+  - STCD8: {instanceID: 0}
+  - TCD4Reducida: {fileID: 21300000, guid: 3c6fe47e936cded49bbe8c5c12abcf60, type: 3}
+  - TCD4: {fileID: 21300000, guid: 864b143be6ce1224992c5bd70df777d5, type: 3}
+  - TCD4Reducido: {fileID: 21300000, guid: 5d9b41acff1be754fb1357374d77a999, type: 3}
+  - TCD8: {fileID: 21300000, guid: d5c3e1a5f3624b244802fdd89b444385, type: 3}
+  - TCD8Reducido: {fileID: 21300000, guid: d5c3e1a5f3624b244802fdd89b444385, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

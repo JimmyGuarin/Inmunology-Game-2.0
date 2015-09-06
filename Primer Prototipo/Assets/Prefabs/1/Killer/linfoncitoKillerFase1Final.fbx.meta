@@ -1,0 +1,180 @@
+fileFormatVersion: 2
+guid: 5a3164b5dcdd7c64aa5ef5b756b1ed59
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Balas
+    100002: Balas_MeshPart0
+    100004: Balas_MeshPart1
+    100006: Balas_MeshPart2
+    100008: Camera
+    100010: Esfera
+    100012: Lamp
+    100014: //RootNode
+    400000: Balas
+    400002: Balas_MeshPart0
+    400004: Balas_MeshPart1
+    400006: Balas_MeshPart2
+    400008: Camera
+    400010: Esfera
+    400012: Lamp
+    400014: //RootNode
+    2300000: Balas_MeshPart0
+    2300002: Balas_MeshPart1
+    2300004: Balas_MeshPart2
+    2300006: Esfera
+    3300000: Balas_MeshPart0
+    3300002: Balas_MeshPart1
+    3300004: Balas_MeshPart2
+    3300006: Esfera
+    4300000: Esfera
+    4300002: Balas_MeshPart0
+    4300004: Balas_MeshPart1
+    4300006: Balas_MeshPart2
+    7400000: Esfera|BalasAction
+    7400002: Esfera|EsferaAction
+    7400004: Balas|BalasAction
+    7400006: Balas|EsferaAction
+    7400008: Lamp|BalasAction
+    7400010: Lamp|EsferaAction
+    7400012: Camera|BalasAction
+    7400014: Camera|EsferaAction
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Balas|BalasAction
+      takeName: Balas|BalasAction
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Balas
+        weight: 1
+      - path: Balas/Balas_MeshPart0
+        weight: 1
+      - path: Balas/Balas_MeshPart1
+        weight: 1
+      - path: Balas/Balas_MeshPart2
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Esfera
+        weight: 1
+      - path: Lamp
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Balas|EsferaAction
+      takeName: Balas|EsferaAction
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Balas
+        weight: 1
+      - path: Balas/Balas_MeshPart0
+        weight: 1
+      - path: Balas/Balas_MeshPart1
+        weight: 1
+      - path: Balas/Balas_MeshPart2
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Esfera
+        weight: 1
+      - path: Lamp
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 6ca0408c2b3f16848904938d1c3fdf8f
+timeCreated: 1441337390
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - fracturado: {fileID: 139254, guid: ff7bee3b7d26ef047a0ab2e513cb7d1f, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
