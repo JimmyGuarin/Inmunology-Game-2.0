@@ -37,6 +37,9 @@ public class BarraProgresoGanglio : MonoBehaviour {
 		} else {
 
 			textoProgreso.text="100% Completo";
+			activarAdquirida.desbloquearLinfocitos();
+			VasoGrande.activarLinfocitos=true;
+			Destroy(this.gameObject);
 		}
 		if (progresoActual >=20) {
 			
@@ -57,8 +60,7 @@ public class BarraProgresoGanglio : MonoBehaviour {
 		if (progresoActual== 100) {
 		
 			paso5.SetActive(true);
-			activarAdquirida.cmhi();
-			VasoGrande.activado=true;
+			textoProgreso.text="100% Completo";
 				
 		} 
 

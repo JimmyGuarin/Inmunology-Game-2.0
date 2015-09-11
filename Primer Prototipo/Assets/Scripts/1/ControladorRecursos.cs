@@ -165,14 +165,14 @@ public class ControladorRecursos : MonoBehaviour {
 
 		Time.timeScale = 1;
 
-		cia.cmhi ();
+
 	}
 
 	public void chm2(){
 
 		Time.timeScale = 1;
 
-		cia.cmhii ();
+
 	}
 
 

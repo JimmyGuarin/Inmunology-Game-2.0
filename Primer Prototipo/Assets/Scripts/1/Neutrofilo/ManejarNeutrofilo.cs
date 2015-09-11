@@ -6,7 +6,7 @@ public class ManejarNeutrofilo : MonoBehaviour {
 	public  bool isSeleted;
 	public bool empezar;
 	public Vector3 subir;
-	public float life;
+	public float life=500;
 	public Texture2D imagen;
 	public static int seleccionadas=0;
 	private Rect r;
@@ -15,10 +15,10 @@ public class ManejarNeutrofilo : MonoBehaviour {
 	void Start () {
 	
 		ControladorRecursos.defensas++;
-		life = 700;
+		life = 500;
 		isSeleted = false;
 		empezar = true;
-		subir = transform.position + (Vector3.up * 10);
+		subir = new Vector3(MoverPuntoEncuentro.posicion.x,MoverPuntoEncuentro.posicion.y,-5f);;
 		NotificationCenter.DefaultCenter ().AddObserver (this, "cambiarPosCelula");
 		imagen = Resources.Load ("Neutrofilo4") as Texture2D;
 

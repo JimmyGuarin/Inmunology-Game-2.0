@@ -138,7 +138,7 @@ public class CrearUnidadInnata : MonoBehaviour {
 		
 	}
 	//metodo que se llama desde el script virus
-	//para llevar la celula con el virus a la base
+	//para llevar la celula con el virus al ganglio o al vaso
 	void llevarABase(Notification notificacion){
 		
 		
@@ -152,7 +152,12 @@ public class CrearUnidadInnata : MonoBehaviour {
 			speed=4f;
 			Invoke("nada",1.8f);
 			this.transform.position=new Vector3(nuevaPos.x,nuevaPos.y,-7f);
-			destino=new Vector3(47.8f ,-22.2f  ,-10f  );
+
+			if(Vector3.Distance(transform.position,new Vector3(47.8f ,-22.2f  ,-10f  ))<
+			   Vector3.Distance(transform.position,new Vector3(47.7f,10.8f,-10f  )))
+				destino=new Vector3(47.8f ,-22.2f  ,-10f  );
+			else destino=new Vector3(47.7f,10.8f,-5f  );
+			
 			if(isSeleted==true)
 				seleccionadas--;
 			isSeleted=false;
@@ -163,7 +168,13 @@ public class CrearUnidadInnata : MonoBehaviour {
 		
 		
 	}
+
+	public void nada(){
+
+		animator.SetInteger("vaso",2);
+	}
 	//index =0ganglio index=1 vaso
+	//llamado desde el script de funcionesDendritica
 	public void llevarA(int index,Vector3 v){
 
 		if (index == 1) 
@@ -172,16 +183,14 @@ public class CrearUnidadInnata : MonoBehaviour {
 		destino = v;
 		virus.destino = destino;
 	}
-
-	void nada(){
-		animator.SetInteger("vaso",2);
-	}
 	
+
 	void OnTriggerEnter (Collider MyTrigger) {
 		
 		Debug.Log (MyTrigger.gameObject.name);
 
-		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)") || MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)"))
+		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)") || 
+		    MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)"))
 		{
 				if (llevarBase == false) {
 
@@ -212,7 +221,8 @@ public class CrearUnidadInnata : MonoBehaviour {
 	void OnTriggerStay(Collider MyTrigger) {
 		
 		
-		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)")||MyTrigger.gameObject.name.Equals("VirusFinalCelula(Clone)")) {
+		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)")||
+		    MyTrigger.gameObject.name.Equals("VirusFinalCelula(Clone)")) {
 			
 			if (llevarBase == false) {
 
@@ -253,4 +263,6 @@ public class CrearUnidadInnata : MonoBehaviour {
 		}
 	
 	}
+
+
 }

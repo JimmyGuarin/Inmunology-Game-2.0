@@ -1,15 +1,18 @@
 fileFormatVersion: 2
 guid: 160196f0b0cb3e245b312b83bbee96c9
+timeCreated: 1441687391
+licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
-  - STCD4: {instanceID: 0}
-  - STCD8: {instanceID: 0}
-  - TCD4Reducida: {fileID: 21300000, guid: 3c6fe47e936cded49bbe8c5c12abcf60, type: 3}
-  - TCD4: {fileID: 21300000, guid: 864b143be6ce1224992c5bd70df777d5, type: 3}
-  - TCD4Reducido: {fileID: 21300000, guid: 5d9b41acff1be754fb1357374d77a999, type: 3}
-  - TCD8: {fileID: 21300000, guid: d5c3e1a5f3624b244802fdd89b444385, type: 3}
-  - TCD8Reducido: {fileID: 21300000, guid: d5c3e1a5f3624b244802fdd89b444385, type: 3}
+  - linfoB: {instanceID: 0}
+  - seleccionador: {instanceID: 0}
+  - sLinfoB: {fileID: 21300000, guid: 25a7353250d82df44889aa57dcf98308, type: 3}
+  - sKiller: {fileID: 21300000, guid: fea0aee7a43174b41a4d7f7cfa6999f9, type: 3}
+  - sTCD4: {fileID: 21300000, guid: d8e23fb58abd8374ca53366213732a05, type: 3}
+  - sTCD8: {fileID: 21300000, guid: 11387a7d351a25f428860e458a0a79d5, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

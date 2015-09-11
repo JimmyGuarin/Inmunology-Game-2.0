@@ -9,13 +9,13 @@ public class VasoGrande : MonoBehaviour {
 	public GameObject linfocitoB;
 	public GameObject tcd4;
 	public GameObject tcd8;
-	public static bool activado=false;
+	public static bool activarLinfocitos;
 
 	// Use this for initialization
 	void Start () {
 
-
-		InvokeRepeating ("crearEritrocito", 0, 0.2f);
+		activarLinfocitos = false;
+		InvokeRepeating ("crearEritrocito", 0, 0.3f);
 		InvokeRepeating ("crearNeutrofilo", 3f, 1f);
 		InvokeRepeating ("crearMacrofago", 2f, 1.5f);
 	
@@ -24,22 +24,26 @@ public class VasoGrande : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (activado == true)
+		if (activarLinfocitos == true) {
 			activar ();
+			activarLinfocitos=false;
+		}
+			
 	
 	}
+	
 	public  void activar(){
 
-		activado = true;
-		InvokeRepeating ("crearLinfocitoB", 0, 2f);
+
+		//InvokeRepeating ("crearLinfocitoB", 0, 2f);
 		InvokeRepeating ("crearTCD4", 2f, 2.5f);
-		InvokeRepeating ("crearTCD8", 1f, 2.5f);
+		//InvokeRepeating ("crearTCD8", 1f, 2.5f);
 	}
 
 
 	void crearEritrocito(){
 
-		int cantidad = Random.Range (1, 5);
+		int cantidad = Random.Range (1, 4);
 
 		for(int i=0;i<cantidad;i++){
 

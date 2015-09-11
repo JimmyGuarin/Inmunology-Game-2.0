@@ -17,7 +17,7 @@ public class MovimientoElipse : MonoBehaviour {
 	
 
 		centroX = Random.Range (77f, 78f);
-		rango = Random.Range (10.6f, 11.4f);
+		rango = Random.Range (4f, 5f);
 	}
 	
 	// Update is called once per frame
@@ -31,7 +31,14 @@ public class MovimientoElipse : MonoBehaviour {
 		if (salir==true&&angulo>rango&&angulo <(rango+0.05)){
 
 
-			GetComponent<Nuevo>().enabled=true;
+			if(gameObject.name.Equals("Neutrofilo(Clone)"))
+				GetComponent<ManejarNeutrofilo>().enabled=true;
+			if(gameObject.name.Equals("LinfoncitoTCD4(Clone)"))
+				GetComponent<TCD4>().enabled=true;
+				
+			
+
+			
 			Destroy(this);
 
 		

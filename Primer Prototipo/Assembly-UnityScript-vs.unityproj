@@ -58,7 +58,7 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Destruction">
- <HintPath>D:/Jimmy Guarín/UNIVERSIDAD DEL QUINDÍO/Uniquindio 2015/Trabajo de Grado/Repositorio TG/Inmunology Game/Primer Prototipo/Assets/Fracture - Box Destruction - Standard/Scripts/Destruction.dll</HintPath>
+ <HintPath>D:/Jimmy Guarín/UNIVERSIDAD DEL QUINDÍO/Uniquindio 2015/Trabajo de Grado/Repositorio TG/Inmunology-Game-2.0/Primer Prototipo/Assets/Fracture - Box Destruction - Standard/Scripts/Destruction.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

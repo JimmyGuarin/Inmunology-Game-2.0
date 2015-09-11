@@ -11,7 +11,10 @@ public class Fracture : MonoBehaviour {
 	void Start () {
 	
 		speed = 4f;
-		destino = new Vector3 (47.8f, -22.2f, -5f);
+		if(Vector3.Distance(transform.position,new Vector3(47.8f ,-22.2f  ,-10f  ))<
+		   Vector3.Distance(transform.position,new Vector3(47.7f,10.8f,-10f  )))
+			destino=new Vector3(47.8f ,-22.2f  ,-5f  );
+		else destino=new Vector3(47.7f,10.8f,-10f  );
 		ganglio = true;
 		Invoke ("fracturar", 1f);
 
