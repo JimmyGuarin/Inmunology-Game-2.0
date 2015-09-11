@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Fracture : MonoBehaviour {
 
-	public float speed=3f;
+	public float speed=4f;
 	public Vector3 destino;
 	public bool ganglio;
 
@@ -13,8 +13,8 @@ public class Fracture : MonoBehaviour {
 		speed = 4f;
 		if(Vector3.Distance(transform.position,new Vector3(47.8f ,-22.2f  ,-10f  ))<
 		   Vector3.Distance(transform.position,new Vector3(47.7f,10.8f,-10f  )))
-			destino=new Vector3(47.8f ,-22.2f  ,-5f  );
-		else destino=new Vector3(47.7f,10.8f,-10f  );
+			destino=new Vector3(47.8f ,-22.2f  ,this.transform.position.z );
+		else destino=new Vector3(47.7f,10.8f,this.transform.position.z );
 		ganglio = true;
 		Invoke ("fracturar", 1f);
 
@@ -52,5 +52,32 @@ public class Fracture : MonoBehaviour {
 	void fracturar(){
 
 		GetComponent<Animator> ().enabled = true;
+	}
+
+	void OnTriggerStay (Collider MyTrigger) {
+		
+		if (MyTrigger.gameObject.tag.Equals ("celula")) {
+			
+			MyTrigger.gameObject.GetComponent<ManejarCelula> ().audio1.Stop ();
+			
+		}
+	}
+
+	void OnTriggerEnter (Collider MyTrigger) {
+			
+		if (MyTrigger.gameObject.tag.Equals ("celula")) {
+				
+			MyTrigger.gameObject.GetComponent<ManejarCelula> ().audio1.Stop ();
+				
+		}
+	}
+
+	void OnTriggerExit (Collider MyTrigger) {
+				
+		if (MyTrigger.gameObject.tag.Equals ("celula")) {
+					
+			MyTrigger.gameObject.GetComponent<ManejarCelula> ().audio1.Stop ();
+					
+		}
 	}
 }

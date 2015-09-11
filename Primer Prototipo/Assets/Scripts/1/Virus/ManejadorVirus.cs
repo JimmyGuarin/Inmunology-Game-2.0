@@ -39,7 +39,7 @@ public class ManejadorVirus : MonoBehaviour {
 			
 		if (numeroVirus <= 30) {
 
-			if(i<=0){
+			if(i<=5){
 
 				Instantiate (virus);
 				i++;

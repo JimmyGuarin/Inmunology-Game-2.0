@@ -35,7 +35,7 @@ public class VasoGrande : MonoBehaviour {
 	public  void activar(){
 
 
-		//InvokeRepeating ("crearLinfocitoB", 0, 2f);
+		InvokeRepeating ("crearLinfocitoB", 0, 3f);
 		InvokeRepeating ("crearTCD4", 2f, 2.5f);
 		//InvokeRepeating ("crearTCD8", 1f, 2.5f);
 	}

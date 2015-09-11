@@ -153,8 +153,8 @@ public class CrearUnidadInnata : MonoBehaviour {
 			Invoke("nada",1.8f);
 			this.transform.position=new Vector3(nuevaPos.x,nuevaPos.y,-7f);
 
-			if(Vector3.Distance(transform.position,new Vector3(47.8f ,-22.2f  ,-10f  ))<
-			   Vector3.Distance(transform.position,new Vector3(47.7f,10.8f,-10f  )))
+			if(Vector3.Distance(transform.position,new Vector3(47.8f ,-22.2f  ,this.transform.position.z  ))<
+			   Vector3.Distance(transform.position,new Vector3(47.7f,10.8f,this.transform.position.z  )))
 				destino=new Vector3(47.8f ,-22.2f  ,-10f  );
 			else destino=new Vector3(47.7f,10.8f,-5f  );
 			

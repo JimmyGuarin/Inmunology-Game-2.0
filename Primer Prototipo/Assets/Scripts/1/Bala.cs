@@ -8,6 +8,14 @@ using System.Collections;
 public class Bala : MonoBehaviour {
 
 
+	void Start(){
+
+		Invoke ("destruir", 2f);
+
+
+	}
+
+
 	/**
 	 * Cuando hay una colision con la vala
 	 * esta siempre se destruye
@@ -15,9 +23,14 @@ public class Bala : MonoBehaviour {
 	void OnCollisionEnter(Collision colision) {
 
 			
-		if(!(colision.collider.name.Equals("balaLifoncitoB(Clone)")||colision.collider.name.Equals("BalaVaso(Clone)")))
+		if((colision.collider.name.Equals("balaLifoncitoB(Clone)")))
 		
 			Destroy (this.gameObject);	
 
+	}
+
+	void destruir(){
+
+		Destroy (this.gameObject);
 	}
 }

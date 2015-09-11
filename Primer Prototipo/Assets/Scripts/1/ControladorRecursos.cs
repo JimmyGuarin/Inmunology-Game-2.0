@@ -55,8 +55,8 @@ public class ControladorRecursos : MonoBehaviour {
 		}
 			
 		puntaje = 0;
-		nutrientes =60;
-		oxigeno = 100;
+		nutrientes =300;
+		oxigeno = 300;
 
 	
 

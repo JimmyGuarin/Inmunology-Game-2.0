@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LinfocitoB2 : MonoBehaviour {
+public class TCD4 : MonoBehaviour {
 
+	
 	//Velocidad  a la se me mueve la celula
 	public float speed;
-	
-	//Bala Linfocito
-	public Rigidbody Bala;
-	
+
 	//Vector de destino cuando movemos la celula
 	private  Vector3 destino;
 	
@@ -16,35 +14,44 @@ public class LinfocitoB2 : MonoBehaviour {
 	public  bool isSeleted;
 	
 	public static int seleccionadas;
-	
-	//Si ya llego a su destino 
-	private bool llegoVaso=false;
+
 	public float vida=100;
 	public Texture2D imagen;
 	public Rect r;
 	public int ubicada;
+
+	public GameObject ayudado;
 	
 	void Start () {
 
-		this.name="linfocitoB(Clone)";
-
-		if(Bala!=null)
-			InvokeRepeating ("disparar", 1.0f, 2.0f);
+		ControladorRecursos.defensas++;
 		isSeleted = false;
-		destino = this.transform.position;
+		destino = new Vector3(MoverPuntoEncuentro.posicion.x,MoverPuntoEncuentro.posicion.y,-5f); // el primer destino es el Punto de Encuentro
 		speed=6f;
+		//this.transform.position = new Vector3 (38f, -25.5f,-5f);  //Posicion donde se crea la celula (ganglio)
+		
+		//PatronObserver:
+		// Metodos que va a observar 
 		NotificationCenter.DefaultCenter ().AddObserver (this, "cambiarPosCelula");
-		
-		
-		
-		
-		
+			
 	}
 	
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+
+		if (ayudado != null)
+			destino = ayudado.transform.position;
+
+		if (vida <= 0) {
+			
+			if(isSeleted==true)
+				seleccionadas--;
+			ControladorRecursos.defensas--;
+			Destroy(this.gameObject);
+			
+		}
 		
 		if (Input.GetMouseButtonDown (1)) {
 			
@@ -55,14 +62,18 @@ public class LinfocitoB2 : MonoBehaviour {
 			if (Physics.Raycast (pulsacion, out hit) && hit.collider == this.GetComponent<Collider>()) {
 				
 				if (isSeleted == false&&this.GetComponent<Collider>()!=null) {
-					
+
+					ayudado=null;
 					seleccionadas++;
 					if(seleccionadas==1){
 						PosicionSeleccionada.posicionar++;
 					}
 					ubicada=PosicionSeleccionada.posicionar;
 					Debug.Log("1"+ubicada);
-					isSeleted = true;		
+					isSeleted = true;
+
+					
+					
 				}
 			}
 			
@@ -71,14 +82,6 @@ public class LinfocitoB2 : MonoBehaviour {
 		//se esta cambiando la posicion hasta que llega a destino
 		float step = speed * Time.deltaTime;
 		this.transform.position = Vector3.MoveTowards (transform.position, destino, step);
-		
-		// Hasta que no llegue al vaso no se manda la notificacion que hace que el vaso dispare
-		if (transform.position.Equals (destino) && llegoVaso == false) {
-			
-			
-			
-			
-		}
 		
 	}
 	void OnGUI(){
@@ -116,9 +119,7 @@ public class LinfocitoB2 : MonoBehaviour {
 		//Si esta celula esta seleccionada	
 		
 		if (isSeleted == true) {
-			
-			llegoVaso=false;
-			
+
 			destino = new Vector3 (Fondo1.puntoDestino.x, Fondo1.puntoDestino.y, -5f);
 			isSeleted = false;
 			
@@ -134,24 +135,23 @@ public class LinfocitoB2 : MonoBehaviour {
 	void OnTriggerStay(Collider MyTrigger) {
 		
 		
-		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)")) {
-			
-			vida -=2f;
-			if (vida <= 0) {
+
+			if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)")) {
 				
-				if (isSeleted == true)
+				virus v = (virus)MyTrigger.GetComponent<virus> ();
+				
+				vida-=0.2f;
+				if(v.vida==900||v.vida==800||v.vida==700||v.vida==600||v.vida==500||v.vida==400||v.vida==300||v.vida==200||v.vida==100){
 					
-					ControladorRecursos.defensas--;
-				Destroy (this.gameObject);
-				
-				
-			}
+					
+					v.BroadcastMessage("ChangeTheDamnSprite");
+				}
+				v.vida-=2;
 			
 		}
-
 		if (MyTrigger.gameObject.name.Equals ("NaturalKiller(Clone)")) {
 			
-			vida -= 0.5f;
+			vida -= 2f;
 			if (vida <= 0) {
 				ControladorRecursos.defensas--;
 				Destroy (this.gameObject);
@@ -161,19 +161,17 @@ public class LinfocitoB2 : MonoBehaviour {
 			
 		}
 	}
-	
-	void disparar(){
-		
-		Rigidbody clone=(Rigidbody) Instantiate (Bala,(this.transform.position+new Vector3(0,3,0)),Bala.transform.rotation);
-		clone.velocity = transform.TransformDirection ((new Vector3(0,1,0))*10);
-		
-		Rigidbody clone1=(Rigidbody) Instantiate (Bala,(this.transform.position+new Vector3(1,3,0)),Bala.transform.rotation);
-		clone1.velocity = transform.TransformDirection ((new Vector3(1,1,0))*10);
-		Rigidbody clone2=(Rigidbody) Instantiate (Bala,(this.transform.position+new Vector3(-1,3,0)),Bala.transform.rotation);
-		clone2.velocity = transform.TransformDirection ((new Vector3(-1,1,0))*10);
+
+	void OnTriggerEnter(Collider MyTrigger) {
+
+		if (MyTrigger.gameObject.name.Equals ("LinfocitoB(Clone)")) {
+
+			ayudado=null;
+			destino=transform.position;
+			
+		}
+
 	}
 
 	
-
-
 }

@@ -22,7 +22,7 @@ public class BarraProgresoGanglio : MonoBehaviour {
 	void Start () {
 	
 		estadoBarra = this.gameObject.GetComponent<EstadoBarraGanglio> ();
-
+		Invoke("liberar",23f);
 	}
 	
 	// Update is called once per frame
@@ -37,10 +37,10 @@ public class BarraProgresoGanglio : MonoBehaviour {
 		} else {
 
 			textoProgreso.text="100% Completo";
-			activarAdquirida.desbloquearLinfocitos();
-			VasoGrande.activarLinfocitos=true;
-			Destroy(this.gameObject);
+
+
 		}
+
 		if (progresoActual >=20) {
 			
 			paso1.SetActive(true);
@@ -56,13 +56,22 @@ public class BarraProgresoGanglio : MonoBehaviour {
 		if (progresoActual >=80) {
 			
 			paso4.SetActive(true);
+
 		}
-		if (progresoActual== 100) {
+		if (progresoActual>= 99) {
 		
 			paso5.SetActive(true);
-			textoProgreso.text="100% Completo";
+
 				
 		} 
+
+	}
+
+	void liberar(){
+
+		activarAdquirida.desbloquearLinfocitos();
+		VasoGrande.activarLinfocitos=true;
+		Destroy (this.gameObject);
 
 	}
 }

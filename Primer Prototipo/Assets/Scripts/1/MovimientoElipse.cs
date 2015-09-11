@@ -35,6 +35,8 @@ public class MovimientoElipse : MonoBehaviour {
 				GetComponent<ManejarNeutrofilo>().enabled=true;
 			if(gameObject.name.Equals("LinfoncitoTCD4(Clone)"))
 				GetComponent<TCD4>().enabled=true;
+			if(gameObject.name.Equals("LinfoncitoB(Clone)"))
+				GetComponent<LinfocitoB>().enabled=true;
 				
 			
 

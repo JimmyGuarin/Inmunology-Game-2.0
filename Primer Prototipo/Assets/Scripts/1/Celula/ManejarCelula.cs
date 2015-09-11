@@ -56,12 +56,9 @@ public class ManejarCelula : MonoBehaviour {
 		if (vida == 0&&muerta==true) {
 
 			muerta=false;
+			if(!this.gameObject.name.Equals("muerta"))
+				InvokeRepeating("invocar",0,10f);
 			this.gameObject.name="muerta";
-			//Destroy(this.GetComponent<Collider>());
-			invocar();
-
-			//invocar();
-			//InvokeRepeating("invocar",10,16f);
 
 
 		}
@@ -72,7 +69,7 @@ public class ManejarCelula : MonoBehaviour {
 
 		if (ManejadorVirus.numeroVirus <= 30&&ManejadorVirus.numeroVirus>0) {
 
-			if(misVirus<7){
+			if(misVirus<10){
 
 
 				Instantiate (viruss,this.transform.position,viruss.transform.rotation);
@@ -120,7 +117,7 @@ public class ManejarCelula : MonoBehaviour {
 		    ||MyTrigger.gameObject.name.Equals ("NaturalKiller(Clone)")) {
 
 			if(vida>=0){
-				vida-=0.01f;
+				vida-=0.004f;
 					cambiar();
 			}
 			else{
@@ -128,7 +125,7 @@ public class ManejarCelula : MonoBehaviour {
 
 
 				if(this.gameObject.tag.Equals("celula")&&(MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)")||
-				                                          MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)"))){
+				    MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)"))){
 
 					audio1.Stop();
 					vida=0;
@@ -155,9 +152,9 @@ public class ManejarCelula : MonoBehaviour {
 			
 	}
 	void OnTriggerExit (Collider MyTrigger) {
-		
-		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)"))
-			audio1.Stop();
+
+
+			
 		
 	}
 

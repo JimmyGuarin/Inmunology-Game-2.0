@@ -128,7 +128,7 @@ public class ManejarNeutrofilo : MonoBehaviour {
 		
 		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)")) {
 
-			virus v = (virus)MyTrigger.GetComponent<virus> ();
+			InteligenciaVirus v= (InteligenciaVirus)MyTrigger.GetComponent<InteligenciaVirus> ();
 
 			life-=2;
 			if(v.vida==900||v.vida==800||v.vida==700||v.vida==600||v.vida==500||v.vida==400||v.vida==300||v.vida==200||v.vida==100){

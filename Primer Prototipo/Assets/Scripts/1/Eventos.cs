@@ -6,10 +6,13 @@ public class Eventos : MonoBehaviour {
 
 	public GameObject explosion1;
 	public static GameObject explosion2;
+	public  float dañooVirus;
+	public static float dañoVirus;
 	// Use this for initialization
 	void Start () {
 	
 		explosion2 = explosion1;
+		dañoVirus = dañooVirus;
 	}
 	
 	// Update is called once per frame

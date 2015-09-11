@@ -3,7 +3,7 @@ using System.Collections;
 
 public class InteligenciaVirus : MonoBehaviour {
 
-	public float speed=3f;
+	public float speed=2f;
 	public Vector3 destino;
 	public bool capturado;
 	public int vida;
@@ -16,7 +16,7 @@ public class InteligenciaVirus : MonoBehaviour {
 	// Use this for initialization 
 	public void Start () {
 
-		speed=Random.Range(1f,2f);
+
 
 		comiendo = false;
 		ManejadorVirus.numeroVirus++;
@@ -72,7 +72,6 @@ public class InteligenciaVirus : MonoBehaviour {
 
 
 				Debug.Log ("linea de defenza" + ManejadorVirus.lineaDefenza);
-				speed=Random.Range(1f,4f);
 				ManejadorVirus.actualizarDefenza ();
 				if(ManejadorVirus.lineaDefenza==0)
 					Destroy(this);
@@ -115,12 +114,17 @@ public class InteligenciaVirus : MonoBehaviour {
 	void OnCollisionEnter(Collision colision) {
 		
 		
-		if(colision.collider.name.Equals("BalaVaso(Clone)")||colision.collider.name.Equals("balaLifoncitoB(Clone)"))
+		if(colision.collider.name.Equals("balaLifoncitoB(Clone)"))
 		{
-			
-			
 			vida-=100;
 			BroadcastMessage("ChangeTheDamnSprite");
+			colision.gameObject.GetComponent<Rigidbody>().isKinematic=true;
+			colision.gameObject.GetComponent<Collider>().enabled=false;
+			colision.gameObject.GetComponent<Bala>().CancelInvoke();
+			colision.gameObject.GetComponent<Bala>().enabled=false;
+			colision.gameObject.transform.parent=this.transform;
+
+
 		}
 		
 		
@@ -178,14 +182,12 @@ public class InteligenciaVirus : MonoBehaviour {
 			
 			if (capturado == false) {
 				
-				if (ultima == true) {
+					
+
 					capturado = true;
 					Destroy(this.GetComponent<Collider>());
+
 					NotificationCenter.DefaultCenter ().PostNotification (this, "llevarABase", this.transform.position);
-				} else {
-					
-					
-				}
 			}
 		}
 
