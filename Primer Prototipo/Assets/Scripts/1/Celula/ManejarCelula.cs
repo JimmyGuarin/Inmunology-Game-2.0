@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ManejarCelula : MonoBehaviour {
 
+
+	//Imagenes celulas
 	public Sprite sprite1; 
 	public Sprite sprite2; 
 	public Sprite sprite3;
@@ -10,14 +12,19 @@ public class ManejarCelula : MonoBehaviour {
 	public Sprite sprite5; 
 	public Sprite sprite6;
 	public Sprite sprite7;
+
+
 	public Sprite [] Asprite;
 	SpriteRenderer spriteRenderer; 
-	private int nSprite;
+
 	public AudioSource audio1;
 	public AudioSource destruida;
-	public float vida;
+
+	public float vida=7;
+	private int nSprite=6;//indice de imagen
+
 	public GameObject viruss;
-	public static int celulas;
+	public static int celulas=12;
 	public int misVirus;
 	public bool muerta;
 
@@ -26,7 +33,6 @@ public class ManejarCelula : MonoBehaviour {
 	void Start () {
 	
 		misVirus = 0;
-		vida = 7;
 		Asprite = new Sprite[7];
 		Asprite[0]=sprite1; 
 		Asprite[1]=sprite2; 
@@ -35,7 +41,6 @@ public class ManejarCelula : MonoBehaviour {
 		Asprite[4]=sprite5;
 		Asprite[5]=sprite6;
 		Asprite[6]=sprite7;
-		celulas = 12;
 		muerta = false;
 
 		spriteRenderer = GetComponent<SpriteRenderer>(); 
@@ -46,24 +51,27 @@ public class ManejarCelula : MonoBehaviour {
 	void Update () {
 	
 
-
+		spriteRenderer.sprite = Asprite [nSprite];
 
 	}
+
+	//Cambiar Imagen de celula
 	void cambiar(){
 
 
-		spriteRenderer.sprite = Asprite [(int)vida];
+
 		if (vida == 0&&muerta==true) {
 
 			muerta=false;
 			if(!this.gameObject.name.Equals("muerta"))
-				InvokeRepeating("invocar",0,10f);
+				//InvokeRepeating("invocar",0,10f);
 			this.gameObject.name="muerta";
 
 
 		}
 	}
 
+	//Invocacion del Virus que sale de la celula
 	void invocar(){
 
 
@@ -88,53 +96,64 @@ public class ManejarCelula : MonoBehaviour {
 		
 	}
 
+
 	void OnTriggerEnter (Collider MyTrigger) {
 		
-		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)") || MyTrigger.gameObject.name.Equals ("Neutrofilo(Clone)")
+		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)") || 
+		    MyTrigger.gameObject.name.Equals ("Neutrofilo(Clone)")
 			|| MyTrigger.gameObject.name.Equals ("NaturalKiller(Clone)")) {
 
-			if(this.gameObject.tag.Equals("celula")){
+			if(this.gameObject.tag.Equals("celula"))
 
 				audio1.Play ();
-				if (vida >= 0) {
-					vida -= 0.01f;
-					cambiar ();
-				} else {
-					
-					
-				}
-			}
-
-
 
 		}
 
 	}
 	void OnTriggerStay (Collider MyTrigger) {
 			
-		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)")||MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)")||
+		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)")||
+		    MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)")||
 		    MyTrigger.gameObject.name.Equals ("Neutrofilo(Clone)")
-		    ||MyTrigger.gameObject.name.Equals ("NaturalKiller(Clone)")) {
+		    ||MyTrigger.gameObject.name.Equals ("NaturalKiller(Clone)")&&this.gameObject.tag.Equals("celula")) {
 
-			if(vida>=0){
-				vida-=0.004f;
-					cambiar();
+			vida-=0.003f;
+
+			if(vida>=0.5&&vida<=6){
+				nSprite=(int)vida;
+
+
 			}
+				
+
 			else{
 
+				if(vida<=0){
 
+					if(this.gameObject.tag.Equals("celula")&&(MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)")||
+					   MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)"))){
 
-				if(this.gameObject.tag.Equals("celula")&&(MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)")||
-				    MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)"))){
+						audio1.Stop();
+						vida=0;
+						nSprite=0;
+						muerta=true;
+						DefenzaFuera(this.gameObject.name);
+						this.gameObject.tag="muerta";
+						cambiar();
+						
+					}
+					if(this.gameObject.tag.Equals("celula")&&MyTrigger.gameObject.name.Equals ("Neutrofilo(Clone)")){
 
-					audio1.Stop();
-					vida=0;
-					muerta=true;
-					DefenzaFuera(this.gameObject.name);
-					this.gameObject.tag="muerta";
-					cambiar();
+						audio1.Stop();
+						DefenzaFuera(this.gameObject.name);
+						Destroy(this.gameObject);
+
+					}
+
 
 				}
+
+
 			}
 		}
 		if (MyTrigger.gameObject.name.Equals ("LinfoncitoTCD8(Clone)")) {

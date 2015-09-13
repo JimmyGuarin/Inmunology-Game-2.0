@@ -25,6 +25,7 @@ public class InteligenciaVirus : MonoBehaviour {
 		ultima = false;
 		capturado=false;
 		vida = 1000;
+
 		if (this.gameObject.name.Equals ("VirusFinal(Clone)")) {
 			destino = new Vector3 (Random.Range (this.transform.position.x - 6, this.transform.position.x + 10), Random.Range (-22f, 28f), -5f);
 		} else {
@@ -146,6 +147,9 @@ public class InteligenciaVirus : MonoBehaviour {
 					NotificationCenter.DefaultCenter ().PostNotification (this, "llevarABase", this.transform.position);
 			}
 		}
+
+		
+
 		if (MyTrigger.gameObject.tag.Equals ("celula")) {
 
 			destino=transform.position;
@@ -164,6 +168,13 @@ public class InteligenciaVirus : MonoBehaviour {
 	}
 
 	void OnTriggerStay (Collider MyTrigger) {
+
+
+		if (MyTrigger.gameObject.name.Equals ("Net(Clone)")) {
+			
+			destino=transform.position;	
+			
+		}
 
 		if (MyTrigger.gameObject.tag.Equals("celula")) {
 

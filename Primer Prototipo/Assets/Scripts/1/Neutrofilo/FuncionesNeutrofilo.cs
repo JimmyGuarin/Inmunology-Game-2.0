@@ -5,6 +5,7 @@ public class FuncionesNeutrofilo : MonoBehaviour {
 
 	public Vector3 posicion;
 	public bool activar;
+	public GameObject net;
 
 	// Use this for initialization
 	void Start () {
@@ -52,6 +53,7 @@ public class FuncionesNeutrofilo : MonoBehaviour {
 			if(GUI.Button(new Rect(aux.x,aux.y+20,130,20), "Trampa Extracelular")){
 				
 				///instanciar trampa
+				Invoke("createNET",0.5f);
 				  activar=false;
 			}
 			
@@ -61,7 +63,11 @@ public class FuncionesNeutrofilo : MonoBehaviour {
 		}
 	}
 	
-	
+	void createNET(){
+
+		Instantiate(net,this.transform.position,net.transform.rotation);
+		Destroy(this.gameObject);
+	}
 }
 
 
