@@ -38,7 +38,7 @@ public class BarraProgresoGanglio : MonoBehaviour {
 
 			textoProgreso.text="100% Completo";
 
-
+			paso5.SetActive(true);
 		}
 
 		if (progresoActual >=20) {
@@ -58,12 +58,7 @@ public class BarraProgresoGanglio : MonoBehaviour {
 			paso4.SetActive(true);
 
 		}
-		if (progresoActual>= 99) {
-		
-			paso5.SetActive(true);
 
-				
-		} 
 
 	}
 

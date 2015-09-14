@@ -6,7 +6,7 @@ public class InteligenciaVirus : MonoBehaviour {
 	public float speed=2f;
 	public Vector3 destino;
 	public bool capturado;
-	public int vida;
+	public float vida;
 	//ultima mutacion
 	public bool ultima;
 	public GameObject fracturado;
@@ -43,7 +43,7 @@ public class InteligenciaVirus : MonoBehaviour {
 		
 		if (vida <= 0) {
 			
-			CancelInvoke();
+
 			ControladorRecursos.puntaje+=40;
 			ManejadorVirus.numeroVirus--;
 			Destroy(this.gameObject);
@@ -117,8 +117,7 @@ public class InteligenciaVirus : MonoBehaviour {
 		
 		if(colision.collider.name.Equals("balaLifoncitoB(Clone)"))
 		{
-			vida-=100;
-			BroadcastMessage("ChangeTheDamnSprite");
+			vida-=200;
 			colision.gameObject.GetComponent<Rigidbody>().isKinematic=true;
 			colision.gameObject.GetComponent<Collider>().enabled=false;
 			colision.gameObject.GetComponent<Bala>().CancelInvoke();
@@ -132,7 +131,12 @@ public class InteligenciaVirus : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter (Collider MyTrigger) {
-		
+
+		if (MyTrigger.gameObject.name.Equals ("Net")) {
+			
+				
+
+		}
 		
 		if (MyTrigger.gameObject.name.Equals ("Dentrica(Clone)")) {
 			
@@ -171,9 +175,16 @@ public class InteligenciaVirus : MonoBehaviour {
 
 
 		if (MyTrigger.gameObject.name.Equals ("Net(Clone)")) {
-			
-			destino=transform.position;	
-			
+
+
+				
+				float xAux=MyTrigger.gameObject.transform.position.x;
+				float yAux=MyTrigger.gameObject.transform.position.y;
+				float zAux=MyTrigger.gameObject.transform.position.z;
+				
+			destino= new Vector3(Random.Range(xAux-2,xAux+2),Random.Range(yAux-2,yAux+2),zAux);
+
+			vida-=MyTrigger.GetComponent<Net>().daño;
 		}
 
 		if (MyTrigger.gameObject.tag.Equals("celula")) {

@@ -39,7 +39,7 @@ public class ManejadorVirus : MonoBehaviour {
 			
 		if (numeroVirus <= 30) {
 
-			if(i<=0){
+			if(i<=10){
 
 				Instantiate (virus);
 				i++;
@@ -62,7 +62,7 @@ public class ManejadorVirus : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		if (numeroVirus == 0&&i>5) {
+		if (numeroVirus == 0&&i>10) {
 
 			ControladorRecursos.ganar();
 			Debug.Log("aa");

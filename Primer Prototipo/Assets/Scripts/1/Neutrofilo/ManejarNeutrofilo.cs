@@ -128,31 +128,18 @@ public class ManejarNeutrofilo : MonoBehaviour {
 		
 		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)")) {
 
-			InteligenciaVirus v= (InteligenciaVirus)MyTrigger.GetComponent<InteligenciaVirus> ();
 
+			MyTrigger.GetComponent<InteligenciaVirus> ().vida-=2.5f;
 			life-=2;
-			if(v.vida==900||v.vida==800||v.vida==700||v.vida==600||v.vida==500||v.vida==400||v.vida==300||v.vida==200||v.vida==100){
-				
 
-				v.BroadcastMessage("ChangeTheDamnSprite");
-			}
-			v.vida-=2;
 
 			
 		}
 		if (MyTrigger.gameObject.name.Equals ("NaturalKiller(Clone)")) {
 			
 			life-=2f;
-			if(life<=0){
-				ControladorRecursos.defensas--;
-				Destroy(this.gameObject);
-				
-				
-			}
 		
-		
-		
-	}
+		}
 
    }
 }

@@ -25,8 +25,7 @@ public class TCD8 : MonoBehaviour {
 	
 	void Start () {
 		
-		if(Bala!=null)
-			InvokeRepeating ("disparar", 1.0f, 2.0f);
+
 		ControladorRecursos.defensas++;
 		isSeleted = false;
 		destino = new Vector3(MoverPuntoEncuentro.posicion.x,MoverPuntoEncuentro.posicion.y,-5f); // el primer destino es el Punto de Encuentro
@@ -132,17 +131,13 @@ public class TCD8 : MonoBehaviour {
 	
 	void OnTriggerStay(Collider MyTrigger) {
 		
-		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)")) {
+		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)")
+		    || MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)")) {
 			
-			virus v = (virus)MyTrigger.GetComponent<virus> ();
+
 			
 			vida -= 0.2f;
-			if (v.vida == 900 || v.vida == 800 || v.vida == 700 || v.vida == 600 || v.vida == 500 || v.vida == 400 || v.vida == 300 || v.vida == 200 || v.vida == 100) {
-				
-				
-				v.BroadcastMessage ("ChangeTheDamnSprite");
-			}
-			v.vida -= 2;
+
 
 		}
 		if (MyTrigger.gameObject.name.Equals ("NaturalKiller(Clone)")) {

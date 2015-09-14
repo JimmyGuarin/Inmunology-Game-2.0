@@ -15,24 +15,27 @@ public class BarraVida : MonoBehaviour {
 	public Sprite sprite10; 
 	public Sprite [] Asprite;
 	SpriteRenderer spriteRenderer; 
-	private int nSprite;
+	public int nSprite;
+	public float vidaVirus;
 
-void Start () { 
+	void Start () { 
 
 		Asprite = new Sprite[10];
-		Asprite[0]=sprite1; 
-		Asprite[1]=sprite2; 
-		Asprite[2]=sprite3;
-		Asprite[3]=sprite4;
-		Asprite[4]=sprite5;
-		Asprite[5]=sprite6;
-		Asprite[6]=sprite7;
-		Asprite[7]=sprite8; 
-		Asprite[8]=sprite9; 
-		Asprite[9]=sprite10; 
+		Asprite[0]=sprite10; 
+		Asprite[1]=sprite9; 
+		Asprite[2]=sprite8;
+		Asprite[3]=sprite7;
+		Asprite[4]=sprite6;
+		Asprite[5]=sprite5;
+		Asprite[6]=sprite4;
+		Asprite[7]=sprite3; 
+		Asprite[8]=sprite2; 
+		Asprite[9]=sprite1; 
+
+
 		
 		spriteRenderer = GetComponent<SpriteRenderer>(); 
-		nSprite = 0;
+		nSprite = 9;
 
 		
 		if (spriteRenderer.sprite == null) 
@@ -41,13 +44,23 @@ void Start () {
 
 	} 
 
-	void ChangeTheDamnSprite () { 
+
+	
 		
-		nSprite++;
-		if (nSprite <= 9)
-			spriteRenderer.sprite = Asprite [nSprite]; // if the spriteRenderer sprite = sprite1 then change to sprite2 
+	void Update(){
+
+
+		vidaVirus = GetComponentInParent<InteligenciaVirus> ().vida;
+
+		if (vidaVirus < 1000) {
+			
+			nSprite = (int)vidaVirus/ 100;
+			spriteRenderer.sprite = Asprite[nSprite]; 
+		}
+
 
 	}
+
 
 	// set the sprite to sprite1 
 } 

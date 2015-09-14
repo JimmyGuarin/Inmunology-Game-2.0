@@ -64,7 +64,7 @@ public class ManejarCelula : MonoBehaviour {
 
 			muerta=false;
 			if(!this.gameObject.name.Equals("muerta"))
-				//InvokeRepeating("invocar",0,10f);
+				InvokeRepeating("invocar",4,20f);
 			this.gameObject.name="muerta";
 
 
@@ -100,12 +100,24 @@ public class ManejarCelula : MonoBehaviour {
 	void OnTriggerEnter (Collider MyTrigger) {
 		
 		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)") || 
+		    MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)") ||
 		    MyTrigger.gameObject.name.Equals ("Neutrofilo(Clone)")
 			|| MyTrigger.gameObject.name.Equals ("NaturalKiller(Clone)")) {
 
 			if(this.gameObject.tag.Equals("celula"))
 
 				audio1.Play ();
+
+		}
+
+		if (MyTrigger.gameObject.name.Equals ("LinfoncitoTCD8(Clone)")) {
+
+			if(this.gameObject.tag.Equals("muerta")){
+
+				DefenzaFuera(this.gameObject.name);
+				Destroy(this.gameObject);
+
+			}
 
 		}
 
@@ -117,7 +129,7 @@ public class ManejarCelula : MonoBehaviour {
 		    MyTrigger.gameObject.name.Equals ("Neutrofilo(Clone)")
 		    ||MyTrigger.gameObject.name.Equals ("NaturalKiller(Clone)")&&this.gameObject.tag.Equals("celula")) {
 
-			vida-=0.003f;
+			vida-=0.01f;
 
 			if(vida>=0.5&&vida<=6){
 				nSprite=(int)vida;
