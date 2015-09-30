@@ -4,6 +4,7 @@ using System.Collections;
 public class ManejarCelula : MonoBehaviour {
 
 
+
 	//Imagenes celulas
 	public Sprite sprite1; 
 	public Sprite sprite2; 
@@ -24,15 +25,15 @@ public class ManejarCelula : MonoBehaviour {
 	private int nSprite=6;//indice de imagen
 
 	public GameObject viruss;
-	public static int celulas=12;
-	public int misVirus;
+
 	public bool muerta;
 
-
+	public Celula c;
 	// Use this for initialization
 	void Start () {
 	
-		misVirus = 0;
+		c = new Celula (this.transform.position, this.GetHashCode ());
+		ManejadorVirus.celulas.Add (c);
 		Asprite = new Sprite[7];
 		Asprite[0]=sprite1; 
 		Asprite[1]=sprite2; 
@@ -64,7 +65,7 @@ public class ManejarCelula : MonoBehaviour {
 
 			muerta=false;
 			if(!this.gameObject.name.Equals("muerta"))
-				InvokeRepeating("invocar",4,20f);
+				//InvokeRepeating("invocar",4,20f);
 			this.gameObject.name="muerta";
 
 
@@ -77,16 +78,11 @@ public class ManejarCelula : MonoBehaviour {
 
 		if (ManejadorVirus.numeroVirus <= 30&&ManejadorVirus.numeroVirus>0) {
 
-			if(misVirus<10){
-
 
 				Instantiate (viruss,this.transform.position,viruss.transform.rotation);
 
-				misVirus++;
-			}else{
-
-				CancelInvoke ();
-			}
+				
+		
 
 		} else {
 			CancelInvoke ();
@@ -114,7 +110,7 @@ public class ManejarCelula : MonoBehaviour {
 
 			if(this.gameObject.tag.Equals("muerta")){
 
-				DefenzaFuera(this.gameObject.name);
+				DefenzaFuera(c);
 				Destroy(this.gameObject);
 
 			}
@@ -149,7 +145,7 @@ public class ManejarCelula : MonoBehaviour {
 						vida=0;
 						nSprite=0;
 						muerta=true;
-						DefenzaFuera(this.gameObject.name);
+						DefenzaFuera(c);
 						this.gameObject.tag="muerta";
 						cambiar();
 						
@@ -157,7 +153,7 @@ public class ManejarCelula : MonoBehaviour {
 					if(this.gameObject.tag.Equals("celula")&&MyTrigger.gameObject.name.Equals ("Neutrofilo(Clone)")){
 
 						audio1.Stop();
-						DefenzaFuera(this.gameObject.name);
+						DefenzaFuera(c);
 						Destroy(this.gameObject);
 
 					}
@@ -189,23 +185,22 @@ public class ManejarCelula : MonoBehaviour {
 		
 	}
 
-	public void DefenzaFuera(string name){
-		
-		
-		for (int i=0; i<ManejadorVirus.celulas.Length; i++) {
+	public void DefenzaFuera(Celula cm){
 
-			if(ManejadorVirus.celulas[i]!=null){
-			if (ManejadorVirus.celulas [i].gameObject.name.Equals (name)) {
+		ManejadorVirus.actualizarDefenza();
+		for (int i=ManejadorVirus.celulas.Count-1; i>=0; i--) {
+		
+			Celula c=ManejadorVirus.celulas[i] as Celula;
+
+			if(cm.m_identificador==c.m_identificador){
 				
-				ManejadorVirus.celulas [i] = null;
-					Debug.Log("defenzafuera");
-
-				break;
-			}
+				ManejadorVirus.celulas.Remove(c);
+				Debug.Log("borra");
 			}
 		}
+		Debug.Log ("celulastam" + ManejadorVirus.celulas.Count);
 		ManejadorVirus.actualizarDefenza ();
-		imprimirArreglo ();
+		//imprimirArreglo ();
 	}
 
 	public void imprimirArreglo(){
@@ -213,11 +208,9 @@ public class ManejarCelula : MonoBehaviour {
 		string cadena = "";
 		{
 
-			for (int i=0; i<ManejadorVirus.celulas.Length; i++) {
+			for (int i=0; i<ManejadorVirus.celulas.Count; i++) {
 
-				if (ManejadorVirus.celulas [i] != null) {
-				cadena += ManejadorVirus.celulas [i].name + "-";
-				}
+
 		}
 		Debug.Log (cadena);
 	}

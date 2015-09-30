@@ -55,32 +55,25 @@ public class InteligenciaVirus : MonoBehaviour {
 		if (this.transform.position.Equals (destino)) {
 
 
-			if(capturado==true){
+			if (capturado == true) {
 				
-				if(ManejadorVirus.analizado==false){
+				if (ManejadorVirus.analizado == false) {
 					
-					ControladorRecursos.virusAnalizado();
-					ManejadorVirus.analizado=true;
+					ControladorRecursos.virusAnalizado ();
+					ManejadorVirus.analizado = true;
 				}
-				ControladorRecursos.puntaje+=50;
+				ControladorRecursos.puntaje += 50;
 				ManejadorVirus.numeroVirus--;
-				Debug.Log(ManejadorVirus.numeroVirus);
-				Destroy(this.gameObject);
+				Debug.Log (ManejadorVirus.numeroVirus);
+				Destroy (this.gameObject);
 			}
 
-			if(comiendo==false&&capturado==false){
+			if (comiendo == false && capturado == false) {
 
+				ManejadorVirus.actualizarDefenza();
+				if (this.gameObject != null)
+					destino = buscarObjetivo (this.gameObject.transform.position);
 
-
-				Debug.Log ("linea de defenza" + ManejadorVirus.lineaDefenza);
-				ManejadorVirus.actualizarDefenza ();
-				if(ManejadorVirus.lineaDefenza==0)
-					Destroy(this);
-				else{
-					ManejadorVirus.actualizarDefenza ();
-					if(this.gameObject!=null)
-					destino=buscarObjetivo(this.gameObject.transform.position);
-				}
 
 
 
@@ -91,18 +84,26 @@ public class InteligenciaVirus : MonoBehaviour {
 			float step = speed * Time.deltaTime;
 			transform.position = Vector3.MoveTowards (transform.position, destino, step);
 
-			if(comiendo==true&&ManejadorVirus.celulas[celulaObjetivo]==null){
+			if (comiendo == true) {
 
-				destino=transform.position;
-				comiendo=false;
-				Debug.Log("no vaya");
+				bool muerta = true;
+				ManejadorVirus.actualizarDefenza();
+				foreach (Celula i in ManejadorVirus.celulas) {
+					
+					if (i.m_identificador == celulaObjetivo) {
+
+						muerta = false;
+					}
+					
+				}
+				if (muerta ==true) {
+					destino = transform.position;
+					comiendo = false;
+				}
+	
 			}
-
-
-			
+		
 		}
-		
-		
 		
 	}
 	
@@ -157,17 +158,17 @@ public class InteligenciaVirus : MonoBehaviour {
 		if (MyTrigger.gameObject.tag.Equals ("celula")) {
 
 			destino=transform.position;
-			for(int i=0;i<ManejadorVirus.celulas.Length;i++){
-				
-				if(ManejadorVirus.celulas[i]!=null){
-					if(MyTrigger.gameObject.name.Equals(ManejadorVirus.celulas[i].name)){
-						
-						celulaObjetivo=i;
-						break;
-					}
+			ManejarCelula mc=MyTrigger.GetComponent<ManejarCelula>();
+
+			foreach (Celula i in ManejadorVirus.celulas_objetivos) {
+
+				if(mc.c.m_identificador==i.m_identificador){
+					celulaObjetivo=i.m_identificador;
+					break;
 				}
-			}
-			Debug.Log("comiendo"+celulaObjetivo);
+				
+			}	
+
 		}
 	}
 
@@ -236,84 +237,34 @@ public class InteligenciaVirus : MonoBehaviour {
 	}
 
 	public  Vector3 buscarObjetivo(Vector3 viru){
-		
-		int celula = 0;
+
 		ManejadorVirus.actualizarDefenza ();
-		
-		if (ManejadorVirus.lineaDefenza == 1) {
+		Vector3 destino= new Vector3 (0, 0, 0);
+
 			
 			float a = 100000;
-			celula=11;
-			for (int i=0; i<=2; i++) {
-
-				if (ManejadorVirus.celulas [i] != null) {
-
-					float b = Mathf.Abs (Vector3.Distance (viru, ManejadorVirus.celulas [i].transform.position));
-					if (b <= a) {
-
-						a = b;
-						celula = i;
-					}
-
-				}
-			}
-
-			celulaObjetivo = celula;
-			return ManejadorVirus.celulas [celula].transform.position;
-
-		}
-		if (ManejadorVirus.lineaDefenza == 2) {
 			
-
-			float a = 1000;
-			
-			for (int i=3; i<=6; i++) {
-				
-				if (ManejadorVirus.celulas [i] != null) {
-
-					float b = Mathf.Abs (Vector3.Distance (viru, ManejadorVirus.celulas [i].transform.position));
-					if (b <= a) {
-					
-						a = b;
-						celula = i;
-					}
-				}
-			}
-
-			celulaObjetivo = celula;
-			
-			return ManejadorVirus.celulas [celula].transform.position;
-		}
+		if (ManejadorVirus.celulas_objetivos.Count > 0) {
 		
-		if (ManejadorVirus.lineaDefenza == 3) {
-
-			float a = 1000;
-
-			Debug.Log ("Entro a linea 3");
-			for (int i=0; i<=11; i++) {
-					
-				if (ManejadorVirus.celulas [i] != null && ManejadorVirus.celulas [i].gameObject.tag.Equals ("celula")) {
-						
-					float b = Mathf.Abs (Vector3.Distance (viru, ManejadorVirus.celulas [i].transform.position));
-					Debug.Log("distancia b"+b);
-					if (b < a) {
-							
-						a = b;
-						Debug.Log ("Voy a una" + ManejadorVirus.celulas [i].gameObject.tag);	
-						celula = i;
-					}
-				}
-			}
+			ManejadorVirus.actualizarDefenza();
+			Debug.Log("tamaño"+ManejadorVirus.celulas_objetivos.Count);
+			for (int i=ManejadorVirus.celulas_objetivos.Count-1; i>=0; i--) {
 				
-			celulaObjetivo = celula;
-			return ManejadorVirus.celulas [celula].transform.position;
+				Celula c=ManejadorVirus.celulas_objetivos[i] as Celula;
+				float b = Mathf.Abs (Vector3.Distance (viru, c.m_posicion));
+				if (b <= a) {
+					
+					destino=c.m_posicion;
 
-		}
+					a = b;
+					celulaObjetivo=c.m_identificador;
+				}
 
-			Debug.Log ("a 0 por que" + ManejadorVirus.lineaDefenza);
-			return new Vector3 (0, 0, 0);
+			}
 
-
+		} 
+		Debug.Log("destino"+destino);
+		return destino;
 	}
 
 }
