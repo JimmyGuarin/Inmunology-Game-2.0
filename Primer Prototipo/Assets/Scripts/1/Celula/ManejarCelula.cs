@@ -65,7 +65,7 @@ public class ManejarCelula : MonoBehaviour {
 
 			muerta=false;
 			if(!this.gameObject.name.Equals("muerta"))
-				//InvokeRepeating("invocar",4,20f);
+				InvokeRepeating("invocar",4,20f);
 			this.gameObject.name="muerta";
 
 
@@ -76,20 +76,7 @@ public class ManejarCelula : MonoBehaviour {
 	void invocar(){
 
 
-		if (ManejadorVirus.numeroVirus <= 30&&ManejadorVirus.numeroVirus>0) {
-
-
 				Instantiate (viruss,this.transform.position,viruss.transform.rotation);
-
-				
-		
-
-		} else {
-			CancelInvoke ();
-			ControladorRecursos.invadido();
-		}
-
-		
 	}
 
 
@@ -125,7 +112,7 @@ public class ManejarCelula : MonoBehaviour {
 		    MyTrigger.gameObject.name.Equals ("Neutrofilo(Clone)")
 		    ||MyTrigger.gameObject.name.Equals ("NaturalKiller(Clone)")&&this.gameObject.tag.Equals("celula")) {
 
-			vida-=0.01f;
+			vida-=0.005f;
 
 			if(vida>=0.5&&vida<=6){
 				nSprite=(int)vida;
@@ -166,14 +153,14 @@ public class ManejarCelula : MonoBehaviour {
 		}
 		if (MyTrigger.gameObject.name.Equals ("LinfoncitoTCD8(Clone)")) {
 
-			if(vida<6){
-				vida+=0.02f;
-				cambiar();
+			//if(vida<6){
+			//	vida+=0.02f;
+			//	cambiar();
 
-			}
-			else{
-				vida=7;
-			}
+			//}
+			//else{
+			//	vida=7;
+			//}
 
 		}
 			
@@ -200,6 +187,12 @@ public class ManejarCelula : MonoBehaviour {
 		}
 		Debug.Log ("celulastam" + ManejadorVirus.celulas.Count);
 		ManejadorVirus.actualizarDefenza ();
+
+		if (ManejadorVirus.celulas.Count == 0) {
+
+			CancelInvoke();
+			ControladorRecursos.invadido();
+		}
 		//imprimirArreglo ();
 	}
 

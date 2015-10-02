@@ -17,7 +17,7 @@ public class InteligenciaVirus : MonoBehaviour {
 	public void Start () {
 
 
-
+		speed = 2f;
 		comiendo = false;
 		ManejadorVirus.numeroVirus++;
 		Debug.Log (ManejadorVirus.numeroVirus);

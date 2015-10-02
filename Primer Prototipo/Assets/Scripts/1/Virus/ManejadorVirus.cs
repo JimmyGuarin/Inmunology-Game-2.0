@@ -23,37 +23,30 @@ public class ManejadorVirus : MonoBehaviour {
 
 	void invocar(){
 			
-		if (numeroVirus <= 30) {
 
-			if(i==1){
+			if (numeroVirus == 0&&i>10) {
+				
+				ControladorRecursos.ganar();
+				Debug.Log("aa");
+				CancelInvoke();
+				Destroy(this);
+			}
+
+
+			if(i<=10){
 
 				Instantiate (virus);
 				i++;
 
 			}
-			else{
-				CancelInvoke ();
-			}
+			
 
-		} else {
-
-			CancelInvoke ();
-			if(numeroVirus>=30){
-				ControladorRecursos.invadido();
-			}
-		}
-	
-	}
+		} 
 	
 	// Update is called once per frame
 	void Update () {
 	
-		if (numeroVirus == 0&&i>10) {
 
-			ControladorRecursos.ganar();
-			Debug.Log("aa");
-			Destroy(this);
-		}
 		
 	}
 

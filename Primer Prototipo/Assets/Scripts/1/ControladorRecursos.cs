@@ -138,7 +138,9 @@ public class ControladorRecursos : MonoBehaviour {
 		c.alpha = 4;
 		Time.timeScale = 0;
 		string mensaje=finalizarJuego ();
-		mensajesPantalla.text="Te han Invadido. \n "+mensaje+puntaje;
+		if (puntaje < 0)
+			puntaje = 0;
+		mensajesPantalla.text=" GAME OVER \n"+mensaje+puntaje;
 
 	}
 	public static void ganar(){

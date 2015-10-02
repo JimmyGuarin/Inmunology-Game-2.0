@@ -43,12 +43,12 @@ public class FuncionesTCD4 : MonoBehaviour {
 			
 			Vector3 aux = Camera.main.WorldToScreenPoint(posicion);
 			aux.y=Screen.height-aux.y;
-			if(GUI.Button(new Rect(aux.x,aux.y,140,20), "Ayudar LinfocitoB")){
+			if(GUI.Button(new Rect(aux.x,aux.y,140,30), "Ayudar LinfocitoB")){
 
 				NotificationCenter.DefaultCenter().PostNotification(this,"activarMiraLB",this.gameObject);
 				activar=false;
 			}
-			if(GUI.Button(new Rect(aux.x,aux.y+20,140,20), "Ayudar Neutrofilo")){
+			if(GUI.Button(new Rect(aux.x,aux.y+30,140,30), "Ayudar Neutrofilo")){
 				
 				activar=false;
 			}

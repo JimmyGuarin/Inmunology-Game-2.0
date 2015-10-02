@@ -45,12 +45,12 @@ public class FuncionesNeutrofilo : MonoBehaviour {
 			
 			Vector3 aux = Camera.main.WorldToScreenPoint(posicion);
 			aux.y=Screen.height-aux.y;
-			if(GUI.Button(new Rect(aux.x,aux.y,130,20), "Degranulacion")){
+			if(GUI.Button(new Rect(aux.x,aux.y,130,30), "Degranulacion")){
 
 				GetComponent<ParticleSystem>().enableEmission=true;
 				activar=false;
 			}
-			if(GUI.Button(new Rect(aux.x,aux.y+20,130,20), "Trampa Extracelular")){
+			if(GUI.Button(new Rect(aux.x,aux.y+30,130,30), "Trampa Extracelular")){
 				
 				///instanciar trampa
 				Invoke("createNET",0.5f);
