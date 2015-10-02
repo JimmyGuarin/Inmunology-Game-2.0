@@ -11,7 +11,7 @@ public class SeleccionarUnidad : MonoBehaviour {
 	public GameObject tcd4;
 	public GameObject tcd8;
 	public GameObject celula;
-
+	
 	// Use this for initialization
 	void Start () {
 	
@@ -26,93 +26,103 @@ public class SeleccionarUnidad : MonoBehaviour {
 
 	public void neutrofilo(){
 
-		if(ControladorRecursos.nutrientes>=10&&
-		   ControladorRecursos.oxigeno>=20)
-		{
-			
-			ControladorRecursos.puntaje+=40;
-			ControladorRecursos.nutrientes-=10;
-			ControladorRecursos.oxigeno-=20;
+		int nut = 30;
+		int oxigeno = 40;
+		int puntajes = 70;
+
+		if (DisminuirRecursos (nut, oxigeno, puntajes) == true) {
+		
+		
 			GameObject neutrofilo=(GameObject)Instantiate(neutro);
 			MovimientoElipse me=neutrofilo.GetComponent<MovimientoElipse>();
 			me.salir=true;
 			Debug.Log(me.salir);
-		}
-		else{
-			
-			ControladorRecursos.sinRecursos();
-		}
 		
-	
+		}
 	}
 
 	public void LinfocitoB(){
 		
-		if(ControladorRecursos.nutrientes>=10&&
-		   ControladorRecursos.oxigeno>=20)
-		{
+		int nut = 70;
+		int oxigeno = 40;
+		int puntajes = 110;
+		
+		if (DisminuirRecursos (nut, oxigeno, puntajes) == true) {
 			
-			ControladorRecursos.puntaje+=40;
-			ControladorRecursos.nutrientes-=10;
-			ControladorRecursos.oxigeno-=20;
 			GameObject neutrofilo=(GameObject)Instantiate(linfoB);
 			MovimientoElipse me=neutrofilo.GetComponent<MovimientoElipse>();
 			me.salir=true;
 			Debug.Log(me.salir);
+
 		}
-		else{
-			
-			ControladorRecursos.sinRecursos();
-		}
-		
 		
 	}
 	public void TCD4(){
 		
-		if(ControladorRecursos.nutrientes>=10&&
-		   ControladorRecursos.oxigeno>=20)
-		{
+		int nut = 80;
+		int oxigeno = 80;
+		int puntajes = 160;
+	
+		if (DisminuirRecursos (nut, oxigeno, puntajes) == true) {
 			
-			ControladorRecursos.puntaje+=40;
-			ControladorRecursos.nutrientes-=10;
-			ControladorRecursos.oxigeno-=20;
-			GameObject neutrofilo=(GameObject)Instantiate(tcd4);
-			MovimientoElipse me=neutrofilo.GetComponent<MovimientoElipse>();
-			me.salir=true;
-			Debug.Log(me.salir);
-		}
-		else{
+				GameObject neutrofilo=(GameObject)Instantiate(tcd4);
+				MovimientoElipse me=neutrofilo.GetComponent<MovimientoElipse>();
+				me.salir=true;
+				Debug.Log(me.salir);
 			
-			ControladorRecursos.sinRecursos();
-		}
-		
-		
+			
+		}	
+
+	
 	}
 	public void TCD8(){
-		
-		if(ControladorRecursos.nutrientes>=10&&
-		   ControladorRecursos.oxigeno>=20)
-		{
+
+		int nut = 80;
+		int oxigeno = 80;
+		int puntajes = 160;
+	
+		if (DisminuirRecursos (nut, oxigeno, puntajes) == true) {
 			
-			ControladorRecursos.puntaje+=40;
-			ControladorRecursos.nutrientes-=10;
-			ControladorRecursos.oxigeno-=20;
-			GameObject neutrofilo=(GameObject)Instantiate(tcd8);
-			MovimientoElipse me=neutrofilo.GetComponent<MovimientoElipse>();
-			me.salir=true;
-			Debug.Log(me.salir);
-		}
-		else{
+				GameObject neutrofilo=(GameObject)Instantiate(tcd8);
+				MovimientoElipse me=neutrofilo.GetComponent<MovimientoElipse>();
+				me.salir=true;
+				Debug.Log(me.salir);
 			
-			ControladorRecursos.sinRecursos();
+			
 		}
-		
-		
+	
 	}
 
 	public void Celula(){
 
-		GameObject celula1 = (GameObject)Instantiate (celula);
-		celula.GetComponent<Nacimiento> ().enabled = true;
+		int nut = 100;
+		int oxigeno = 100;
+		int puntajes = 200;
+		
+		if (DisminuirRecursos (nut, oxigeno, puntajes) == true) {
+			
+			GameObject celula1 = (GameObject)Instantiate (celula);
+			celula.GetComponent<Nacimiento> ().enabled = true;
+	
+		}
+	}
+
+	public bool DisminuirRecursos(int nut,int oxigeno,int puntaje){
+
+
+		if (ControladorRecursos.nutrientes >= nut &&
+			ControladorRecursos.oxigeno >= oxigeno) {
+
+			ControladorRecursos.puntaje += puntaje;
+			ControladorRecursos.nutrientes -= nut;
+			ControladorRecursos.oxigeno -= oxigeno;
+			return true;
+		} else {
+		
+			ControladorRecursos.sinRecursos();
+			return false;
+		}
+
+
 	}
 }

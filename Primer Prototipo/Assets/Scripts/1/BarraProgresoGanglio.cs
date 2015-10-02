@@ -17,12 +17,16 @@ public class BarraProgresoGanglio : MonoBehaviour {
 	public  GameObject paso3;
 	public  GameObject paso4;
 	public  GameObject paso5;
+	public Animator animacion;
 
 	// Use this for initialization
 	void Start () {
 	
 		estadoBarra = this.gameObject.GetComponent<EstadoBarraGanglio> ();
 		Invoke("liberar",23f);
+
+		//Activar la animacion del ganglio.
+		animacion.enabled = true;
 	}
 	
 	// Update is called once per frame
