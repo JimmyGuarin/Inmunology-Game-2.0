@@ -63,7 +63,10 @@ public class Fondo1 : MonoBehaviour {
 					NotificationCenter.DefaultCenter().PostNotification(this,"cambiarPosCelula");
 					if(Nacimiento.seleccionado==true){
 
-						ControladorRecursos.sinllevar();
+						NotificationCenter.DefaultCenter ().PostNotification (this, "crearCelula",pulsacion.origin);
+						Debug.Log(pulsacion.origin);
+						Debug.Log("Crear");
+						
 					}
 
 				//}

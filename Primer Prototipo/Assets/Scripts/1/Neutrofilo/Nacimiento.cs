@@ -6,52 +6,77 @@ using System.Collections;
 	//private Vector3 offset; 
 	public static bool seleccionado;
 	public static bool eliminar;
-	public static GameObject neutrofilo;
 	public static int naciendo=0;
-
-
-
+	public bool sel=false;
+	public bool creado=false;
+	private Vector3 destino;
+	private Vector3 origen;
 
 	void Start(){
-
-		naciendo++;
-		eliminar = false;
+	
 		seleccionado = true;
-		neutrofilo = this.gameObject;
+		sel = true;
+		creado = false;
+		NotificationCenter.DefaultCenter ().AddObserver (this, "crearCelula");
+
 	}
 
 
-	void OnMouseDrag() { 
-		Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z); 
-		Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint); 
-		transform.position = curPosition; 
-	} 
+	//void OnMouseDrag() { 
+	//	Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z); 
+	//	Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint); 
+	//	transform.position = curPosition; 
+	//} 
 	void Update(){
 		 
-		if (eliminar == true) {
+		if(sel==true&&creado==true){
 
-			Destroy(this.gameObject);
-			Destroy(this);
+
+			float step = 4f * Time.deltaTime;
+			this.transform.position = Vector3.MoveTowards (transform.position, destino, step);
+
+			if(this.transform.position==destino){
+
+				GetComponent<Collider>().enabled=true;
+				GetComponent<ManejarCelula>().enabled=true;
+				GetComponentInChildren<nutritientes>().enabled=true;
+				Destroy(this);
+			}
 		}
 
 
+		if (seleccionado==true&&creado==false) {
 
-		if (seleccionado==true) {
 			Vector3 curScreenPoint = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, screenPoint.z); 
 			Vector3 curPosition = Camera.main.ScreenToWorldPoint (curScreenPoint) ; 
 			curPosition.z = -5;
 			transform.position = curPosition; 
 		}
-		else{
-			if(eliminar==false){
 
-				this.gameObject.GetComponent<Collider>().enabled=true;
-				this.gameObject.AddComponent<ManejarNeutrofilo>();
-				naciendo=0;
-				Destroy(this);
+	}
+
+	//Metodollamado desde el script Fondo1 (Script del fondo)
+	void crearCelula(Notification notification)
+	{
+		float a = 100000;
+		destino = (Vector3)notification.data;
+		destino.z = -5f;
+
+		for (int i=ManejadorVirus.celulas.Count-1; i>=0; i--) {
+			
+			Celula c=ManejadorVirus.celulas[i] as Celula;
+			float b = Mathf.Abs (Vector3.Distance (destino, c.m_posicion));
+			if (b <= a) {
+				
+				origen=c.m_posicion;
+				
+				a = b;
 			}
-		
+			
 		}
+		this.transform.position = origen;
+		creado = true;
+		
 	}
 
 

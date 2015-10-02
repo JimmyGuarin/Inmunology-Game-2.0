@@ -10,6 +10,7 @@ public class SeleccionarUnidad : MonoBehaviour {
 	public GameObject linfoB;
 	public GameObject tcd4;
 	public GameObject tcd8;
+	public GameObject celula;
 
 	// Use this for initialization
 	void Start () {
@@ -107,5 +108,11 @@ public class SeleccionarUnidad : MonoBehaviour {
 		}
 		
 		
+	}
+
+	public void Celula(){
+
+		GameObject celula1 = (GameObject)Instantiate (celula);
+		celula.GetComponent<Nacimiento> ().enabled = true;
 	}
 }

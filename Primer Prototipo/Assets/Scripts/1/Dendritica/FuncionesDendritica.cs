@@ -44,12 +44,12 @@ public class FuncionesDendritica : MonoBehaviour {
 				
 			Vector3 aux = Camera.main.WorldToScreenPoint(posicion);
 			aux.y=Screen.height-aux.y;
-			if(GUI.Button(new Rect(aux.x,aux.y,100,20), "Alertar Vaso")){
+			if(GUI.Button(new Rect(aux.x,aux.y,100,30), "Alertar Vaso")){
 
 				dendritica.llevarA(1,new Vector3(47.7f,10.8f,-5f));
 				activar=false;
 			}
-			if(GUI.Button(new Rect(aux.x,aux.y+20,100,20), "Alertar Ganglio")){
+			if(GUI.Button(new Rect(aux.x,aux.y+30,100,30), "Alertar Ganglio")){
 				
 				dendritica.llevarA(0,new Vector3(47.8f ,-22.2f  ,-10f  ));
 				activar=false;
