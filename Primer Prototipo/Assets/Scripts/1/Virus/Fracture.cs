@@ -3,14 +3,14 @@ using System.Collections;
 
 public class Fracture : MonoBehaviour {
 
-	public float speed=4f;
+	public float speed=3f;
 	public Vector3 destino;
 	public bool ganglio;
 
 	// Use this for initialization
 	void Start () {
 	
-		speed = 4f;
+		speed = 3f;
 		if(Vector3.Distance(transform.position,new Vector3(47.8f ,-22.2f  ,-10f  ))<
 		   Vector3.Distance(transform.position,new Vector3(47.7f,10.8f,-10f  )))
 			destino=new Vector3(47.8f ,-22.2f  ,this.transform.position.z );
@@ -70,6 +70,8 @@ public class Fracture : MonoBehaviour {
 			MyTrigger.gameObject.GetComponent<ManejarCelula> ().audio1.Stop ();
 				
 		}
+
+
 	}
 
 	void OnTriggerExit (Collider MyTrigger) {

@@ -39,8 +39,9 @@ public class MovimientoElipse : MonoBehaviour {
 				GetComponent<TCD8>().enabled=true;
 			if(gameObject.name.Equals("LinfoncitoB(Clone)"))
 				GetComponent<LinfocitoB>().enabled=true;
-				
-			
+			if(gameObject.name.Equals("MacrofagoFinal(Clone)"))
+				GetComponent<Macrofago>().enabled=true;
+
 
 			
 			Destroy(this);

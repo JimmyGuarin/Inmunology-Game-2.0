@@ -1,8 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\1\SeleccionarUnidad.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\1\Oxigeno.cs">
     <Files>
-      <File FileName="Assets\Scripts\1\SeleccionarUnidad.cs" Line="107" Column="4" />
+      <File FileName="Assets\Scripts\1\BarraProgresoGanglio.cs" Line="8" Column="50" />
+      <File FileName="Assets\Scripts\1\EstadoBarraGanglio.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\1\Dendritica\CrearUnidadInnata.cs" Line="184" Column="17" />
+      <File FileName="Assets\Scripts\1\ControladorInmuAdquirida.cs" Line="15" Column="19" />
+      <File FileName="Assets\Scripts\1\Virus\Fracture.cs" Line="74" Column="3" />
+      <File FileName="Assets\Scripts\1\Vaso\VasoGrande.cs" Line="96" Column="1" />
+      <File FileName="Assets\Scripts\1\nutritientes.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\1\Oxigeno.cs" Line="18" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -29,7 +29,7 @@ using System.Collections;
 	//} 
 	void Update(){
 		 
-		if(sel==true&&creado==true){
+		if(creado==true){
 
 
 			float step = 4f * Time.deltaTime;
@@ -58,25 +58,31 @@ using System.Collections;
 	//Metodollamado desde el script Fondo1 (Script del fondo)
 	void crearCelula(Notification notification)
 	{
-		float a = 100000;
-		destino = (Vector3)notification.data;
-		destino.z = -5f;
 
-		for (int i=ManejadorVirus.celulas.Count-1; i>=0; i--) {
-			
-			Celula c=ManejadorVirus.celulas[i] as Celula;
-			float b = Mathf.Abs (Vector3.Distance (destino, c.m_posicion));
-			if (b <= a) {
-				
-				origen=c.m_posicion;
-				
-				a = b;
-			}
-			
-		}
-		this.transform.position = origen;
-		creado = true;
+		if (sel == true) {
 		
+			float a = 100000;
+			destino = (Vector3)notification.data;
+			destino.z = -5f;
+			
+			for (int i=ManejadorVirus.celulas.Count-1; i>=0; i--) {
+				
+				Celula c=ManejadorVirus.celulas[i] as Celula;
+				float b = Mathf.Abs (Vector3.Distance (destino, c.m_posicion));
+				if (b <= a) {
+					
+					origen=c.m_posicion;
+					
+					a = b;
+				}
+				
+			}
+			this.transform.position = origen;
+			creado = true;
+			sel=false;
+
+		}
+
 	}
 
 

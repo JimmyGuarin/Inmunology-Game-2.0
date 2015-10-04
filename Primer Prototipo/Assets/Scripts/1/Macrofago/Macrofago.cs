@@ -1,9 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
-public class CrearUnidadInnata : MonoBehaviour {
-	
-	
+public class Macrofago : MonoBehaviour {
+
 	//Velocidad  a la se me mueve la celula
 	public float speed;
 	
@@ -12,11 +11,11 @@ public class CrearUnidadInnata : MonoBehaviour {
 	
 	//Variable que almacena si la celula esta seleccionada o no.
 	public bool isSeleted;
-
+	
 	
 	//Variable que representa el animator de la celula
 	private Animator animator;
-
+	
 	private Fracture virus;
 	// si va para base
 	private bool llevarBase=false;
@@ -28,17 +27,15 @@ public class CrearUnidadInnata : MonoBehaviour {
 	public Texture2D imagen;
 	public Rect r;
 	public int ubicada;
-
-	public ControladorInmuAdquirida activarAdquirida;
 	void Start () {
-
-
+		
+		
 		ControladorRecursos.defensas++;
 		enColision = false;
 		isSeleted = false;
 		animator = GetComponent<Animator> ();
-		speed = 7f;
-		destino = this.transform.position;
+		speed = 6f;
+		destino = new Vector3(MoverPuntoEncuentro.posicion.x,MoverPuntoEncuentro.posicion.y,-5f); // el primer destino es el Punto de Encuentro
 		//PatronObserver:
 		// Metodos que va a observar 
 		NotificationCenter.DefaultCenter ().AddObserver (this, "cambiarPosCelula");
@@ -52,11 +49,11 @@ public class CrearUnidadInnata : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-
+		
+		
+		
+		if (Input.GetMouseButtonDown (1)) {
 			
-	 if (Input.GetMouseButtonDown (1)) {
-				
 			
 			Ray pulsacion;
 			RaycastHit hit;
@@ -64,36 +61,31 @@ public class CrearUnidadInnata : MonoBehaviour {
 			if (Physics.Raycast (pulsacion, out hit) && hit.collider == this.GetComponent<Collider>()) {
 				
 				if (isSeleted == false && this.GetComponent<Collider>() != null) {
-
+					
 					seleccionadas++;
 					if(seleccionadas==1){
 						PosicionSeleccionada.posicionar++;
 						ubicada=PosicionSeleccionada.posicionar;
 						GUI.Label (new Rect (10, 30, 110, 60), imagen);
-
+						
 					}
 					isSeleted = true;
 				} 
 			}
-		
+			
 		}
 		//se esta cambiando la posicion hasta que llega a destino
 		float step = speed * Time.deltaTime;
 		this.transform.position = Vector3.MoveTowards (transform.position, destino, step);
-			if(llevarBase==true&&this.transform.position==destino){
-				
-				ControladorRecursos.defensas--;
-				
-				Destroy(this.gameObject);
-				
-			}
+		if(llevarBase==true&&this.transform.position==destino){
 			
+			ControladorRecursos.defensas--;
+			Destroy(this.gameObject);
 			
-			
-
+		}
 		
 	}
-
+	
 	void OnGUI(){
 		
 		if (isSeleted == true) {
@@ -120,7 +112,7 @@ public class CrearUnidadInnata : MonoBehaviour {
 		}
 	}
 	
-
+	
 	
 	//Metodollamado desde el script Fondo1 (Script del fondo)
 	void cambiarPosCelula(Notification notification)
@@ -131,11 +123,11 @@ public class CrearUnidadInnata : MonoBehaviour {
 		if (isSeleted == true) {
 			
 			
-			animator.SetInteger("vaso",0);
+
 			destino = new Vector3 (Fondo1.puntoDestino.x, Fondo1.puntoDestino.y, -5f);
 			isSeleted = false;
 			seleccionadas--;
-
+			
 		}
 		
 		
@@ -151,11 +143,10 @@ public class CrearUnidadInnata : MonoBehaviour {
 			llevarBase = true;
 			GetComponent<FuncionesDendritica>().enabled=true;
 			Vector3 nuevaPos=(Vector3)notificacion.data;
-			animator.SetInteger("vaso",1);
-			speed=4f;
-			Invoke("nada",1.8f);
-			this.transform.position=new Vector3(nuevaPos.x,nuevaPos.y,-7f);
 
+			speed=2f;
+			this.transform.position=new Vector3(nuevaPos.x,nuevaPos.y,-7f);
+			
 			if(Vector3.Distance(transform.position,new Vector3(47.8f ,-22.2f  ,this.transform.position.z  ))<
 			   Vector3.Distance(transform.position,new Vector3(47.7f,10.8f,this.transform.position.z  )))
 				destino=new Vector3(47.8f ,-22.2f  ,-10f  );
@@ -171,15 +162,12 @@ public class CrearUnidadInnata : MonoBehaviour {
 		
 		
 	}
+	
 
-	public void nada(){
-
-		animator.SetInteger("vaso",2);
-	}
 	//index =0ganglio index=1 vaso
 	//llamado desde el script de funcionesDendritica
 	public void llevarA(int index,Vector3 v){
-
+		
 		if (index == 1) 
 			virus.ganglio=false;
 		else virus.ganglio=true;
@@ -187,32 +175,32 @@ public class CrearUnidadInnata : MonoBehaviour {
 		virus.destino = destino;
 	}
 	
-
+	
 	void OnTriggerEnter (Collider MyTrigger) {
 		
 		Debug.Log (MyTrigger.gameObject.name);
-
+		
 		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)") || 
 		    MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)"))
 		{
-				if (llevarBase == false) {
-
-
-				speed = 3f;
-				enColision = true;
-				}
+			if (llevarBase == false) {
 				
+				
+				speed = 4f;
+				enColision = true;
+			}
+			
 		}	
-	
-
-
+		
+		
+		
 		if (MyTrigger.gameObject.name.Equals ("LinfoncitoTCD4(Clone)")) {
-
+			
 			speed=6;
 			animator.SetBool("mejorada",true);
-
-		}
 			
+		}
+		
 		
 	}
 	
@@ -228,22 +216,22 @@ public class CrearUnidadInnata : MonoBehaviour {
 		    MyTrigger.gameObject.name.Equals("VirusFinalCelula(Clone)")) {
 			
 			if (llevarBase == false) {
-
-
+				
+				
 				enColision = true;
 				speed=4f;
 			}
 			else{
-
+				
 				vida-=0.1f;
 				if(vida==0){
-
+					
 					ControladorRecursos.defensas--;
 					Destroy(this.gameObject);
 				}
-					
+				
 			}
-
+			
 			
 		}
 		if (MyTrigger.gameObject.name.Equals ("virusFinalFracture(Clone)")) {
@@ -251,21 +239,11 @@ public class CrearUnidadInnata : MonoBehaviour {
 			virus = MyTrigger.GetComponent < Fracture>();
 			Destroy(virus.GetComponent<Collider>());		
 		}
-
-
-		if (MyTrigger.gameObject.name.Equals ("NaturalKiller(Clone)")) {
-			
-			vida -= 2f;
-			if (vida <= 0) {
-				ControladorRecursos.defensas--;
-				Destroy (this.gameObject);
-				
-				
-			}
 		
-		}
-	
+		
+
+		
 	}
-
-
+	
+	
 }

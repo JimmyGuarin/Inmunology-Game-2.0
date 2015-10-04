@@ -4,13 +4,14 @@ using System.Collections;
 public class SeleccionarUnidad : MonoBehaviour {
 
 
-	public GameObject dentritica;
+	public GameObject macrofago;
 	public GameObject neutro;
 	public GameObject killer;
 	public GameObject linfoB;
 	public GameObject tcd4;
 	public GameObject tcd8;
 	public GameObject celula;
+
 	
 	// Use this for initialization
 	void Start () {
@@ -23,6 +24,23 @@ public class SeleccionarUnidad : MonoBehaviour {
 	
 	}
 
+	public void Macrofago(){
+	
+		int nut = 40;
+		int oxigeno = 50;
+		int puntajes = 90;
+		
+		if (DisminuirRecursos (nut, oxigeno, puntajes) == true) {
+			
+			
+			GameObject neutrofilo=(GameObject)Instantiate(macrofago);
+			MovimientoElipse me=neutrofilo.GetComponent<MovimientoElipse>();
+			me.salir=true;
+			Debug.Log(me.salir);
+			
+		}
+	
+	}
 
 	public void neutrofilo(){
 
@@ -101,7 +119,7 @@ public class SeleccionarUnidad : MonoBehaviour {
 		
 		if (DisminuirRecursos (nut, oxigeno, puntajes) == true) {
 			
-			GameObject celula1 = (GameObject)Instantiate (celula);
+			Instantiate (celula);
 			celula.GetComponent<Nacimiento> ().enabled = true;
 	
 		}

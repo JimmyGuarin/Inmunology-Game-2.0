@@ -70,6 +70,8 @@ public class BarraProgresoGanglio : MonoBehaviour {
 
 		activarAdquirida.desbloquearLinfocitos();
 		VasoGrande.activarLinfocitos=true;
+		CancelInvoke ();
+		Destroy (this);
 		Destroy (this.gameObject);
 
 	}

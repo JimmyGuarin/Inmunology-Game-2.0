@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\1\BarraProgresoGanglio.cs" />
      <Compile Include="Assets\Scripts\1\Celula\Celula.cs" />
      <Compile Include="Assets\Scripts\1\Celula\ManejarCelula.cs" />
+     <Compile Include="Assets\Scripts\1\Celula\Nacimiento.cs" />
      <Compile Include="Assets\Scripts\1\ControladorInmuAdquirida.cs" />
      <Compile Include="Assets\Scripts\1\ControladorRecursos.cs" />
      <Compile Include="Assets\Scripts\1\Dendritica\CrearUnidadInnata.cs" />
@@ -63,15 +64,17 @@
      <Compile Include="Assets\Scripts\1\LinfocitoB\LinfocitoB.cs" />
      <Compile Include="Assets\Scripts\1\LinfocitoB\LinfocitoB2.cs" />
      <Compile Include="Assets\Scripts\1\LinfocitoB\destruirHumo.cs" />
+     <Compile Include="Assets\Scripts\1\Macrofago\FuncionesMacrofago.cs" />
+     <Compile Include="Assets\Scripts\1\Macrofago\Macrofago.cs" />
      <Compile Include="Assets\Scripts\1\MenuFunciones.cs" />
      <Compile Include="Assets\Scripts\1\MoverPuntoEncuentro.cs" />
      <Compile Include="Assets\Scripts\1\MovimientoElipse.cs" />
      <Compile Include="Assets\Scripts\1\Neutrofilo\FuncionesNeutrofilo.cs" />
      <Compile Include="Assets\Scripts\1\Neutrofilo\ManejarNeutrofilo.cs" />
-     <Compile Include="Assets\Scripts\1\Neutrofilo\Nacimiento.cs" />
      <Compile Include="Assets\Scripts\1\Neutrofilo\Net.cs" />
      <Compile Include="Assets\Scripts\1\Neutrofilo\Nuevo.cs" />
      <Compile Include="Assets\Scripts\1\NotificationCenter.cs" />
+     <Compile Include="Assets\Scripts\1\Oxigeno.cs" />
      <Compile Include="Assets\Scripts\1\PosicionSeleccionada.cs" />
      <Compile Include="Assets\Scripts\1\SeleccionarUnidad.cs" />
      <Compile Include="Assets\Scripts\1\TCD4\FuncionesTCD4.cs" />

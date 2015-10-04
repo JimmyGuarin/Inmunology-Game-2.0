@@ -10,13 +10,18 @@ public class VasoGrande : MonoBehaviour {
 	public GameObject tcd4;
 	public GameObject tcd8;
 	public static bool activarLinfocitos;
+	public GameObject oxigeno1;
+	public GameObject oxigeno2;
+	public GameObject oxigeno3;
+	public float tiempo_Oxigenar;
 
 	// Use this for initialization
 	void Start () {
 
+		tiempo_Oxigenar = 4f;
 		activarLinfocitos = false;
 		InvokeRepeating ("crearEritrocito", 0, 0.3f);
-		InvokeRepeating ("crearNeutrofilo", 3f, 1f);
+		InvokeRepeating ("crearNeutrofilo", 3f, 1.2f);
 		InvokeRepeating ("crearMacrofago", 2f, 1.5f);
 	
 	}
@@ -35,9 +40,9 @@ public class VasoGrande : MonoBehaviour {
 	public  void activar(){
 
 
-		InvokeRepeating ("crearLinfocitoB", 0, 3f);
+		InvokeRepeating ("crearLinfocitoB", 0, 3.5f);
 		InvokeRepeating ("crearTCD4", 2f, 2.5f);
-		//InvokeRepeating ("crearTCD8", 1f, 2.5f);
+		InvokeRepeating ("crearTCD8", 1f, 2.5f);
 	}
 
 
@@ -74,5 +79,20 @@ public class VasoGrande : MonoBehaviour {
 		
 		Instantiate(tcd8);
 	}
+
+	public void activarVaso(){
+
+		GetComponent<Animator> ().enabled = true;
+		InvokeRepeating ("oxigenar", 0f, tiempo_Oxigenar);
+	}
+
+	public void oxigenar(){
+
+		Instantiate (oxigeno1);
+		Instantiate (oxigeno2);
+		Instantiate (oxigeno3);
+	}
+
+
 
 }

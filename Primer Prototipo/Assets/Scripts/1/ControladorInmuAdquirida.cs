@@ -5,12 +5,17 @@ using UnityEngine.UI;
 public class ControladorInmuAdquirida : MonoBehaviour {
 
 
-
+	public Button macrofago;
+	public Button neutrofilo;
 	public Button linfoB;
 	public Button Killer;
 	public Button TCD4;
 	public Button TCD8;
+
+	public VasoGrande animador_vaso;
+
 	public SeleccionarUnidad seleccionador;
+
 
 
 	void Start(){
@@ -32,5 +37,12 @@ public class ControladorInmuAdquirida : MonoBehaviour {
 
 	}
 
+	public void desbloquearInnata(){
+
+
+		macrofago.GetComponent<Button> ().interactable = true;
+		neutrofilo.GetComponent<Button> ().interactable = true;
+
+	}
 
 }
