@@ -24,7 +24,7 @@ public class ManejadorVirus : MonoBehaviour {
 	void invocar(){
 			
 
-			if (numeroVirus == 0&&i>10) {
+			if (numeroVirus == 0&&i>15) {
 				
 				ControladorRecursos.ganar();
 				Debug.Log("aa");
@@ -33,7 +33,7 @@ public class ManejadorVirus : MonoBehaviour {
 			}
 
 
-			if(i<=10){
+			if(i<=15){
 
 				Instantiate (virus);
 				i++;

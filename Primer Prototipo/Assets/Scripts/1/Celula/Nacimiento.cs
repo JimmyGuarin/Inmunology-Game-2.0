@@ -63,7 +63,7 @@ using System.Collections;
 		
 			float a = 100000;
 			destino = (Vector3)notification.data;
-			destino.z = -5f;
+			destino.z = -3.6f;
 			
 			for (int i=ManejadorVirus.celulas.Count-1; i>=0; i--) {
 				

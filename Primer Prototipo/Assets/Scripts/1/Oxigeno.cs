@@ -11,23 +11,22 @@ public class Oxigeno : MonoBehaviour {
 	void Start () {
 	
 		r = GetComponent<Rigidbody> ();
+        
+        r.AddForce(new Vector3(-0.7f, y, -0.2f) * 20, ForceMode.Impulse);
 
+        Invoke("destruir", 1f);
 
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
 	
-		r.AddForce (new Vector3(-0.7f,y,-0.8f)*5, ForceMode.Force);
 	
 	}
 
-	void OnCollisionEnter(Collision colision) {
-		
-		
-		if((colision.collider.name.Equals("Techo")))
-			
-			Destroy (this.gameObject);	
-		
-	}
+    void destruir()
+    {
+
+        Destroy(this.gameObject);
+    }
 }

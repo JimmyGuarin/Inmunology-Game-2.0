@@ -13,12 +13,12 @@ public class VasoGrande : MonoBehaviour {
 	public GameObject oxigeno1;
 	public GameObject oxigeno2;
 	public GameObject oxigeno3;
-	public float tiempo_Oxigenar;
+    public ControladorInmuAdquirida innata;
 
 	// Use this for initialization
 	void Start () {
 
-		tiempo_Oxigenar = 4f;
+		
 		activarLinfocitos = false;
 		InvokeRepeating ("crearEritrocito", 0, 0.3f);
 		InvokeRepeating ("crearNeutrofilo", 3f, 1.2f);
@@ -80,9 +80,11 @@ public class VasoGrande : MonoBehaviour {
 		Instantiate(tcd8);
 	}
 
-	public void activarVaso(){
+	public void activarVaso(float tiempo_Oxigenar){
 
 		GetComponent<Animator> ().enabled = true;
+        innata.desbloquearInnata();
+        CancelInvoke("oxigenar");
 		InvokeRepeating ("oxigenar", 0f, tiempo_Oxigenar);
 	}
 
@@ -91,6 +93,7 @@ public class VasoGrande : MonoBehaviour {
 		Instantiate (oxigeno1);
 		Instantiate (oxigeno2);
 		Instantiate (oxigeno3);
+        ControladorRecursos.oxigeno += 30;
 	}
 
 

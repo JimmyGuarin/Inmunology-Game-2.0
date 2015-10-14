@@ -46,8 +46,13 @@ public class FuncionesDendritica : MonoBehaviour {
 			aux.y=Screen.height-aux.y;
 			if(GUI.Button(new Rect(aux.x,aux.y,100,30), "Alertar Vaso")){
 
-				dendritica.llevarA(1,new Vector3(47.7f,10.8f,-5f));
-				activar=false;
+                if (this.gameObject.transform.position.y < -11)
+      
+                    dendritica.llevarA(1, new Vector3(47.7f, Random.Range(-11f,4f), -5f));
+
+                else dendritica.llevarA(1, new Vector3(47.7f, this.gameObject.transform.position.y, -5f));
+
+                activar =false;
 			}
 			if(GUI.Button(new Rect(aux.x,aux.y+30,100,30), "Alertar Ganglio")){
 				

@@ -12,8 +12,8 @@ public class nutritientes : MonoBehaviour {
 		
 		
 		factor = 0.05f;
-		float aux = Random.Range (10,25);
-		float aux2 = Random.Range (20,25);
+		float aux = Random.Range (15,25);
+		float aux2 = Random.Range (25,30);
 		InvokeRepeating ("nutrir",aux ,aux2);
 	}
 

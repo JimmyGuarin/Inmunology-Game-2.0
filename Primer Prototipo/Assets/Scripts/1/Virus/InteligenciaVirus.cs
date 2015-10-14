@@ -64,7 +64,7 @@ public class InteligenciaVirus : MonoBehaviour {
 				}
 				ControladorRecursos.puntaje += 50;
 				ManejadorVirus.numeroVirus--;
-				Debug.Log (ManejadorVirus.numeroVirus);
+				
 				Destroy (this.gameObject);
 			}
 
@@ -197,7 +197,7 @@ public class InteligenciaVirus : MonoBehaviour {
 
 			comiendo=false;
 			destino=transform.position;
-			Debug.Log("La mate");
+			
 			
 		}
 		if (MyTrigger.gameObject.name.Equals ("Dentrica(Clone)")) {
@@ -247,7 +247,7 @@ public class InteligenciaVirus : MonoBehaviour {
 		if (ManejadorVirus.celulas_objetivos.Count > 0) {
 		
 			ManejadorVirus.actualizarDefenza();
-			Debug.Log("tamaño"+ManejadorVirus.celulas_objetivos.Count);
+	
 			for (int i=ManejadorVirus.celulas_objetivos.Count-1; i>=0; i--) {
 				
 				Celula c=ManejadorVirus.celulas_objetivos[i] as Celula;
@@ -263,7 +263,7 @@ public class InteligenciaVirus : MonoBehaviour {
 			}
 
 		} 
-		Debug.Log("destino"+destino);
+	
 		return destino;
 	}
 

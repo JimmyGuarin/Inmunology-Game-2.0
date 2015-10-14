@@ -20,6 +20,8 @@ public class CrearUnidadInnata : MonoBehaviour {
 	private Fracture virus;
 	// si va para base
 	private bool llevarBase=false;
+
+    public GameObject canvas_Ganglio;
 	
 	public float vida=1000;
 	//Si esta en colision
@@ -33,7 +35,8 @@ public class CrearUnidadInnata : MonoBehaviour {
 	void Start () {
 
 
-		ControladorRecursos.defensas++;
+        canvas_Ganglio = GameObject.Find("CanvasGanglio").transform.GetChild(0).gameObject;
+        ControladorRecursos.defensas++;
 		enColision = false;
 		isSeleted = false;
 		animator = GetComponent<Animator> ();
@@ -63,7 +66,7 @@ public class CrearUnidadInnata : MonoBehaviour {
 			pulsacion = Camera.main.ScreenPointToRay (Input.mousePosition);
 			if (Physics.Raycast (pulsacion, out hit) && hit.collider == this.GetComponent<Collider>()) {
 				
-				if (isSeleted == false && this.GetComponent<Collider>() != null) {
+				if (isSeleted == false && this.GetComponent<Collider>() != null&&llevarBase==false) {
 
 					seleccionadas++;
 					if(seleccionadas==1){
@@ -83,7 +86,11 @@ public class CrearUnidadInnata : MonoBehaviour {
 			if(llevarBase==true&&this.transform.position==destino){
 				
 				ControladorRecursos.defensas--;
-				
+                
+                if (canvas_Ganglio != null&&
+                    canvas_Ganglio.activeSelf==false)
+                     canvas_Ganglio.SetActive(true);
+                
 				Destroy(this.gameObject);
 				
 			}
@@ -152,14 +159,14 @@ public class CrearUnidadInnata : MonoBehaviour {
 			GetComponent<FuncionesDendritica>().enabled=true;
 			Vector3 nuevaPos=(Vector3)notificacion.data;
 			animator.SetInteger("vaso",1);
-			speed=4f;
+			speed=3f;
 			Invoke("nada",1.8f);
 			this.transform.position=new Vector3(nuevaPos.x,nuevaPos.y,-7f);
 
 			if(Vector3.Distance(transform.position,new Vector3(47.8f ,-22.2f  ,this.transform.position.z  ))<
 			   Vector3.Distance(transform.position,new Vector3(47.7f,10.8f,this.transform.position.z  )))
 				destino=new Vector3(47.8f ,-22.2f  ,-10f  );
-			else destino=new Vector3(47.7f,10.8f,-5f  );
+			else destino=new Vector3(47.7f,this.transform.position.y,-5f  );
 			
 			if(isSeleted==true)
 				seleccionadas--;
@@ -180,12 +187,17 @@ public class CrearUnidadInnata : MonoBehaviour {
 	//llamado desde el script de funcionesDendritica
 	public void llevarA(int index,Vector3 v){
 
-		if (index == 1) 
-			virus.ganglio=false;
+        destino = v;
+        if (index == 1)
+        {
+            virus.ganglio = false;
+            destino.z = this.transform.position.z;
+        }
+			
 		else virus.ganglio=true;
-		destino = v;
-		virus.destino = destino;
-	}
+        virus.destino = destino;
+
+    }
 	
 
 	void OnTriggerEnter (Collider MyTrigger) {
@@ -249,8 +261,12 @@ public class CrearUnidadInnata : MonoBehaviour {
 		if (MyTrigger.gameObject.name.Equals ("virusFinalFracture(Clone)")) {
 			
 			virus = MyTrigger.GetComponent < Fracture>();
-			Destroy(virus.GetComponent<Collider>());		
-		}
+            Destroy(virus.GetComponent<Collider>());
+            llevarBase = true;
+            MyTrigger.gameObject.transform.parent = this.transform;
+            
+
+        }
 
 
 		if (MyTrigger.gameObject.name.Equals ("NaturalKiller(Clone)")) {

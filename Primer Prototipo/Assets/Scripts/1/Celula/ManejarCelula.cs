@@ -14,15 +14,20 @@ public class ManejarCelula : MonoBehaviour {
 	public Sprite sprite6;
 	public Sprite sprite7;
 
-
+    //Arreglo donde se almacenan las imagenes de la celula
 	public Sprite [] Asprite;
+    //Renderer de la Celula
 	SpriteRenderer spriteRenderer; 
 
+    //Sonido cuando se comen la celula
 	public AudioSource audio1;
+    //Sonido cuando se destruye la celula
 	public AudioSource destruida;
 
+    //vida de la celula
 	public float vida=7;
-	private int nSprite=6;//indice de imagen
+    //indice de imagen
+    private int nSprite=6;
 
 	public GameObject viruss;
 
@@ -56,7 +61,7 @@ public class ManejarCelula : MonoBehaviour {
 
 	}
 
-	//Cambiar Imagen de celula
+	//Cambiar El estado de la celula
 	void cambiar(){
 
 
@@ -75,23 +80,31 @@ public class ManejarCelula : MonoBehaviour {
 	//Invocacion del Virus que sale de la celula
 	void invocar(){
 
-
 				Instantiate (viruss,this.transform.position,viruss.transform.rotation);
 	}
 
 
 	void OnTriggerEnter (Collider MyTrigger) {
-		
-		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)") || 
-		    MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)") ||
-		    MyTrigger.gameObject.name.Equals ("Neutrofilo(Clone)")
-			|| MyTrigger.gameObject.name.Equals ("NaturalKiller(Clone)")) {
 
-			if(this.gameObject.tag.Equals("celula"))
+        if (MyTrigger.gameObject.name.Equals("VirusFinal(Clone)") ||
+            MyTrigger.gameObject.name.Equals("VirusFinalCelula(Clone)")) {
 
-				audio1.Play ();
+            if (this.gameObject.tag.Equals("celula"))
 
-		}
+                audio1.Play();
+
+        }
+
+        if( MyTrigger.gameObject.name.Equals("Neutrofilo(Clone)")){
+
+                if (MyTrigger.gameObject.GetComponent<ParticleSystem>().enableEmission == true)
+                {
+                if (this.gameObject.tag.Equals("celula"))
+
+                    audio1.Play();
+                }
+
+         }
 
 		if (MyTrigger.gameObject.name.Equals ("LinfoncitoTCD8(Clone)")) {
 
@@ -109,12 +122,14 @@ public class ManejarCelula : MonoBehaviour {
 			
 		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)")||
 		    MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)")||
-		    MyTrigger.gameObject.name.Equals ("Neutrofilo(Clone)")
-		    ||MyTrigger.gameObject.name.Equals ("NaturalKiller(Clone)")&&this.gameObject.tag.Equals("celula")) {
+           (MyTrigger.gameObject.name.Equals("Neutrofilo(Clone)")&& MyTrigger.gameObject.GetComponent<ParticleSystem>().enableEmission == true) 
+           &&this.gameObject.tag.Equals("celula")) {
 
+            if (audio1.isPlaying == false)
+                audio1.Play();
 			vida-=0.005f;
 
-			if(vida>=0.5&&vida<=6){
+			if(vida>=1&&vida<=6){
 				nSprite=(int)vida;
 
 
@@ -132,20 +147,26 @@ public class ManejarCelula : MonoBehaviour {
 						vida=0;
 						nSprite=0;
 						muerta=true;
-						DefenzaFuera(c);
+                        destruida.Play();
+                        DefenzaFuera(c);
 						this.gameObject.tag="muerta";
 						cambiar();
 						
 					}
 					if(this.gameObject.tag.Equals("celula")&&MyTrigger.gameObject.name.Equals ("Neutrofilo(Clone)")){
 
-						audio1.Stop();
-						DefenzaFuera(c);
-						Destroy(this.gameObject);
+                        if(MyTrigger.gameObject.GetComponent<ParticleSystem>().enableEmission == true)
+                        {
+                            audio1.Stop();
+                            destruida.Play();
+                            DefenzaFuera(c);
+                            Destroy(this.gameObject);
+                        }
+                        
 
 					}
 
-
+                    
 				}
 
 
@@ -153,14 +174,6 @@ public class ManejarCelula : MonoBehaviour {
 		}
 		if (MyTrigger.gameObject.name.Equals ("LinfoncitoTCD8(Clone)")) {
 
-			//if(vida<6){
-			//	vida+=0.02f;
-			//	cambiar();
-
-			//}
-			//else{
-			//	vida=7;
-			//}
 
 		}
 			
@@ -168,10 +181,12 @@ public class ManejarCelula : MonoBehaviour {
 	void OnTriggerExit (Collider MyTrigger) {
 
 
-			
+        audio1.Stop();
 		
 	}
 
+
+    //Eliminar la celula de la lista de celulas.
 	public void DefenzaFuera(Celula cm){
 
 		ManejadorVirus.actualizarDefenza();
@@ -193,19 +208,7 @@ public class ManejarCelula : MonoBehaviour {
 			CancelInvoke();
 			ControladorRecursos.invadido();
 		}
-		//imprimirArreglo ();
+	
 	}
 
-	public void imprimirArreglo(){
-
-		string cadena = "";
-		{
-
-			for (int i=0; i<ManejadorVirus.celulas.Count; i++) {
-
-
-		}
-		Debug.Log (cadena);
-	}
-}
 }

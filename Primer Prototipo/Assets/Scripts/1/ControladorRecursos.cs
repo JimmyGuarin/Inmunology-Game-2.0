@@ -33,7 +33,7 @@ public class ControladorRecursos : MonoBehaviour {
 
 		cia = GetComponent<ControladorInmuAdquirida>();
 		gameOver = false;
-		defensas = 0;
+		//defensas = 4;
 	
 		if (cc != null) {
 			
@@ -55,8 +55,8 @@ public class ControladorRecursos : MonoBehaviour {
 		}
 			
 		puntaje = 0;
-		nutrientes =300;
-		oxigeno = 300;
+		nutrientes =200;
+		oxigeno = 200;
 
 	
 
