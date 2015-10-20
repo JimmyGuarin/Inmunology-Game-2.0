@@ -10,11 +10,12 @@ public class ManejadorVirus : MonoBehaviour {
 	// Use this for initialization
 	public static bool analizado;
 
+	public int virus_zona_afectada;
+	private int i;
 
-	private int i=1;
 	void Start () {
 
-
+			i = 0;
 			NotificationCenter.DefaultCenter ().AddObserver (this, "VirusDestruido");
 			analizado = false;
 			numeroVirus = 0;
@@ -24,16 +25,10 @@ public class ManejadorVirus : MonoBehaviour {
 	void invocar(){
 			
 
-			if (numeroVirus == 0&&i>15) {
-				
-				ControladorRecursos.ganar();
-				Debug.Log("aa");
-				CancelInvoke();
-				Destroy(this);
-			}
+			
 
 
-			if(i<=15){
+			if(i<virus_zona_afectada){
 
 				Instantiate (virus);
 				i++;
@@ -46,7 +41,13 @@ public class ManejadorVirus : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-
+		if (numeroVirus == 0&&i>=virus_zona_afectada) {
+			
+			CancelInvoke();
+			ControladorRecursos.ganar();
+			
+			Destroy(this);
+		}
 		
 	}
 

@@ -20,7 +20,7 @@ public class InteligenciaVirus : MonoBehaviour {
 		speed = 2f;
 		comiendo = false;
 		ManejadorVirus.numeroVirus++;
-		Debug.Log (ManejadorVirus.numeroVirus);
+		Debug.Log ("virus:"+ManejadorVirus.numeroVirus);
 		NotificationCenter.DefaultCenter ().AddObserver (this, "atrapado");
 		ultima = false;
 		capturado=false;
@@ -46,6 +46,7 @@ public class InteligenciaVirus : MonoBehaviour {
 
 			ControladorRecursos.puntaje+=40;
 			ManejadorVirus.numeroVirus--;
+			Debug.Log("virus: "+ManejadorVirus.numeroVirus);
 			Destroy(this.gameObject);
 			
 			
@@ -218,7 +219,7 @@ public class InteligenciaVirus : MonoBehaviour {
 	void OnTriggerExit (Collider MyTrigger) {
 		
 
-		Debug.Log("No esta colisionando");
+
 		comiendo = false;
 		destino=transform.position;
 	}

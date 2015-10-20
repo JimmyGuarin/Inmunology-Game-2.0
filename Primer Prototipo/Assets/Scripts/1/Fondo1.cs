@@ -65,8 +65,7 @@ public class Fondo1 : MonoBehaviour {
 
 						Nacimiento.seleccionado=false;
 						NotificationCenter.DefaultCenter ().PostNotification (this, "crearCelula",pulsacion.origin);
-						Debug.Log(pulsacion.origin);
-						Debug.Log("Crear");
+						
 						
 					}
 
@@ -92,7 +91,6 @@ public class Fondo1 : MonoBehaviour {
 			pulsacion=Camera.main.ScreenPointToRay(Input.mousePosition);
 
 			PosicionSeleccionada.posicionar=0;
-			Debug.Log (PosicionSeleccionada.posicionar);
 			if (Physics.Raycast(pulsacion,out hit)) {
 
 				

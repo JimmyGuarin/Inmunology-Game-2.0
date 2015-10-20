@@ -36,7 +36,7 @@ public class SeleccionarUnidad : MonoBehaviour {
 
         bajarInhabilitador(macrofago_imagen, 0.005f);
         bajarInhabilitador(neutro_imagen, 0.005f);
-        bajarInhabilitador(killer_imagen, 0.01f);
+        //bajarInhabilitador(killer_imagen, 0.01f);
         bajarInhabilitador(linfoB_imagen, 0.003f);
         bajarInhabilitador(tcd4_imagen, 0.001f);
         bajarInhabilitador(tcd8_imagen, 0.001f);
@@ -170,7 +170,6 @@ public class SeleccionarUnidad : MonoBehaviour {
     public void inhabilitarButton(Image Personaje)
     {
         Personaje.fillAmount = 1f;
-        Debug.Log("entra");
         Personaje.gameObject.SetActive(true);
     }
 

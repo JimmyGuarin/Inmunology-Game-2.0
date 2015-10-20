@@ -38,6 +38,7 @@ public class virus : MonoBehaviour {
 			CancelInvoke();
 			ControladorRecursos.puntaje+=40;
 			ManejadorVirus.numeroVirus--;
+			Debug.Log("Virus:"+ManejadorVirus.numeroVirus);
 			Destroy(this.gameObject);
 
 
@@ -55,7 +56,7 @@ public class virus : MonoBehaviour {
 				}
 				ControladorRecursos.puntaje+=50;
 				ManejadorVirus.numeroVirus--;
-				Debug.Log(ManejadorVirus.numeroVirus);
+				Debug.Log("Virus:"+ManejadorVirus.numeroVirus);
 				Destroy(this.gameObject);
 			 }
 			this.transform.position=destino;
@@ -83,7 +84,7 @@ public class virus : MonoBehaviour {
 	void OnCollisionEnter(Collision colision) {
 		
 
-		if(colision.collider.name.Equals("BalaVaso(Clone)")||colision.collider.name.Equals("balaLifoncitoB(Clone)"))
+		if(colision.collider.name.Equals("balaLifoncitoB(Clone)"))
 		{
 	
 

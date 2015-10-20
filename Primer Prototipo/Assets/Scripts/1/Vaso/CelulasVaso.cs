@@ -25,9 +25,9 @@ public class CelulasVaso : MonoBehaviour {
         {
             MyTrigger.gameObject.GetComponent<CrearUnidadInnata>().enabled = false;
             MyTrigger.gameObject.GetComponent<ParticleSystem>().enableEmission = true;
-            if (tiempo_Oxigenar > 1)
+            if (tiempo_Oxigenar > 3)
             {
-                vaso.GetComponent<VasoGrande>().activarVaso(tiempo_Oxigenar);
+                vaso.GetComponent<VasoGrande>().activarVaso(tiempo_Oxigenar--);
             }
             
         }

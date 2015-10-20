@@ -55,8 +55,8 @@ public class ControladorRecursos : MonoBehaviour {
 		}
 			
 		puntaje = 0;
-		nutrientes =200;
-		oxigeno = 200;
+		nutrientes =600;
+		oxigeno = 600;
 
 	
 
@@ -107,7 +107,6 @@ public class ControladorRecursos : MonoBehaviour {
 	}
 
 	public void cerrarVentana(){
-		Debug.Log ("cerrar");
 		c.alpha = 0;
 		if (gameOver == true) {
 

@@ -39,8 +39,6 @@ public class Macrofago : MonoBehaviour {
 		//PatronObserver:
 		// Metodos que va a observar 
 		NotificationCenter.DefaultCenter ().AddObserver (this, "cambiarPosCelula");
-		NotificationCenter.DefaultCenter ().AddObserver (this, "llevarAVaso");
-		NotificationCenter.DefaultCenter ().AddObserver (this, "llevarABase");
 		
 		
 		
@@ -132,72 +130,19 @@ public class Macrofago : MonoBehaviour {
 		
 		
 	}
-	//metodo que se llama desde el script virus
-	//para llevar la celula con el virus al ganglio o al vaso
-	void llevarABase(Notification notificacion){
-		
-		
-		if (llevarBase == false&&enColision==true) {
-			
-			//Destroy(this.GetComponent<Collider>());
-			llevarBase = true;
-			GetComponent<FuncionesDendritica>().enabled=true;
-			Vector3 nuevaPos=(Vector3)notificacion.data;
-
-			speed=2f;
-			this.transform.position=new Vector3(nuevaPos.x,nuevaPos.y,-7f);
-			
-			if(Vector3.Distance(transform.position,new Vector3(47.8f ,-22.2f  ,this.transform.position.z  ))<
-			   Vector3.Distance(transform.position,new Vector3(47.7f,10.8f,this.transform.position.z  )))
-				destino=new Vector3(47.8f ,-22.2f  ,-10f  );
-			else destino=new Vector3(47.7f,10.8f,-5f  );
-			
-			if(isSeleted==true)
-				seleccionadas--;
-			isSeleted=false;
-			NotificationCenter.DefaultCenter().PostNotification(this,"atrapado",destino);
-			
-			
-		}
-		
-		
-	}
-	
-
-	//index =0ganglio index=1 vaso
-	//llamado desde el script de funcionesDendritica
-	public void llevarA(int index,Vector3 v){
-		
-		if (index == 1) 
-			virus.ganglio=false;
-		else virus.ganglio=true;
-		destino = v;
-		virus.destino = destino;
-	}
-	
-	
 	void OnTriggerEnter (Collider MyTrigger) {
-		
-		Debug.Log (MyTrigger.gameObject.name);
+
 		
 		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)") || 
 		    MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)"))
 		{
-			if (llevarBase == false) {
-				
-				
-				speed = 4f;
-				enColision = true;
-			}
+
 			
 		}	
 		
 		
 		
 		if (MyTrigger.gameObject.name.Equals ("LinfoncitoTCD4(Clone)")) {
-			
-			speed=6;
-			animator.SetBool("mejorada",true);
 			
 		}
 		
@@ -215,29 +160,13 @@ public class Macrofago : MonoBehaviour {
 		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)")||
 		    MyTrigger.gameObject.name.Equals("VirusFinalCelula(Clone)")) {
 			
-			if (llevarBase == false) {
-				
-				
-				enColision = true;
-				speed=4f;
-			}
-			else{
-				
-				vida-=0.1f;
-				if(vida==0){
-					
-					ControladorRecursos.defensas--;
-					Destroy(this.gameObject);
-				}
-				
-			}
+		
 			
 			
 		}
 		if (MyTrigger.gameObject.name.Equals ("virusFinalFracture(Clone)")) {
 			
-			virus = MyTrigger.GetComponent < Fracture>();
-			Destroy(virus.GetComponent<Collider>());		
+					
 		}
 		
 		

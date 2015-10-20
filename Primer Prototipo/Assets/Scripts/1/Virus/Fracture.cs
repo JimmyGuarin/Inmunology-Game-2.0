@@ -18,7 +18,9 @@ public class Fracture : MonoBehaviour {
         if (GetComponentInParent<CrearUnidadInnata>()!=null&&
             GetComponentInParent<CrearUnidadInnata>().enabled==false)
         {
-            Destroy(this.gameObject);
+			ManejadorVirus.numeroVirus--;
+			Debug.Log("virus: "+ManejadorVirus.numeroVirus);
+			Destroy(this.gameObject);
         }
 
     }

@@ -30,7 +30,7 @@ public class ControladorInmuAdquirida : MonoBehaviour {
 
 
 		linfoB.GetComponent<Button> ().interactable = true;
-		Killer.GetComponent<Button> ().interactable = true;
+		//Killer.GetComponent<Button> ().interactable = true;
 		TCD4.GetComponent<Button> ().interactable = true;
 		TCD8.GetComponent<Button> ().interactable = true;
 

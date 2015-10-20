@@ -197,10 +197,10 @@ public class ManejarCelula : MonoBehaviour {
 			if(cm.m_identificador==c.m_identificador){
 				
 				ManejadorVirus.celulas.Remove(c);
-				Debug.Log("borra");
+
 			}
 		}
-		Debug.Log ("celulastam" + ManejadorVirus.celulas.Count);
+		Debug.Log ("celulas:" + ManejadorVirus.celulas.Count);
 		ManejadorVirus.actualizarDefenza ();
 
 		if (ManejadorVirus.celulas.Count == 0) {
@@ -208,7 +208,7 @@ public class ManejarCelula : MonoBehaviour {
 			CancelInvoke();
 			ControladorRecursos.invadido();
 		}
-	
+		ManejadorVirus.actualizarDefenza();
 	}
 
 }

@@ -60,12 +60,12 @@
      <Compile Include="Assets\Scripts\1\EstadoBarraGanglio.cs" />
      <Compile Include="Assets\Scripts\1\Eventos.cs" />
      <Compile Include="Assets\Scripts\1\Fondo1.cs" />
+     <Compile Include="Assets\Scripts\1\Inmu Adquirida\Macrofago\FuncionesMacrofago.cs" />
+     <Compile Include="Assets\Scripts\1\Inmu Adquirida\Macrofago\Macrofago.cs" />
      <Compile Include="Assets\Scripts\1\Inmu Adquirida\Natural Killer\Killer.cs" />
      <Compile Include="Assets\Scripts\1\LinfocitoB\LinfocitoB.cs" />
      <Compile Include="Assets\Scripts\1\LinfocitoB\LinfocitoB2.cs" />
      <Compile Include="Assets\Scripts\1\LinfocitoB\destruirHumo.cs" />
-     <Compile Include="Assets\Scripts\1\Macrofago\FuncionesMacrofago.cs" />
-     <Compile Include="Assets\Scripts\1\Macrofago\Macrofago.cs" />
      <Compile Include="Assets\Scripts\1\MenuFunciones.cs" />
      <Compile Include="Assets\Scripts\1\MoverPuntoEncuentro.cs" />
      <Compile Include="Assets\Scripts\1\MovimientoElipse.cs" />
@@ -80,6 +80,7 @@
      <Compile Include="Assets\Scripts\1\TCD4\FuncionesTCD4.cs" />
      <Compile Include="Assets\Scripts\1\TCD4\TCD4.cs" />
      <Compile Include="Assets\Scripts\1\TCD8\TCD8.cs" />
+     <Compile Include="Assets\Scripts\1\Vaso\CelulasVaso.cs" />
      <Compile Include="Assets\Scripts\1\Vaso\VasoGrande.cs" />
      <Compile Include="Assets\Scripts\1\Virus\BarraVida.cs" />
      <Compile Include="Assets\Scripts\1\Virus\Fracture.cs" />

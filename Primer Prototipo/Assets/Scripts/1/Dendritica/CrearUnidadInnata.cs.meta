@@ -1,8 +1,15 @@
 fileFormatVersion: 2
 guid: df4b3fe5442e3994a9e2234b6d23cc32
+timeCreated: 1444801093
+licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - canvas_Ganglio: {instanceID: 0}
+  - imagen: {fileID: 2800000, guid: 22798dca77444b14e9897b67115e7cf1, type: 3}
+  - activarAdquirida: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -35,7 +35,8 @@ public class CrearUnidadInnata : MonoBehaviour {
 	void Start () {
 
 
-        canvas_Ganglio = GameObject.Find("CanvasGanglio").transform.GetChild(0).gameObject;
+		if(GameObject.Find("CanvasGanglio").transform.childCount>0)
+       		 canvas_Ganglio = GameObject.Find("CanvasGanglio").transform.GetChild(0).gameObject;
         ControladorRecursos.defensas++;
 		enColision = false;
 		isSeleted = false;
@@ -91,6 +92,8 @@ public class CrearUnidadInnata : MonoBehaviour {
                     canvas_Ganglio.activeSelf==false)
                      canvas_Ganglio.SetActive(true);
                 
+				ManejadorVirus.numeroVirus--;
+				Debug.Log("virus"+ManejadorVirus.numeroVirus);
 				Destroy(this.gameObject);
 				
 			}
@@ -138,7 +141,7 @@ public class CrearUnidadInnata : MonoBehaviour {
 		if (isSeleted == true) {
 			
 			
-			animator.SetInteger("vaso",0);
+			//animator.SetInteger("vaso",0);
 			destino = new Vector3 (Fondo1.puntoDestino.x, Fondo1.puntoDestino.y, -5f);
 			isSeleted = false;
 			seleccionadas--;
@@ -154,7 +157,7 @@ public class CrearUnidadInnata : MonoBehaviour {
 		
 		if (llevarBase == false&&enColision==true) {
 			
-			//Destroy(this.GetComponent<Collider>());
+
 			llevarBase = true;
 			GetComponent<FuncionesDendritica>().enabled=true;
 			Vector3 nuevaPos=(Vector3)notificacion.data;
@@ -202,7 +205,7 @@ public class CrearUnidadInnata : MonoBehaviour {
 
 	void OnTriggerEnter (Collider MyTrigger) {
 		
-		Debug.Log (MyTrigger.gameObject.name);
+
 
 		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)") || 
 		    MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)"))

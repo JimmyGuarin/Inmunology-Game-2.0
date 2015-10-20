@@ -29,7 +29,11 @@ public class LinfocitoB : MonoBehaviour {
 
 	public GameObject ayudador;
 
+	public bool esperando_ayudador;
+
 	void Start () {
+
+		esperando_ayudador = false;
 
 		if(Bala!=null)
 			InvokeRepeating ("disparar", 1.0f, 2.0f);
@@ -69,7 +73,6 @@ public class LinfocitoB : MonoBehaviour {
 						PosicionSeleccionada.posicionar++;
 					}
 					ubicada=PosicionSeleccionada.posicionar;
-					Debug.Log("1"+ubicada);
 					isSeleted = true;
 					
 				}
@@ -87,6 +90,7 @@ public class LinfocitoB : MonoBehaviour {
 				
 				if(ayudador!=null){
 
+					esperando_ayudador=true;
 					ayudador.GetComponent<TCD4>().ayudado=this.gameObject;
 					NotificationCenter.DefaultCenter().PostNotification(this,"desactivarMiraLB");
 				}
@@ -190,13 +194,16 @@ public class LinfocitoB : MonoBehaviour {
 		}
 		if (MyTrigger.gameObject.name.Equals ("LinfoncitoTCD4(Clone)")) {
 
+			if(esperando_ayudador==true){
 
-			this.GetComponent<Collider>().enabled=false;
-			Vector3 aux=this.gameObject.transform.position;
-			destino=aux;
-			Eventos.explosion(aux);
+				this.GetComponent<Collider>().enabled=false;
+				Vector3 aux=this.gameObject.transform.position;
+				destino=aux;
+				Eventos.explosion(aux);
+				
+				StartCoroutine(Wait(2,fase2,aux));
+			}
 
-			StartCoroutine(Wait(2,fase2,aux));
 
 
 
