@@ -94,12 +94,9 @@ public class CrearUnidadInnata : MonoBehaviour {
                 
 				ManejadorVirus.numeroVirus--;
 				Debug.Log("virus"+ManejadorVirus.numeroVirus);
+				ControladorRecursos.puntaje+=300;
 				Destroy(this.gameObject);
-				
 			}
-			
-			
-			
 
 		
 	}
@@ -186,6 +183,8 @@ public class CrearUnidadInnata : MonoBehaviour {
 
 		animator.SetInteger("vaso",2);
 	}
+
+
 	//index =0ganglio index=1 vaso
 	//llamado desde el script de funcionesDendritica
 	public void llevarA(int index,Vector3 v){
@@ -243,8 +242,7 @@ public class CrearUnidadInnata : MonoBehaviour {
 		    MyTrigger.gameObject.name.Equals("VirusFinalCelula(Clone)")) {
 			
 			if (llevarBase == false) {
-
-
+			
 				enColision = true;
 				speed=4f;
 			}

@@ -5,6 +5,7 @@ public class ManejadorVirus : MonoBehaviour {
 
 	public static ArrayList celulas = new ArrayList();
 	public static ArrayList celulas_objetivos = new ArrayList();
+	public static int celulas_infectadas;
 	public  GameObject virus;
 	public static int numeroVirus;
 	// Use this for initialization
@@ -16,6 +17,7 @@ public class ManejadorVirus : MonoBehaviour {
 	void Start () {
 
 			i = 0;
+			celulas_infectadas = 0;
 			NotificationCenter.DefaultCenter ().AddObserver (this, "VirusDestruido");
 			analizado = false;
 			numeroVirus = 0;
@@ -24,10 +26,6 @@ public class ManejadorVirus : MonoBehaviour {
 
 	void invocar(){
 			
-
-			
-
-
 			if(i<virus_zona_afectada){
 
 				Instantiate (virus);
@@ -41,7 +39,7 @@ public class ManejadorVirus : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		if (numeroVirus == 0&&i>=virus_zona_afectada) {
+		if (numeroVirus == 0&&i>=virus_zona_afectada&&celulas_infectadas==0) {
 			
 			CancelInvoke();
 			ControladorRecursos.ganar();

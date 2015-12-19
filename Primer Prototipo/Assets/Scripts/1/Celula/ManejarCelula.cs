@@ -72,7 +72,8 @@ public class ManejarCelula : MonoBehaviour {
 			if(!this.gameObject.name.Equals("muerta"))
 				InvokeRepeating("invocar",4,20f);
 			this.gameObject.name="muerta";
-
+			ManejadorVirus.celulas_infectadas++;
+			Destroy(this.transform.FindChild ("nutriente").gameObject);
 
 		}
 	}
@@ -111,6 +112,7 @@ public class ManejarCelula : MonoBehaviour {
 			if(this.gameObject.tag.Equals("muerta")){
 
 				DefenzaFuera(c);
+				ManejadorVirus.celulas_infectadas--;
 				Destroy(this.gameObject);
 
 			}

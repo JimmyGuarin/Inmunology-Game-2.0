@@ -48,6 +48,7 @@ public class FuncionesNeutrofilo : MonoBehaviour {
 			if(GUI.Button(new Rect(aux.x,aux.y,130,30), "Degranulacion")){
 
 				GetComponent<ParticleSystem>().enableEmission=true;
+				GetComponent<SphereCollider>().radius=1.6f;
 				activar=false;
 			}
 			if(GUI.Button(new Rect(aux.x,aux.y+30,130,30), "Trampa Extracelular")){

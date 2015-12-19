@@ -24,7 +24,9 @@ public class CelulasVaso : MonoBehaviour {
         if (MyTrigger.name.Equals("Dentrica(Clone)"))
         {
             MyTrigger.gameObject.GetComponent<CrearUnidadInnata>().enabled = false;
+			MyTrigger.gameObject.GetComponent<FuncionesDendritica>().enabled=false;
             MyTrigger.gameObject.GetComponent<ParticleSystem>().enableEmission = true;
+			ControladorRecursos.puntaje+=300;
             if (tiempo_Oxigenar > 3)
             {
                 vaso.GetComponent<VasoGrande>().activarVaso(tiempo_Oxigenar--);

@@ -1,0 +1,17 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\Primer Prototipo\Assets\Scripts\1\Dendritica\FuncionesDendritica.cs">
+    <Files>
+      <File FileName="..\Primer Prototipo\Assets\Scripts\1\Vaso\VasoGrande.cs" Line="85" Column="3" />
+      <File FileName="..\Primer Prototipo\Assets\Scripts\1\Dendritica\CrearUnidadInnata.cs" Line="97" Column="5" />
+      <File FileName="..\Primer Prototipo\Assets\Scripts\1\EstadoBarraGanglio.cs" Line="1" Column="1" />
+      <File FileName="..\Primer Prototipo\Assets\Scripts\1\Vaso\CelulasVaso.cs" Line="28" Column="37" />
+      <File FileName="..\Primer Prototipo\Assets\Scripts\1\ControladorRecursos.cs" Line="214" Column="24" />
+      <File FileName="..\Primer Prototipo\Assets\Scripts\1\Dendritica\FuncionesDendritica.cs" Line="42" Column="4" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

@@ -38,6 +38,7 @@ public class Fracture : MonoBehaviour {
 			MyTrigger.gameObject.GetComponent<ManejarCelula> ().audio1.Stop ();
 			
 		}
+
 	}
 
 	void OnTriggerEnter (Collider MyTrigger) {

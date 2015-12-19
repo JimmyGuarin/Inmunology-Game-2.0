@@ -202,12 +202,7 @@ public class LinfocitoB : MonoBehaviour {
 				Eventos.explosion(aux);
 				
 				StartCoroutine(Wait(2,fase2,aux));
-			}
-
-
-
-
-			
+			}		
 		}
 
 

@@ -1,0 +1,46 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{559168D8-DD00-E1D1-E921-52A66C07229B}") = "Test Jelly Mesh", "Assembly-CSharp.csproj", "{58BEC478-FDCF-2F73-4FC7-064D7BA0F72F}"
+EndProject
+Project("{559168D8-DD00-E1D1-E921-52A66C07229B}") = "Test Jelly Mesh", "Assembly-CSharp-Editor.csproj", "{D780AE59-DA52-B9C3-AC0F-37669DEC1FD4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{58BEC478-FDCF-2F73-4FC7-064D7BA0F72F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58BEC478-FDCF-2F73-4FC7-064D7BA0F72F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58BEC478-FDCF-2F73-4FC7-064D7BA0F72F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58BEC478-FDCF-2F73-4FC7-064D7BA0F72F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D780AE59-DA52-B9C3-AC0F-37669DEC1FD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D780AE59-DA52-B9C3-AC0F-37669DEC1FD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D780AE59-DA52-B9C3-AC0F-37669DEC1FD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D780AE59-DA52-B9C3-AC0F-37669DEC1FD4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+		GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.inheritsSet = null
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+		$0.TextStylePolicy = $3
+		$3.FileWidth = 120
+		$3.TabWidth = 4
+		$3.IndentWidth = 4
+		$3.EolMarker = Unix
+		$3.inheritsSet = Mono
+		$3.inheritsScope = text/plain
+		$3.scope = text/plain
+	EndGlobalSection
+
+EndGlobal

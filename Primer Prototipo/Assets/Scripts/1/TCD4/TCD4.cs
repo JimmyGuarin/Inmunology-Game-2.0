@@ -71,9 +71,6 @@ public class TCD4 : MonoBehaviour {
 					ubicada=PosicionSeleccionada.posicionar;
 					Debug.Log("1"+ubicada);
 					isSeleted = true;
-
-					
-					
 				}
 			}
 			
@@ -170,6 +167,13 @@ public class TCD4 : MonoBehaviour {
 			destino=transform.position;
 			
 		}
+		if (MyTrigger.gameObject == ayudado) {
+		
+			ayudado=null;
+			destino=transform.position;
+		}
+
+		
 
 	}
 

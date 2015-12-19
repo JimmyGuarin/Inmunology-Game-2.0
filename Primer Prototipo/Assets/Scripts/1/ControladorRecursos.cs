@@ -201,7 +201,7 @@ public class ControladorRecursos : MonoBehaviour {
 		Time.timeScale = 0;
 		Debug.Log ("final");
 		int tiempo = ((int)Time.timeSinceLevelLoad);
-		puntaje += oxigeno + nutrientes-tiempo;
+		puntaje += oxigeno + nutrientes;
 		oxigeno = 0;
 		nutrientes = 0;
 		

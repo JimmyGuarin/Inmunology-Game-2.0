@@ -82,6 +82,7 @@ public class VasoGrande : MonoBehaviour {
 
 	public void activarVaso(float tiempo_Oxigenar){
 
+
 		GetComponent<Animator> ().enabled = true;
         innata.desbloquearInnata();
         CancelInvoke("oxigenar");

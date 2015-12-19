@@ -6,6 +6,7 @@ public class FuncionesDendritica : MonoBehaviour {
 	public Vector3 posicion;
 	public bool activar;
 	private CrearUnidadInnata dendritica;
+	public GUISkin custom;
 	// Use this for initialization
 	void Start () {
 	
@@ -38,7 +39,8 @@ public class FuncionesDendritica : MonoBehaviour {
 
 
 	void OnGUI(){
-
+			
+		GUI.skin = custom;
 
 		if (activar==true) {
 				
