@@ -3,7 +3,9 @@ using System.Collections;
 
 public class VasoGrande : MonoBehaviour {
 
+
 	public GameObject eritrocito;
+	public GameObject killer;
 	public GameObject neutrofilo;
 	public GameObject macrofago;
 	public GameObject linfocitoB;
@@ -23,6 +25,7 @@ public class VasoGrande : MonoBehaviour {
 		InvokeRepeating ("crearEritrocito", 0, 0.3f);
 		InvokeRepeating ("crearNeutrofilo", 3f, 1.2f);
 		InvokeRepeating ("crearMacrofago", 2f, 1.5f);
+		InvokeRepeating ("crearKiller", 1f, 1.8f);
 	
 	}
 	
@@ -63,6 +66,11 @@ public class VasoGrande : MonoBehaviour {
 	void crearMacrofago(){
 		
 		Instantiate(macrofago);	
+	}
+
+	void crearKiller(){
+		
+		Instantiate(killer);	
 	}
 
 	void crearLinfocitoB(){

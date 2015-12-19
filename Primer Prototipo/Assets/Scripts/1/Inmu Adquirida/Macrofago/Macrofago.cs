@@ -27,20 +27,25 @@ public class Macrofago : MonoBehaviour {
 	public Texture2D imagen;
 	public Rect r;
 	public int ubicada;
+	public GameObject mivirus;
+	public GameObject ayudador;
+	public bool esperando_ayudador;
+	public float daño=0.2f;
 	void Start () {
 		
-		
+		mivirus = null;
 		ControladorRecursos.defensas++;
 		enColision = false;
 		isSeleted = false;
 		animator = GetComponent<Animator> ();
-		speed = 6f;
+		speed = 3f;
 		destino = new Vector3(MoverPuntoEncuentro.posicion.x,MoverPuntoEncuentro.posicion.y,-5f); // el primer destino es el Punto de Encuentro
 		//PatronObserver:
 		// Metodos que va a observar 
 		NotificationCenter.DefaultCenter ().AddObserver (this, "cambiarPosCelula");
-		
-		
+		NotificationCenter.DefaultCenter ().AddObserver (this, "activarMiraMA");
+		NotificationCenter.DefaultCenter ().AddObserver (this, "desactivarMiraMA");
+
 		
 		
 	}
@@ -48,7 +53,28 @@ public class Macrofago : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+		if (speed == 0.5f) {
 		
+			if(mivirus==null){
+
+				llevarBase=false;
+				enColision=false;
+				daño=0.2f;
+				destino=this.transform.position;
+				GetComponent<FuncionesMacrofago>().enabled=true;
+				speed=3f;
+				animator.enabled=false;
+			}
+			else{
+
+				mivirus.GetComponent<InteligenciaVirus>().vida-=daño;
+			}
+
+
+
+		}
+
+
 		
 		if (Input.GetMouseButtonDown (1)) {
 			
@@ -56,7 +82,8 @@ public class Macrofago : MonoBehaviour {
 			Ray pulsacion;
 			RaycastHit hit;
 			pulsacion = Camera.main.ScreenPointToRay (Input.mousePosition);
-			if (Physics.Raycast (pulsacion, out hit) && hit.collider == this.GetComponent<Collider>()) {
+			if (Physics.Raycast (pulsacion, out hit) && hit.collider == this.GetComponent<Collider>()&&
+			    mivirus==null) {
 				
 				if (isSeleted == false && this.GetComponent<Collider>() != null) {
 					
@@ -74,13 +101,42 @@ public class Macrofago : MonoBehaviour {
 		}
 		//se esta cambiando la posicion hasta que llega a destino
 		float step = speed * Time.deltaTime;
-		this.transform.position = Vector3.MoveTowards (transform.position, destino, step);
+
 		if(llevarBase==true&&this.transform.position==destino){
+
+				ControladorRecursos.defensas--;
+				ManejadorVirus.numeroVirus--;
+				Debug.Log("virus"+ManejadorVirus.numeroVirus);
+				ControladorRecursos.puntaje+=300;
+				Destroy(this.gameObject);
+		}
+
+		if (transform.position != destino) {
 			
-			ControladorRecursos.defensas--;
-			Destroy(this.gameObject);
+			this.transform.position = Vector3.MoveTowards (transform.position,destino, step);
+		}
+	
+		//Click Izquierdo
+		if(Input.GetMouseButtonDown (0)) {
+			
+			
+			Ray pulsacion;
+			RaycastHit hit;
+			pulsacion = Camera.main.ScreenPointToRay (Input.mousePosition);
+			if (Physics.Raycast (pulsacion, out hit) && hit.collider == this.GetComponent<Collider>()) {
+				
+				
+				if(ayudador!=null&& this.GetComponent<FuncionesMacrofago>().enabled==false){
+					
+					esperando_ayudador=true;
+					ayudador.GetComponent<TCD4>().ayudado=this.gameObject;
+					NotificationCenter.DefaultCenter().PostNotification(this,"desactivarMiraMA");
+				}
+				
+			}
 			
 		}
+
 		
 	}
 	
@@ -130,20 +186,69 @@ public class Macrofago : MonoBehaviour {
 		
 		
 	}
+
+	void activarMiraMA(Notification notification){
+		
+		if (mivirus != null) {
+			
+			this.transform.FindChild ("mira").gameObject.SetActive (true);
+			ayudador = (GameObject) notification.data;
+		}
+		
+	}
+	
+	void desactivarMiraMA(Notification notification){
+		
+		this.transform.FindChild ("mira").gameObject.SetActive (false);
+		ayudador = null;
+	}
+
+
+
+
+
 	void OnTriggerEnter (Collider MyTrigger) {
 
 		
 		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)") || 
-		    MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)"))
-		{
-
+		    MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)")) {
 			
-		}	
+			if(enColision==false&&mivirus==null){
+				
+
+				destino=new Vector3(47.8f ,-22.2f  ,-10f  );
+				GetComponent<FuncionesMacrofago>().enabled=false;
+				speed=0.5f;
+				enColision = true;
+				llevarBase=true;
+				// Si no esta capturado
+				if (mivirus==null&&MyTrigger.gameObject.GetComponent<InteligenciaVirus>().capturado == false) {
+
+					mivirus=MyTrigger.gameObject;
+					mivirus.transform.position=this.transform.position;
+					mivirus.gameObject.name="capturado";
+					mivirus.GetComponent<InteligenciaVirus>().capturado=true;
+					mivirus.GetComponent<InteligenciaVirus>().speed=0.5f;
+					mivirus.GetComponent<InteligenciaVirus>().destino=new Vector3(47.8f ,-22.2f  ,-10f  );
+					mivirus.GetComponent<ColisionesVirus>().enabled=false;
+				}
+
+			}
+		}
 		
 		
 		
 		if (MyTrigger.gameObject.name.Equals ("LinfoncitoTCD4(Clone)")) {
-			
+
+			if(esperando_ayudador==true){
+				
+				animator.enabled=true;
+				esperando_ayudador=false;
+				daño=3f;
+
+				
+				
+			}	
 		}
 		
 		
@@ -157,20 +262,12 @@ public class Macrofago : MonoBehaviour {
 	void OnTriggerStay(Collider MyTrigger) {
 		
 		
-		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)")||
-		    MyTrigger.gameObject.name.Equals("VirusFinalCelula(Clone)")) {
-			
-		
-			
-			
-		}
-		if (MyTrigger.gameObject.name.Equals ("virusFinalFracture(Clone)")) {
-			
-					
-		}
-		
-		
 
+		
+			if(MyTrigger.gameObject==mivirus){
+
+				mivirus.GetComponent<InteligenciaVirus>().vida-=daño;
+			}
 		
 	}
 	

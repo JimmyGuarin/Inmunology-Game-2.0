@@ -47,6 +47,7 @@ public class FuncionesTCD4 : MonoBehaviour {
 
 				NotificationCenter.DefaultCenter().PostNotification(this,"activarMiraLB",this.gameObject);
 				NotificationCenter.DefaultCenter().PostNotification(this,"desactivarMiraNE",this.gameObject);
+				NotificationCenter.DefaultCenter().PostNotification(this,"desactivarMiraMA",this.gameObject);
 				activar=false;
 
 			}
@@ -54,6 +55,14 @@ public class FuncionesTCD4 : MonoBehaviour {
 
 				NotificationCenter.DefaultCenter().PostNotification(this,"activarMiraNE",this.gameObject);
 				NotificationCenter.DefaultCenter().PostNotification(this,"desactivarMiraLB",this.gameObject);
+				NotificationCenter.DefaultCenter().PostNotification(this,"desactivarMiraMA",this.gameObject);
+				activar=false;
+			}
+			if(GUI.Button(new Rect(aux.x,aux.y+60,140,30), "Ayudar Macrofago")){
+				
+				NotificationCenter.DefaultCenter().PostNotification(this,"activarMiraMA",this.gameObject);
+				NotificationCenter.DefaultCenter().PostNotification(this,"desactivarMiraLB",this.gameObject);
+				NotificationCenter.DefaultCenter().PostNotification(this,"desactivarMiraNE",this.gameObject);
 				activar=false;
 			}
 			

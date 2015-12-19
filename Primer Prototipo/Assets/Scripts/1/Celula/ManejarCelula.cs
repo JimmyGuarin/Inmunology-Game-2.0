@@ -107,7 +107,7 @@ public class ManejarCelula : MonoBehaviour {
 
          }
 
-		if (MyTrigger.gameObject.name.Equals ("LinfoncitoTCD8(Clone)")) {
+		if (MyTrigger.gameObject.tag.Equals ("citotoxico")) {
 
 			if(this.gameObject.tag.Equals("muerta")){
 

@@ -135,28 +135,13 @@ public class TCD4 : MonoBehaviour {
 
 			if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)")) {
 				
-				virus v = (virus)MyTrigger.GetComponent<virus> ();
+				
 				
 				vida-=0.2f;
-				if(v.vida==900||v.vida==800||v.vida==700||v.vida==600||v.vida==500||v.vida==400||v.vida==300||v.vida==200||v.vida==100){
-					
-					
-					v.BroadcastMessage("ChangeTheDamnSprite");
-				}
-				v.vida-=2;
+				
 			
 		}
-		if (MyTrigger.gameObject.name.Equals ("NaturalKiller(Clone)")) {
-			
-			vida -= 2f;
-			if (vida <= 0) {
-				ControladorRecursos.defensas--;
-				Destroy (this.gameObject);
-				
-				
-			}
-			
-		}
+
 	}
 
 	void OnTriggerEnter(Collider MyTrigger) {

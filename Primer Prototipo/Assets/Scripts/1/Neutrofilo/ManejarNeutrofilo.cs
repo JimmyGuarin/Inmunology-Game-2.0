@@ -179,13 +179,9 @@ public class ManejarNeutrofilo : MonoBehaviour {
 	}
 	
 	void desactivarMiraNE(Notification notification){
-		
-
 
 			this.transform.FindChild ("mira").gameObject.SetActive (false);
 			ayudador = null;
-
-
 	}
 
 
@@ -207,12 +203,14 @@ public class ManejarNeutrofilo : MonoBehaviour {
 				if (mivirus==null&&MyTrigger.gameObject.GetComponent<InteligenciaVirus>().capturado == false) {
 
 					mivirus=MyTrigger.gameObject;
+					mivirus.transform.position=transform.position;
 					mivirus.GetComponent<InteligenciaVirus>().capturado=true;
+					mivirus.gameObject.name="capturado";
 					mivirus.GetComponent<InteligenciaVirus>().speed=0.5f;
 					mivirus.GetComponent<InteligenciaVirus>().destino=new Vector3(47.8f ,-22.2f  ,-10f  );
-					mivirus.GetComponent<Collider>().enabled=false;
+					mivirus.GetComponent<ColisionesVirus>().enabled=false;
 				}
-				mivirus.transform.position=transform.position;
+
 			}
 		}
 
@@ -223,7 +221,6 @@ public class ManejarNeutrofilo : MonoBehaviour {
 
 					llevarBase=false;
 					Debug.Log("elimina");
-					ControladorRecursos.puntaje+=40;
 					subir=transform.position;
 					speed=4f;
 					esperando_ayudador=false;

@@ -36,7 +36,7 @@ public class SeleccionarUnidad : MonoBehaviour {
 
         bajarInhabilitador(macrofago_imagen, 0.005f);
         bajarInhabilitador(neutro_imagen, 0.005f);
-        //bajarInhabilitador(killer_imagen, 0.01f);
+        bajarInhabilitador(killer_imagen, 0.01f);
         bajarInhabilitador(linfoB_imagen, 0.003f);
         bajarInhabilitador(tcd4_imagen, 0.001f);
         bajarInhabilitador(tcd8_imagen, 0.001f);
@@ -130,6 +130,26 @@ public class SeleccionarUnidad : MonoBehaviour {
         }
 	
 	}
+
+	public void Killer(){
+		
+		int nut = 80;
+		int oxigeno = 80;
+		int puntajes = 160;
+		
+		if (DisminuirRecursos (nut, oxigeno, puntajes) == true) {
+			
+			GameObject neutrofilo = (GameObject)Instantiate (killer);
+			MovimientoElipse me = neutrofilo.GetComponent<MovimientoElipse> ();
+			me.salir = true;
+			inhabilitarButton (killer_imagen);
+			
+			
+		}
+	}
+
+
+
 
 	public void Celula(){
 

@@ -84,11 +84,11 @@
      <Compile Include="Assets\Scripts\1\Vaso\CelulasVaso.cs" />
      <Compile Include="Assets\Scripts\1\Vaso\VasoGrande.cs" />
      <Compile Include="Assets\Scripts\1\Virus\BarraVida.cs" />
+     <Compile Include="Assets\Scripts\1\Virus\ColisionesVirus.cs" />
      <Compile Include="Assets\Scripts\1\Virus\Fracture.cs" />
      <Compile Include="Assets\Scripts\1\Virus\InteligenciaVirus.cs" />
      <Compile Include="Assets\Scripts\1\Virus\ManejadorVirus.cs" />
      <Compile Include="Assets\Scripts\1\Virus\Mutaciones.cs" />
-     <Compile Include="Assets\Scripts\1\Virus\virus.cs" />
      <Compile Include="Assets\Scripts\1\nutritientes.cs" />
      <Compile Include="Assets\Scripts\Login\Introducir.cs" />
      <Compile Include="Assets\Scripts\Login\prueba.cs" />
