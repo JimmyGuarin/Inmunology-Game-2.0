@@ -79,12 +79,7 @@ public class ControladorRecursos : MonoBehaviour {
 		if (textOxigeno != null)
 			textOxigeno.text = "" + oxigeno;
 
-		if ((nutrientes <= 10 || oxigeno <= 20) && defensas == 0) {
 
-			defensas=1;
-			recursosAgotados ();
-
-		}
 
 	}
 	public static void sinRecursos(){

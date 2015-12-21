@@ -18,7 +18,7 @@ public class Macrofago : MonoBehaviour {
 	
 	private Fracture virus;
 	// si va para base
-	private bool llevarBase=false;
+	public bool llevarBase=false;
 	
 	public float vida=1000;
 	//Si esta en colision
@@ -52,7 +52,14 @@ public class Macrofago : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+		if (mivirus != null) {
+			
+			mivirus.transform.localPosition=new Vector3(0,0,0);
+			
+		}
+
+
 		if (speed == 0.5f) {
 		
 			if(mivirus==null){
@@ -65,13 +72,6 @@ public class Macrofago : MonoBehaviour {
 				speed=3f;
 				animator.enabled=false;
 			}
-			else{
-
-				mivirus.GetComponent<InteligenciaVirus>().vida-=daño;
-			}
-
-
-
 		}
 
 
@@ -126,7 +126,7 @@ public class Macrofago : MonoBehaviour {
 			if (Physics.Raycast (pulsacion, out hit) && hit.collider == this.GetComponent<Collider>()) {
 				
 				
-				if(ayudador!=null&& this.GetComponent<FuncionesMacrofago>().enabled==false){
+				if(ayudador!=null&& llevarBase==true){
 					
 					esperando_ayudador=true;
 					ayudador.GetComponent<TCD4>().ayudado=this.gameObject;
@@ -217,7 +217,6 @@ public class Macrofago : MonoBehaviour {
 				
 
 				destino=new Vector3(47.8f ,-22.2f  ,-10f  );
-				GetComponent<FuncionesMacrofago>().enabled=false;
 				speed=0.5f;
 				enColision = true;
 				llevarBase=true;
@@ -225,11 +224,12 @@ public class Macrofago : MonoBehaviour {
 				if (mivirus==null&&MyTrigger.gameObject.GetComponent<InteligenciaVirus>().capturado == false) {
 
 					mivirus=MyTrigger.gameObject;
-					mivirus.transform.position=this.transform.position;
+
 					mivirus.gameObject.name="capturado";
+					mivirus.transform.parent=this.transform;
+					mivirus.transform.localPosition=new Vector3(0,0,0);
 					mivirus.GetComponent<InteligenciaVirus>().capturado=true;
-					mivirus.GetComponent<InteligenciaVirus>().speed=0.5f;
-					mivirus.GetComponent<InteligenciaVirus>().destino=new Vector3(47.8f ,-22.2f  ,-10f  );
+					mivirus.GetComponent<InteligenciaVirus>().speed=0;
 					mivirus.GetComponent<ColisionesVirus>().enabled=false;
 				}
 
@@ -263,11 +263,14 @@ public class Macrofago : MonoBehaviour {
 		
 		
 
-		
-			if(MyTrigger.gameObject==mivirus){
+		if (mivirus != null) {
 
+			if(MyTrigger.gameObject==mivirus){
+				
 				mivirus.GetComponent<InteligenciaVirus>().vida-=daño;
 			}
+		}
+			
 		
 	}
 	

@@ -46,7 +46,7 @@ public class FuncionesMacrofago : MonoBehaviour {
 			aux.y = Screen.height - aux.y;
 			if (GUI.Button (new Rect (aux.x, aux.y, 160, 30), "Transformar a Dendritica")) {
 
-
+				liberarCaptura();
 				Instantiate(dendritica,this.transform.position,dendritica.transform.rotation);
 				Destroy(this.gameObject);
 				
@@ -54,6 +54,28 @@ public class FuncionesMacrofago : MonoBehaviour {
 			}
 		}
 	
+	}
+
+	void liberarCaptura(){
+		
+		if (GetComponent<Macrofago> ().mivirus != null) {
+			
+			GetComponent<Macrofago> ().mivirus.transform.parent=null;
+			GetComponent<Macrofago> ().mivirus.GetComponent<InteligenciaVirus>().speed=2f;
+			GetComponent<Macrofago> ().mivirus.GetComponent<InteligenciaVirus>().capturado=false;
+			GetComponent<Macrofago> ().mivirus.GetComponent<InteligenciaVirus>().enabled=true;
+			GetComponent<Macrofago> ().mivirus.GetComponent<ColisionesVirus>().enabled=true;
+			GetComponent<Macrofago> ().mivirus.GetComponent<Collider>().enabled=true;
+			GetComponent<Macrofago> ().mivirus.name="VirusFinal(Clone)";
+			GetComponent<Macrofago> ().mivirus=null;
+			GetComponent<Macrofago> ().llevarBase=false;
+			Debug.Log("elimina");
+			GetComponent<Macrofago> ().destino=transform.position;
+			GetComponent<Macrofago> ().speed=4f;
+			GetComponent<Macrofago> ().esperando_ayudador=false;
+		}
+		
+		
 	}
 }
 

@@ -43,7 +43,11 @@ public class ManejarNeutrofilo : MonoBehaviour {
 	void Update () {
 
 
-
+		if (mivirus != null) {
+		
+			mivirus.transform.localPosition=new Vector3(0,0,0);
+		
+		}
 	
 		//Click Derecho
 		if (Input.GetMouseButtonDown (1)) {
@@ -103,12 +107,9 @@ public class ManejarNeutrofilo : MonoBehaviour {
 		if (llevarBase == true && transform.position == subir) {
 
 			ControladorRecursos.defensas--;
-
-			ManejadorVirus.numeroVirus--;
-			Debug.Log("virus"+ManejadorVirus.numeroVirus);
-			ControladorRecursos.puntaje+=300;
 			Destroy(this.gameObject);
-		
+			ControladorRecursos.puntaje += 50;
+			ManejadorVirus.numeroVirus--;
 		}
 
 		if (transform.position != subir) {
@@ -190,12 +191,11 @@ public class ManejarNeutrofilo : MonoBehaviour {
 		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)") || 
 			MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)")) {
 
-			if(GetComponent<ParticleSystem>().enableEmission==false&&
-			   enColision==false&&mivirus==null){
+			if(GetComponent<ParticleSystem>().enableEmission==false&&llevarBase==false&&mivirus==null){
 
 			
 				subir=new Vector3(47.8f ,-22.2f  ,-10f  );
-				GetComponent<FuncionesNeutrofilo>().enabled=false;
+				//GetComponent<FuncionesNeutrofilo>().enabled=false;
 				speed=0.5f;
 				enColision = true;
 				llevarBase=true;
@@ -203,12 +203,13 @@ public class ManejarNeutrofilo : MonoBehaviour {
 				if (mivirus==null&&MyTrigger.gameObject.GetComponent<InteligenciaVirus>().capturado == false) {
 
 					mivirus=MyTrigger.gameObject;
-					mivirus.transform.position=transform.position;
-					mivirus.GetComponent<InteligenciaVirus>().capturado=true;
 					mivirus.gameObject.name="capturado";
-					mivirus.GetComponent<InteligenciaVirus>().speed=0.5f;
-					mivirus.GetComponent<InteligenciaVirus>().destino=new Vector3(47.8f ,-22.2f  ,-10f  );
+					mivirus.transform.parent=this.transform;
+					mivirus.transform.localPosition=new Vector3(0,0,0);
+					mivirus.GetComponent<InteligenciaVirus>().speed=0;
+					mivirus.GetComponent<InteligenciaVirus>().enabled=false;
 					mivirus.GetComponent<ColisionesVirus>().enabled=false;
+					mivirus.GetComponent<Collider>().enabled=false;
 				}
 
 			}
@@ -224,9 +225,10 @@ public class ManejarNeutrofilo : MonoBehaviour {
 					subir=transform.position;
 					speed=4f;
 					esperando_ayudador=false;
+					mivirus.GetComponent<InteligenciaVirus>().enabled=true;
 					mivirus.GetComponent<InteligenciaVirus>().vida=0;
 					GetComponent<FuncionesNeutrofilo>().enabled=true;
-					mivirus=null;
+					
 					
 
 			}		
@@ -246,9 +248,6 @@ public class ManejarNeutrofilo : MonoBehaviour {
 				life-=1;
 
 			}
-
-
-
 		}
 
 	
