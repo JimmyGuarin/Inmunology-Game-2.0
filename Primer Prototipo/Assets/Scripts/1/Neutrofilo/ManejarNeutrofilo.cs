@@ -89,7 +89,7 @@ public class ManejarNeutrofilo : MonoBehaviour {
 			if (Physics.Raycast (pulsacion, out hit) && hit.collider == this.GetComponent<Collider>()) {
 
 
-				if(ayudador!=null&& this.GetComponent<FuncionesNeutrofilo>().enabled==false){
+				if(ayudador!=null&& llevarBase==true){
 					
 					esperando_ayudador=true;
 					ayudador.GetComponent<TCD4>().ayudado=this.gameObject;
