@@ -97,6 +97,7 @@
      <Compile Include="Assets\Scripts\MenuPrincipal\Instrucciones.cs" />
      <Compile Include="Assets\Scripts\MenuPrincipal\Puntajes.cs" />
      <Compile Include="Assets\Scripts\Registrar\Manejador.cs" />
+     <Compile Include="Assets\Zoom.cs" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
