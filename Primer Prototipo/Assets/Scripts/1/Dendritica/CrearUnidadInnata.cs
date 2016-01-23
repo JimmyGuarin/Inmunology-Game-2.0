@@ -19,13 +19,13 @@ public class CrearUnidadInnata : MonoBehaviour {
 
 	private Fracture virus;
 	// si va para base
-	private bool llevarBase=false;
+	public  bool llevarBase=false;
 
     public GameObject canvas_Ganglio;
 	
 	public float vida=1000;
 	//Si esta en colision
-	private bool enColision;
+	public bool enColision;
 	public static int seleccionadas=0;
 	public Texture2D imagen;
 	public Rect r;
@@ -33,6 +33,7 @@ public class CrearUnidadInnata : MonoBehaviour {
 
 	public ControladorInmuAdquirida activarAdquirida;
 	void Start () {
+
 
 
 		if(GameObject.Find("CanvasGanglio").transform.childCount>0)
@@ -89,10 +90,13 @@ public class CrearUnidadInnata : MonoBehaviour {
 				ControladorRecursos.defensas--;
                 
                 if (canvas_Ganglio != null&&
-                    canvas_Ganglio.activeSelf==false)
-                     canvas_Ganglio.SetActive(true);
+                    canvas_Ganglio.activeSelf==false){
                 
-				ManejadorVirus.numeroVirus--;
+					canvas_Ganglio.SetActive(true);
+					Debug.Log("Llamar al metodo");
+
+				}
+				ManejadorVirus.numeroVirus-=(transform.childCount-4);
 				Debug.Log("virus"+ManejadorVirus.numeroVirus);
 				ControladorRecursos.puntaje+=300;
 				Destroy(this.gameObject);
@@ -190,14 +194,21 @@ public class CrearUnidadInnata : MonoBehaviour {
 	public void llevarA(int index,Vector3 v){
 
         destino = v;
-        if (index == 1)
-        {
-            virus.ganglio = false;
-            destino.z = this.transform.position.z;
-        }
+
+		if (virus != null) {
+		
+			if (index == 1)
+			{
+				virus.ganglio = false;
+				destino.z = this.transform.position.z;
+			}
 			
-		else virus.ganglio=true;
-        virus.destino = destino;
+			else virus.ganglio=true;
+			virus.destino = destino;
+		
+		
+		}
+        
 
     }
 	
@@ -206,7 +217,8 @@ public class CrearUnidadInnata : MonoBehaviour {
 		
 
 
-		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)") || 
+		if (MyTrigger.gameObject.name.Equals("Bacteria(Clone)")||
+			MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)") || 
 		    MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)"))
 		{
 				if (llevarBase == false) {

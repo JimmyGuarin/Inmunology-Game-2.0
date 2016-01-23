@@ -122,7 +122,8 @@ public class ManejarCelula : MonoBehaviour {
 	}
 	void OnTriggerStay (Collider MyTrigger) {
 			
-		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)")||
+		if (MyTrigger.gameObject.name.Equals("Bacteria(Clone)")||
+			MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)")||
 		    MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)")||
            (MyTrigger.gameObject.name.Equals("Neutrofilo(Clone)")&& MyTrigger.gameObject.GetComponent<ParticleSystem>().enableEmission == true) 
            &&this.gameObject.tag.Equals("celula")) {
@@ -165,6 +166,18 @@ public class ManejarCelula : MonoBehaviour {
                             Destroy(this.gameObject);
                         }
                         
+
+					}
+					if(this.gameObject.tag.Equals("celula")&&MyTrigger.gameObject.tag.Equals ("bacteria")){
+
+							audio1.Stop();
+							destruida.Play();
+							DefenzaFuera(c);
+							MyTrigger.GetComponent<BacteriaMov>().enabled=true;
+							MyTrigger.GetComponent<BacteriaMov>().Start();
+							MyTrigger.gameObject.transform.parent=null;
+							MyTrigger.GetComponent<BacteriaColis>().comiendo=false;
+							Destroy(this.gameObject);
 
 					}
 

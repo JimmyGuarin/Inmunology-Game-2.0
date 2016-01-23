@@ -30,9 +30,10 @@ public class Macrofago : MonoBehaviour {
 	public GameObject mivirus;
 	public GameObject ayudador;
 	public bool esperando_ayudador;
-	public float daño=0.2f;
+	public float daño=0.8f;
 	void Start () {
-		
+
+
 		mivirus = null;
 		ControladorRecursos.defensas++;
 		enColision = false;
@@ -66,7 +67,7 @@ public class Macrofago : MonoBehaviour {
 
 				llevarBase=false;
 				enColision=false;
-				daño=0.2f;
+				daño=0.8f;
 				destino=this.transform.position;
 				GetComponent<FuncionesMacrofago>().enabled=true;
 				speed=3f;
@@ -209,6 +210,36 @@ public class Macrofago : MonoBehaviour {
 
 	void OnTriggerEnter (Collider MyTrigger) {
 
+		if(MyTrigger.gameObject.name.Equals("Bacteria(Clone)")){
+
+			if(enColision==false&&mivirus==null){
+				
+				
+				destino=new Vector3(47.8f ,-22.2f  ,-10f  );
+				speed=0.5f;
+				enColision = true;
+				llevarBase=true;
+				// Si no esta capturado
+				if (mivirus==null&&MyTrigger.gameObject.GetComponent<BacteriaColis>().capturado == false) {
+					
+					mivirus=MyTrigger.gameObject;
+					
+					mivirus.gameObject.name="capturado";
+					mivirus.transform.parent=this.transform;
+					mivirus.transform.localPosition=new Vector3(0,0,0);
+					mivirus.GetComponent<BacteriaMov>().speed=0;
+					mivirus.GetComponent<BacteriaMov>().CancelInvoke();
+					mivirus.GetComponent<BacteriaDisparar>().CancelInvoke();
+					mivirus.GetComponent<BacteriaDisparar>().enabled=false;
+					mivirus.GetComponent<BacteriaMov>().enabled=false;
+					mivirus.GetComponent<BacteriaColis>().capturado=true;
+					//mivirus.GetComponent<BacteriaColis>().enabled=false;
+
+				}
+				
+			}
+
+		}
 		
 		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)") || 
 		    MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)")) {
@@ -266,8 +297,13 @@ public class Macrofago : MonoBehaviour {
 		if (mivirus != null) {
 
 			if(MyTrigger.gameObject==mivirus){
-				
-				mivirus.GetComponent<InteligenciaVirus>().vida-=daño;
+
+				if(mivirus.GetComponent<InteligenciaVirus>()!=null)
+					mivirus.GetComponent<InteligenciaVirus>().vida-=daño;
+				else
+					mivirus.GetComponent<BacteriaColis>().vida-=daño;
+				mivirus.GetComponentInChildren<BarraVida>().modificarSprite();
+
 			}
 		}
 			

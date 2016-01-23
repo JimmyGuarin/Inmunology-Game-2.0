@@ -45,8 +45,20 @@ public class ManejarNeutrofilo : MonoBehaviour {
 
 		if (mivirus != null) {
 		
-			mivirus.transform.localPosition=new Vector3(0,0,0);
+			mivirus.transform.localPosition=new Vector3(0,0,1);
 		
+		}
+
+		if (speed == 0.5f) {
+			
+			if(mivirus==null){
+				
+				llevarBase=false;
+				enColision=false;
+				subir=this.transform.position;
+				speed=4f;
+
+			}
 		}
 	
 		//Click Derecho
@@ -122,6 +134,8 @@ public class ManejarNeutrofilo : MonoBehaviour {
 			if(isSeleted==true)
 				seleccionadas--;
 			ControladorRecursos.defensas--;
+			if(mivirus!=null)
+				ManejadorVirus.numeroVirus-=(transform.childCount-3);
 			Destroy(this.gameObject);
 
 		}
@@ -187,7 +201,39 @@ public class ManejarNeutrofilo : MonoBehaviour {
 
 
 	void OnTriggerEnter(Collider MyTrigger){
-	
+
+
+		if (MyTrigger.gameObject.name.Equals ("Bacteria(Clone)")) {
+		
+			if(GetComponent<ParticleSystem>().enableEmission==false&&llevarBase==false&&mivirus==null){
+
+				subir=new Vector3(47.8f ,-22.2f  ,-10f  );
+				speed=0.5f;
+				enColision = true;
+				llevarBase=true;
+				// Si no esta capturado
+				if (mivirus==null&&MyTrigger.gameObject.GetComponent<BacteriaColis>().capturado == false) {
+					
+					mivirus=MyTrigger.gameObject;
+					mivirus.gameObject.name="capturado";
+					mivirus.transform.parent=this.transform;
+					mivirus.transform.localPosition=new Vector3(0,0,0);
+					mivirus.GetComponent<BacteriaMov>().speed=0;
+					mivirus.GetComponent<BacteriaMov>().CancelInvoke();
+					mivirus.GetComponent<BacteriaDisparar>().CancelInvoke();
+					mivirus.GetComponent<BacteriaDisparar>().enabled=false;
+					mivirus.GetComponent<BacteriaMov>().enabled=false;
+					mivirus.GetComponent<BacteriaColis>().capturado=true;
+					//mivirus.GetComponent<Collider>().enabled=false;
+				}
+
+
+			}
+
+		}
+
+
+
 		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)") || 
 			MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)")) {
 
@@ -205,11 +251,11 @@ public class ManejarNeutrofilo : MonoBehaviour {
 					mivirus=MyTrigger.gameObject;
 					mivirus.gameObject.name="capturado";
 					mivirus.transform.parent=this.transform;
-					mivirus.transform.localPosition=new Vector3(0,0,0);
+					mivirus.transform.localPosition=new Vector3(0,0,1);
 					mivirus.GetComponent<InteligenciaVirus>().speed=0;
-					mivirus.GetComponent<InteligenciaVirus>().enabled=false;
+					//mivirus.GetComponent<InteligenciaVirus>().enabled=false;
 					mivirus.GetComponent<ColisionesVirus>().enabled=false;
-					mivirus.GetComponent<Collider>().enabled=false;
+					//mivirus.GetComponent<Collider>().enabled=false;
 				}
 
 			}
@@ -225,11 +271,14 @@ public class ManejarNeutrofilo : MonoBehaviour {
 					subir=transform.position;
 					speed=4f;
 					esperando_ayudador=false;
+				if(mivirus.GetComponent<InteligenciaVirus>()!=null){
 					mivirus.GetComponent<InteligenciaVirus>().enabled=true;
 					mivirus.GetComponent<InteligenciaVirus>().vida=0;
-					GetComponent<FuncionesNeutrofilo>().enabled=true;
+				}
+				else
+					mivirus.GetComponent<BacteriaColis>().vida=0;
 					
-					
+				GetComponent<FuncionesNeutrofilo>().enabled=true;
 
 			}		
 		}
@@ -245,12 +294,37 @@ public class ManejarNeutrofilo : MonoBehaviour {
 	
 
 				MyTrigger.GetComponent<InteligenciaVirus> ().vida-=2.5f;
+				MyTrigger.GetComponentInChildren<BarraVida>().modificarSprite();
 				life-=1;
 
 			}
 		}
+		if (MyTrigger.gameObject.name.Equals ("Bacteria(Clone)")) {
+			
+			if(GetComponent<ParticleSystem>().enableEmission==true){
+				
+				
+				MyTrigger.GetComponent<BacteriaColis> ().vida-=2.5f;
+				MyTrigger.GetComponentInChildren<BarraVida>().modificarSprite();
+				life-=1;
+				
+			}
+		}
 
-	
+
+		if (mivirus != null) {
+			
+			if(MyTrigger.gameObject==mivirus){
+				
+				if(mivirus.GetComponent<InteligenciaVirus>()!=null)
+					mivirus.GetComponent<InteligenciaVirus>().vida-=0.2f;
+				
+				else
+					mivirus.GetComponent<BacteriaColis>().vida-=0.2f;
+				mivirus.GetComponentInChildren<BarraVida>().modificarSprite();
+		
+			}
+		}
 
 
 
@@ -262,8 +336,21 @@ public class ManejarNeutrofilo : MonoBehaviour {
    }
 
 
-	void OnTriggerExit(){
+	void OnTriggerExit(Collider MyTrigger){
+
+
 
 		enColision = false;
+	}
+
+	void OnCollisionEnter(Collision colision) {
+		
+		if (colision.collider.name.Equals ("BacteriaBala(Clone)")) {
+			life -= 200;
+			Destroy(colision.gameObject);
+
+			Debug.Log("bala Neutrogilo");
+		}
+		
 	}
 }

@@ -18,7 +18,10 @@ public class Mutaciones : MonoBehaviour {
 
 		mutacion = 0;
 		GetComponent<Renderer>().enabled = true;
-		InvokeRepeating ("mutar", 15.0f, 10.0f);
+		if (ManejadorVirus.mutando)
+			InvokeRepeating ("mutar",Random.Range(15f,25f),Random.Range(10f,25f));
+		else
+			Destroy (this);
 
 	}
 	

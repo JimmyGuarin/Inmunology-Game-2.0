@@ -15,6 +15,20 @@ public class Bala : MonoBehaviour {
 
 	}
 
+	void OnTriggerEnter(Collider MyTrigger){
+
+
+		if (MyTrigger.gameObject.name.Equals ("Bacteria(Clone)")) {
+			MyTrigger.gameObject.GetComponent<BacteriaColis> ().vida -= 200;
+			MyTrigger.gameObject.GetComponentInChildren<BarraVida>().modificarSprite();
+			GetComponent<Rigidbody> ().isKinematic = true;
+			GetComponent<Collider> ().enabled = false;
+			GetComponent<Bala> ().CancelInvoke ();
+			GetComponent<Bala> ().enabled = false;
+			transform.parent = MyTrigger.gameObject.transform;
+
+		}
+	}
 
 	/**
 	 * Cuando hay una colision con la vala

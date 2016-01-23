@@ -60,7 +60,7 @@ public class ColisionesVirus : MonoBehaviour {
 			
 			if(this.gameObject.GetComponent<InteligenciaVirus> ().capturado==false){
 				
-				transform.position=MyTrigger.gameObject.transform.position;
+				//transform.position=MyTrigger.gameObject.transform.position;
 			}
 			
 			

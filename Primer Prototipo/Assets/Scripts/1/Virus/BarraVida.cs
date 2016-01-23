@@ -47,20 +47,21 @@ public class BarraVida : MonoBehaviour {
 
 	
 		
-	void Update(){
 
 
-		vidaVirus = GetComponentInParent<InteligenciaVirus> ().vida;
 
-		if (vidaVirus < 1000) {
-			
-			nSprite = (int)vidaVirus/ 100;
-			spriteRenderer.sprite = Asprite[nSprite]; 
-		}
+	// set the sprite  
 
+	public void modificarSprite(){
+
+		if(GetComponentInParent<InteligenciaVirus>()!=null)
+			vidaVirus = GetComponentInParent<InteligenciaVirus> ().vida;
+		else
+			vidaVirus = GetComponentInParent<BacteriaColis> ().vida;
+
+		nSprite = (int)vidaVirus/ 100;
+		if(nSprite>=0&&nSprite<=9)
+		spriteRenderer.sprite = Asprite[nSprite]; 
 
 	}
-
-
-	// set the sprite to sprite1 
 } 

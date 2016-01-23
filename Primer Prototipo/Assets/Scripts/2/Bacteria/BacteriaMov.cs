@@ -1,32 +1,35 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Bacteria : MonoBehaviour {
+public class BacteriaMov : MonoBehaviour {
 
-	public float speed=2f;
+	public float speed=1f;
 	public Vector3 destino;
-	public bool capturado;
-	public float vida;
-	//ultima mutacion
-	public bool ultima;
-	public GameObject fracturado;
 	public bool comiendo;
-	public int  celulaObjetivo;
-	public float x;
-	public float aux_x;
-	public float y;
+	public GameObject brother;
+	private float x;
+	private float aux_x;
+	private float y;
 	// Use this for initialization 
+	public void Awake(){
+	
+		ManejadorVirus.numeroVirus++;
+		Debug.Log ("virus:"+ManejadorVirus.numeroVirus);
+	
+	}
+
 	public void Start () {
 		
 		aux_x = 5f;
-		speed = 2f;
+		speed = 1f;
 		comiendo = false;
-		ManejadorVirus.numeroVirus++;
-		Debug.Log ("virus:"+ManejadorVirus.numeroVirus);
+
 		NotificationCenter.DefaultCenter ().AddObserver (this, "atrapado");
-		ultima = false;
-		capturado=false;
-		vida = 1000;
+
+
+		InvokeRepeating ("multiplicar",Random.Range(10,30),Random.Range(30,60));
+
+
 		
 		if (this.gameObject.name.Equals ("VirusFinal(Clone)")) {
 			destino = new Vector3 (Random.Range (this.transform.position.x - 6, this.transform.position.x + 10), Random.Range (-22f, 28f), -5f);
@@ -43,15 +46,7 @@ public class Bacteria : MonoBehaviour {
 	void Update () {
 		
 		
-		// Su vida se agoto ?
-		if (vida <= 0) {
-			
-			ControladorRecursos.puntaje+=40;
-			ManejadorVirus.numeroVirus--;
-			Debug.Log("virus: "+ManejadorVirus.numeroVirus);
-			Destroy(this.gameObject);
-			
-		}
+
 		x=this.transform.position.x;
 		y=this.transform.position.y;
 		if (x < -52 || x > 42 || y > 29 || y < -23)
@@ -100,15 +95,19 @@ public class Bacteria : MonoBehaviour {
 	public void atrapado(Notification notification){
 		
 		
-		if (capturado==true) {
-			Destroy(this.GetComponent<Collider>());
+		//if (capturado==true) {
+			//Destroy(this.GetComponent<Collider>());
 			speed = 1f;
 			destino = (Vector3)notification.data;
-		} else {
+		//} else {
 			
 			
-		}
+		//}
 	}
-	
+
+	public void multiplicar(){
+
+		Instantiate (brother, new Vector3(this.transform.position.x,this.transform.position.y,-5), brother.transform.rotation);
+	}
 
 }

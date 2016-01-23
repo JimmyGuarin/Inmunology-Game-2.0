@@ -61,12 +61,25 @@ public class FuncionesMacrofago : MonoBehaviour {
 		if (GetComponent<Macrofago> ().mivirus != null) {
 			
 			GetComponent<Macrofago> ().mivirus.transform.parent=null;
-			GetComponent<Macrofago> ().mivirus.GetComponent<InteligenciaVirus>().speed=2f;
-			GetComponent<Macrofago> ().mivirus.GetComponent<InteligenciaVirus>().capturado=false;
-			GetComponent<Macrofago> ().mivirus.GetComponent<InteligenciaVirus>().enabled=true;
-			GetComponent<Macrofago> ().mivirus.GetComponent<ColisionesVirus>().enabled=true;
+
+			if(GetComponent<Macrofago> ().mivirus.GetComponent<InteligenciaVirus>()!=null){
+				GetComponent<Macrofago> ().mivirus.GetComponent<InteligenciaVirus>().speed=2f;
+				GetComponent<Macrofago> ().mivirus.GetComponent<InteligenciaVirus>().capturado=false;
+				GetComponent<Macrofago> ().mivirus.GetComponent<InteligenciaVirus>().enabled=true;
+				GetComponent<Macrofago> ().mivirus.GetComponent<ColisionesVirus>().enabled=true;
+				GetComponent<Macrofago> ().mivirus.name="VirusFinal(Clone)";
+
+
+			}
+			else{
+				GetComponent<Macrofago> ().mivirus.GetComponent<BacteriaMov>().speed=1f;
+				GetComponent<Macrofago> ().mivirus.GetComponent<BacteriaColis>().capturado=false;
+				GetComponent<Macrofago> ().mivirus.GetComponent<BacteriaColis>().enabled=true;
+				GetComponent<Macrofago> ().mivirus.GetComponent<BacteriaMov>().enabled=true;
+				GetComponent<Macrofago> ().mivirus.name="Bacteria(Clone)";
+
+			}
 			GetComponent<Macrofago> ().mivirus.GetComponent<Collider>().enabled=true;
-			GetComponent<Macrofago> ().mivirus.name="VirusFinal(Clone)";
 			GetComponent<Macrofago> ().mivirus=null;
 			GetComponent<Macrofago> ().llevarBase=false;
 			Debug.Log("elimina");

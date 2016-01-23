@@ -76,12 +76,29 @@ public class FuncionesNeutrofilo : MonoBehaviour {
 		if (GetComponent<ManejarNeutrofilo> ().mivirus != null) {
 		
 			GetComponent<ManejarNeutrofilo> ().mivirus.transform.parent=null;
-			GetComponent<ManejarNeutrofilo> ().mivirus.GetComponent<InteligenciaVirus>().speed=2f;
-			GetComponent<ManejarNeutrofilo> ().mivirus.GetComponent<InteligenciaVirus>().capturado=false;
-			GetComponent<ManejarNeutrofilo> ().mivirus.GetComponent<InteligenciaVirus>().enabled=true;
-			GetComponent<ManejarNeutrofilo> ().mivirus.GetComponent<ColisionesVirus>().enabled=true;
+
+			if(	GetComponent<ManejarNeutrofilo> ().mivirus.GetComponent<InteligenciaVirus>()!=null){
+
+				GetComponent<ManejarNeutrofilo> ().mivirus.GetComponent<InteligenciaVirus>().speed=2f;
+				GetComponent<ManejarNeutrofilo> ().mivirus.GetComponent<InteligenciaVirus>().capturado=false;
+				GetComponent<ManejarNeutrofilo> ().mivirus.GetComponent<InteligenciaVirus>().enabled=true;
+				GetComponent<ManejarNeutrofilo> ().mivirus.GetComponent<ColisionesVirus>().enabled=true;
+				GetComponent<ManejarNeutrofilo> ().mivirus.name="VirusFinal(Clone)";
+			}
+			else{
+
+				GetComponent<ManejarNeutrofilo> ().mivirus.GetComponent<BacteriaMov>().speed=1f;
+				GetComponent<ManejarNeutrofilo> ().mivirus.GetComponent<BacteriaColis>().capturado=false;
+				GetComponent<ManejarNeutrofilo> ().mivirus.GetComponent<BacteriaMov>().enabled=true;
+				GetComponent<ManejarNeutrofilo> ().mivirus.GetComponent<BacteriaMov>().Start();
+				GetComponent<ManejarNeutrofilo> ().mivirus.GetComponent<BacteriaColis>().enabled=true;
+				GetComponent<ManejarNeutrofilo> ().mivirus.GetComponent<BacteriaDisparar>().enabled=true;
+				GetComponent<ManejarNeutrofilo> ().mivirus.GetComponent<BacteriaDisparar>().InvokeRepeating("disparar", 6.0f, 6.0f);
+				GetComponent<ManejarNeutrofilo> ().mivirus.name="Bacteria(Clone)";
+			}
+
 			GetComponent<ManejarNeutrofilo> ().mivirus.GetComponent<Collider>().enabled=true;
-			GetComponent<ManejarNeutrofilo> ().mivirus.name="VirusFinal(Clone)";
+
 			GetComponent<ManejarNeutrofilo> ().mivirus=null;
 			GetComponent<ManejarNeutrofilo> ().llevarBase=false;
 			Debug.Log("elimina");

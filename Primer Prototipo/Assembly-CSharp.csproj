@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\AspectUtility.cs" />
+     <Compile Include="Assets\BacteriaDisparar.cs" />
+     <Compile Include="Assets\BalaBacteria.cs" />
      <Compile Include="Assets\MomivientoElipse.cs" />
      <Compile Include="Assets\Scripts\1\Bala.cs" />
      <Compile Include="Assets\Scripts\1\BarraProgresoGanglio.cs" />
@@ -90,7 +92,8 @@
      <Compile Include="Assets\Scripts\1\Virus\ManejadorVirus.cs" />
      <Compile Include="Assets\Scripts\1\Virus\Mutaciones.cs" />
      <Compile Include="Assets\Scripts\1\nutritientes.cs" />
-     <Compile Include="Assets\Scripts\2\Bacteria\Bacteria.cs" />
+     <Compile Include="Assets\Scripts\2\Bacteria\BacteriaColis.cs" />
+     <Compile Include="Assets\Scripts\2\Bacteria\BacteriaMov.cs" />
      <Compile Include="Assets\Scripts\Login\Introducir.cs" />
      <Compile Include="Assets\Scripts\Login\prueba.cs" />
      <Compile Include="Assets\Scripts\MenuPrincipal\ControladorMenu.cs" />

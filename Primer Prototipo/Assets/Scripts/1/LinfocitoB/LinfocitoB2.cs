@@ -19,7 +19,7 @@ public class LinfocitoB2 : MonoBehaviour {
 	
 	//Si ya llego a su destino 
 	private bool llegoVaso=false;
-	public float vida=100;
+	public float vida=200;
 	public Texture2D imagen;
 	public Rect r;
 	public int ubicada;
@@ -29,7 +29,7 @@ public class LinfocitoB2 : MonoBehaviour {
 		this.name="linfocitoB(Clone)";
 
 		if(Bala!=null)
-			InvokeRepeating ("disparar", 1.0f, 2.0f);
+			InvokeRepeating ("disparar", 1.0f, 1.5f);
 		isSeleted = false;
 		destino = this.transform.position;
 		speed=6f;
@@ -165,12 +165,12 @@ public class LinfocitoB2 : MonoBehaviour {
 	void disparar(){
 		
 		Rigidbody clone=(Rigidbody) Instantiate (Bala,(this.transform.position+new Vector3(-3,0,0)),Bala.transform.rotation);
-		clone.velocity = transform.TransformDirection ((new Vector3(0,1,0))*10);
+		clone.velocity = transform.TransformDirection ((new Vector3(0,1,0))*20);
 		
 		Rigidbody clone1=(Rigidbody) Instantiate (Bala,(this.transform.position+new Vector3(-3,-1,0)),Bala.transform.rotation);
-		clone1.velocity = transform.TransformDirection ((new Vector3(-0.5f,1,0))*10);
+		clone1.velocity = transform.TransformDirection ((new Vector3(-0.2f,1,0))*20);
 		Rigidbody clone2=(Rigidbody) Instantiate (Bala,(this.transform.position+new Vector3(-3,1,0)),Bala.transform.rotation);
-		clone2.velocity = transform.TransformDirection ((new Vector3(0.5f,1,0))*10);
+		clone2.velocity = transform.TransformDirection ((new Vector3(0.2f,1,0))*20);
 	}
 
 	

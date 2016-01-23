@@ -206,17 +206,7 @@ public class LinfocitoB : MonoBehaviour {
 		}
 
 
-		if (MyTrigger.gameObject.name.Equals ("NaturalKiller(Clone)")) {
-			
-			vida -= 0.5f;
-			if (vida <= 0) {
-				ControladorRecursos.defensas--;
-				Destroy (this.gameObject);
-				
-				
-			}
-		
-		}
+	
 
 	}
 
