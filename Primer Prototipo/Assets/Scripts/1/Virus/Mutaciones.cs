@@ -16,7 +16,7 @@ public class Mutaciones : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		mutacion = 0;
+		mutacion = 1;
 		GetComponent<Renderer>().enabled = true;
 		if (ManejadorVirus.mutando)
 			InvokeRepeating ("mutar",Random.Range(15f,25f),Random.Range(10f,25f));
@@ -35,6 +35,7 @@ public class Mutaciones : MonoBehaviour {
 
 
 		if (mutacion < 4) {
+			GetComponentInParent<ColisionesVirus> ().mutacion = mutacion;
 			switch (mutacion) {
 			case 0:
 			

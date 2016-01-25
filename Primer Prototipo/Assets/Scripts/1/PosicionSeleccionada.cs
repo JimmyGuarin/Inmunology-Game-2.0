@@ -13,4 +13,21 @@ public class PosicionSeleccionada : MonoBehaviour {
 	
 
 	}
+
+	void OnTriggerEnter (Collider MyTrigger) {
+
+
+		if (MyTrigger.gameObject.name.Equals ("virusFinalFracture(Clone)")) {
+
+			GameObject virus=MyTrigger.gameObject.transform.FindChild("Fracture(Clone)").gameObject;
+
+			if(virus!=null){
+
+				Debug.Log("Tengo virus");
+			}
+
+		}
+
+	}
+
 }

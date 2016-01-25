@@ -89,13 +89,12 @@ public class CrearUnidadInnata : MonoBehaviour {
 				
 				ControladorRecursos.defensas--;
                 
-                if (canvas_Ganglio != null&&
-                    canvas_Ganglio.activeSelf==false){
-                
 					canvas_Ganglio.SetActive(true);
+					
+					canvas_Ganglio.GetComponent<BarraProgresoGanglio>().activar(virus.GetComponent<Fracture>().mutacion);	
 					Debug.Log("Llamar al metodo");
 
-				}
+				
 				ManejadorVirus.numeroVirus-=(transform.childCount-4);
 				Debug.Log("virus"+ManejadorVirus.numeroVirus);
 				ControladorRecursos.puntaje+=300;

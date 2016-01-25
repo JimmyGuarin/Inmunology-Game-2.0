@@ -5,11 +5,20 @@ public class Fracture : MonoBehaviour {
 
 	public float speed=3f;
 	public Vector3 destino;
+	public bool identificado;
+	public int mutacion;
 	public bool ganglio;
+
+	void Awake(){
+	
+		this.gameObject.name = "virusFinalFracture(Clone)";
+	
+	}
 
 	// Use this for initialization
 	void Start () {
 	
+
 		Invoke ("fracturar", 1f);
 
 	}

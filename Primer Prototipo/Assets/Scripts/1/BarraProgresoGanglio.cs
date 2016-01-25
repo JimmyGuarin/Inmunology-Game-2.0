@@ -19,14 +19,25 @@ public class BarraProgresoGanglio : MonoBehaviour {
 	public  GameObject paso5;
 	public Animator animacion;
 
+	public Image Mutacion0;
+	public Image Mutacion1;
+	public Image Mutacion2;
+	public Image Mutacion3;
+	public Image [] Mutaciones;
+	public int virus_mutacion;
+
+	void Awake(){
+
+		Mutaciones=new Image[]{ Mutacion0, Mutacion1, Mutacion2, Mutacion3};
+	}
+
 	// Use this for initialization
 	void Start () {
 	
 		estadoBarra = this.gameObject.GetComponent<EstadoBarraGanglio> ();
-		Invoke("liberar",23f);
 
-		//Activar la animacion del ganglio.
-		animacion.enabled = true;
+
+
 	}
 	
 	// Update is called once per frame
@@ -71,8 +82,29 @@ public class BarraProgresoGanglio : MonoBehaviour {
 		activarAdquirida.desbloquearLinfocitos();
 		VasoGrande.activarLinfocitos=true;
 		CancelInvoke ();
-		Destroy (this);
-		Destroy (this.gameObject);
+		Mutaciones[virus_mutacion].enabled=true;
+		//this.enabled = false;
+		this.gameObject.SetActive (false);
+		progresoActual = 0;
+		Debug.Log ("avisar");
+
+	}
+
+	public void activar(int mutacion){
+
+		Debug.Log ("mutacion" + mutacion);
+		if (progresoActual==0&&Mutaciones[mutacion].enabled==false) {
+		
+			virus_mutacion=mutacion;	
+			Invoke ("liberar", 23f);
+			//Activar la animacion del ganglio.
+			animacion.enabled = true;
+		
+		} else {
+		
+			Debug.Log("Estoy Ocupado");
+		}
+
 
 	}
 }

@@ -3,9 +3,14 @@ using System.Collections;
 
 public class ColisionesVirus : MonoBehaviour {
 
+
+	public int mutacion;
+	public bool identificado;
+
 	void Start(){
 	
-	
+		mutacion = 0;
+		identificado = true;
 
 	
 	}
@@ -46,9 +51,10 @@ public class ColisionesVirus : MonoBehaviour {
 				
 				
 				this.gameObject.GetComponent<InteligenciaVirus> ().capturado = true;
-				
-				Instantiate(this.gameObject.GetComponent<InteligenciaVirus> ().fracturado,this.transform.position,
-				            this.gameObject.GetComponent<InteligenciaVirus> ().fracturado.transform.rotation);
+				Debug.Log ("Mutacion"+mutacion);
+				GameObject Fracturado=GetComponent<InteligenciaVirus>().fracturados[mutacion];
+				Fracturado.GetComponent<Fracture>().mutacion=mutacion;
+				Instantiate(Fracturado,this.transform.position,transform.rotation);
 				Destroy(this.gameObject);
 				NotificationCenter.DefaultCenter ().PostNotification (this, "llevarABase", this.transform.position);
 			}
@@ -141,6 +147,12 @@ public class ColisionesVirus : MonoBehaviour {
 	}
 
 
+	void InstanciasFracturado(int indice){
+
+
+
+
+	}
 
 
 

@@ -9,14 +9,20 @@ public class InteligenciaVirus : MonoBehaviour {
 	public float vida;
 	//ultima mutacion
 	public bool ultima;
-	public GameObject fracturado;
+	public GameObject fracturado0;
+	public GameObject fracturado1;
+	public GameObject fracturado2;
+	public GameObject fracturado3;
+	public GameObject [] fracturados;
 	public bool comiendo;
 	public int  celulaObjetivo;
+
+
 
 	// Use this for initialization 
 	public void Start () {
 
-
+		fracturados=new GameObject[]{fracturado0,fracturado1,fracturado2,fracturado3};
 		speed = 2f;
 		comiendo = false;
 		ManejadorVirus.numeroVirus++;
@@ -163,6 +169,8 @@ public class InteligenciaVirus : MonoBehaviour {
 	
 		return destino;
 	}
+
+
 
 }
 
