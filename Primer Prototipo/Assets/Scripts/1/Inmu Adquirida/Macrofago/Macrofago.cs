@@ -226,7 +226,7 @@ public class Macrofago : MonoBehaviour {
 					
 					mivirus.gameObject.name="capturado";
 					mivirus.transform.parent=this.transform;
-					mivirus.transform.localPosition=new Vector3(0,0,0);
+					mivirus.transform.localPosition=new Vector3(-0.75f,0,0);
 					mivirus.GetComponent<BacteriaMov>().speed=0;
 					mivirus.GetComponent<BacteriaMov>().CancelInvoke();
 					mivirus.GetComponent<BacteriaDisparar>().CancelInvoke();

@@ -80,17 +80,18 @@ public class BacteriaColis : MonoBehaviour {
 			
 				if (this.gameObject.GetComponent<BacteriaColis> ().capturado == false) {
 				
-				
-					if(transform.childCount>1){
+						
+					if(transform.childCount>3){
 						int hijos=transform.childCount;
-						int index=hijos-1;
-						while(hijos>1){
+						int index=hijos-3;
+						while(hijos>3){
 							index=hijos-1;
 							transform.GetChild(index).GetComponent<BacteriaColis>().despegar2();
 							hijos--;
 						}
 
 					}
+					GetComponent<Animator>().enabled=false;
 					MyTrigger.GetComponent<CrearUnidadInnata>().enColision=true;
 					NotificationCenter.DefaultCenter ().PostNotification (this, "llevarABase", this.transform.position);
 					GetComponent<BacteriaMov> ().enabled = false;
@@ -98,7 +99,7 @@ public class BacteriaColis : MonoBehaviour {
 					GetComponent<BacteriaColis> ().capturado = true;
 					//transform.position=MyTrigger.gameObject.transform.position;
 					this.transform.parent = MyTrigger.gameObject.transform;
-					transform.localPosition = new Vector3 (0, 0, 0);
+					transform.localPosition = new Vector3 (-1.5f,1.5f,0.25f);
 					GetComponent<BacteriaMov> ().speed = 0;
 					GetComponent<BacteriaMov> ().CancelInvoke ();
 					GetComponent<BacteriaDisparar> ().CancelInvoke ();
