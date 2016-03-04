@@ -10,7 +10,8 @@ public class ControladorRecursos : MonoBehaviour {
 	public static CanvasGroup mostrarAlerta;
 	public  Text tiempo;
 	public  Text textPuntaje;
-	public static int puntaje;
+	public static int puntaje=0;
+	public static int timpo_total=0;
 	public  Text textNutrientes;
 	public static int nutrientes;
 	public  Text textOxigeno;
@@ -28,8 +29,18 @@ public class ControladorRecursos : MonoBehaviour {
 
 
 	//Inmunidad Adquirida
-	public ControladorInmuAdquirida cia;
+	public static ControladorInmuAdquirida cia;
+
+	void Awake() {
+		DontDestroyOnLoad(transform.gameObject);
+	}
+
+
+
 	void Start () {
+
+		InvokeRepeating("contar", 0.0f, 1.0f);
+
 
 		cia = GetComponent<ControladorInmuAdquirida>();
 		gameOver = false;
@@ -54,7 +65,7 @@ public class ControladorRecursos : MonoBehaviour {
 			mostrarAlerta= alertas.GetComponent<CanvasGroup>();
 		}
 			
-		puntaje = 0;
+
 		nutrientes =600;
 		oxigeno = 600;
 
@@ -69,9 +80,7 @@ public class ControladorRecursos : MonoBehaviour {
 
 		if (mostrarAlerta.alpha > 0)
 			mostrarAlerta.alpha -= 0.01f;
-
-		if (tiempo != null)
-			tiempo.text = (int)Time.timeSinceLevelLoad + "s.";
+			
 		if (textPuntaje != null)
 			textPuntaje.text = "" + puntaje;
 		if (textNutrientes != null)
@@ -82,6 +91,15 @@ public class ControladorRecursos : MonoBehaviour {
 
 
 	}
+
+
+	public  void contar(){
+
+		timpo_total += 1;
+		tiempo.text = timpo_total + "s.";
+	}
+
+
 	public static void sinRecursos(){
 
 
@@ -134,22 +152,36 @@ public class ControladorRecursos : MonoBehaviour {
 		string mensaje=finalizarJuego ();
 		if (puntaje < 0)
 			puntaje = 0;
-		mensajesPantalla.text=" GAME OVER \n"+mensaje+puntaje;
+		mensajesPantalla.text="¡ GAME OVER !  \n Te han Invadido \n"+mensaje+puntaje;
 
 	}
 	public static void ganar(){
+
+		cia.bloqueartodo ();
+		if (Application.loadedLevelName.Equals ("1")) {
+
+			GameObject.Find("CanvasGanglio").transform.GetChild(1).gameObject.SetActive(true);
+
+		}
+			
+		if (Application.loadedLevelName.Equals ("3")) {
 		
-		gameOver = true;
-		AudioListener.volume = 0;
-		c.alpha = 4;
-		Time.timeScale = 0;
-		string mensaje=finalizarJuego ();
-		puntaje += 300;
-		mensajesPantalla.text="GANASTE. \n "+mensaje+puntaje;
+			GameObject.Find("CanvasGanglio").transform.GetChild(2).gameObject.SetActive(true);
+		}
+			
+		if (Application.loadedLevelName.Equals ("2")) {
+		
+			gameOver = true;
+			AudioListener.volume = 0;
+			c.alpha = 4;
+			Time.timeScale = 0;
+			string mensaje=finalizarJuego ();
+			puntaje += 300;
+			mensajesPantalla.text="GANASTE. \n "+mensaje+puntaje;
 
-
+		}
+	
 	}
-
 	public static void virusAnalizado(){
 		
 		c1.enabled = true;
@@ -195,7 +227,6 @@ public class ControladorRecursos : MonoBehaviour {
 
 		Time.timeScale = 0;
 		Debug.Log ("final");
-		int tiempo = ((int)Time.timeSinceLevelLoad);
 		puntaje += oxigeno + nutrientes;
 		oxigeno = 0;
 		nutrientes = 0;

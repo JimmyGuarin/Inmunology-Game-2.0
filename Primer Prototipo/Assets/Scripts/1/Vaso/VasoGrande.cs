@@ -20,7 +20,7 @@ public class VasoGrande : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		
+		innata=GameObject.Find("Canvas").GetComponent<ControladorInmuAdquirida>();
 		activarLinfocitos = false;
 		InvokeRepeating ("crearEritrocito", 0, 0.3f);
 		InvokeRepeating ("crearNeutrofilo", 3f, 1.2f);
@@ -92,7 +92,7 @@ public class VasoGrande : MonoBehaviour {
 
 
 		GetComponent<Animator> ().enabled = true;
-        innata.desbloquearInnata();
+		GameObject.Find("Canvas").GetComponent<ControladorInmuAdquirida>().desbloquearInnata();
         CancelInvoke("oxigenar");
 		InvokeRepeating ("oxigenar", 0f, tiempo_Oxigenar);
 	}

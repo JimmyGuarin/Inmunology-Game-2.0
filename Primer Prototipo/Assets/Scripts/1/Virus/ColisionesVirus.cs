@@ -29,7 +29,7 @@ public class ColisionesVirus : MonoBehaviour {
 			colision.gameObject.GetComponent<Bala>().CancelInvoke();
 			colision.gameObject.GetComponent<Bala>().enabled=false;
 			colision.gameObject.transform.parent=this.transform;
-			
+			GetComponentInChildren<BarraVida>().modificarSprite();
 			
 		}
 		
@@ -99,10 +99,9 @@ public class ColisionesVirus : MonoBehaviour {
 			float xAux=MyTrigger.gameObject.transform.position.x;
 			float yAux=MyTrigger.gameObject.transform.position.y;
 			float zAux=MyTrigger.gameObject.transform.position.z;
-			
 			this.gameObject.GetComponent<InteligenciaVirus> ().destino= new Vector3(Random.Range(xAux-2,xAux+2),Random.Range(yAux-2,yAux+2),zAux);
-			
 			this.gameObject.GetComponent<InteligenciaVirus> ().vida-=MyTrigger.GetComponent<Net>().daño;
+			GetComponentInChildren<BarraVida>().modificarSprite();
 		}
 		
 		if (MyTrigger.gameObject.tag.Equals("celula")) {

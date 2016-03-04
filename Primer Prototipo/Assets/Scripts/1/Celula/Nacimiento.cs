@@ -47,10 +47,13 @@ using System.Collections;
 
 		if (seleccionado==true&&creado==false) {
 
-			Vector3 curScreenPoint = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, screenPoint.z); 
-			Vector3 curPosition = Camera.main.ScreenToWorldPoint (curScreenPoint) ; 
-			curPosition.z = -5;
-			transform.position = curPosition; 
+		
+				Vector3 posVec = Input.mousePosition; 
+			    posVec.z = -5 - Camera.main.transform.position.z; 
+				posVec = Camera.main.ScreenToWorldPoint(posVec); 
+				Debug.Log (posVec);
+				transform.position=posVec;
+
 		}
 
 	}

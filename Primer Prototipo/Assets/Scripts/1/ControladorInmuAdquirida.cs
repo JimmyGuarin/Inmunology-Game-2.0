@@ -21,6 +21,7 @@ public class ControladorInmuAdquirida : MonoBehaviour {
 	void Start(){
 
 
+
 	}
 
 
@@ -30,7 +31,6 @@ public class ControladorInmuAdquirida : MonoBehaviour {
 
 
 		linfoB.GetComponent<Button> ().interactable = true;
-		//Killer.GetComponent<Button> ().interactable = true;
 		TCD4.GetComponent<Button> ().interactable = true;
 		TCD8.GetComponent<Button> ().interactable = true;
 
@@ -42,6 +42,16 @@ public class ControladorInmuAdquirida : MonoBehaviour {
 
 		macrofago.GetComponent<Button> ().interactable = true;
 		neutrofilo.GetComponent<Button> ().interactable = true;
+
+	}
+
+	public  void bloqueartodo(){
+		Debug.Log ("me llaman");
+		linfoB.GetComponent<Button> ().interactable = false;
+		TCD4.GetComponent<Button> ().interactable = false;
+		TCD8.GetComponent<Button> ().interactable = false;
+		macrofago.GetComponent<Button> ().interactable = false;
+		neutrofilo.GetComponent<Button> ().interactable = false;
 
 	}
 

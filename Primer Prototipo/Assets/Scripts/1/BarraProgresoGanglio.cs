@@ -28,6 +28,7 @@ public class BarraProgresoGanglio : MonoBehaviour {
 
 	void Awake(){
 
+		activarAdquirida=GameObject.Find("Canvas").GetComponent<ControladorInmuAdquirida>();
 		Mutaciones=new Image[]{ Mutacion0, Mutacion1, Mutacion2, Mutacion3};
 	}
 
@@ -82,6 +83,8 @@ public class BarraProgresoGanglio : MonoBehaviour {
 		activarAdquirida.desbloquearLinfocitos();
 		VasoGrande.activarLinfocitos=true;
 		CancelInvoke ();
+
+		if(Application.loadedLevelName.Equals("3"))
 		Mutaciones[virus_mutacion].enabled=true;
 		//this.enabled = false;
 		this.gameObject.SetActive (false);
@@ -91,18 +94,25 @@ public class BarraProgresoGanglio : MonoBehaviour {
 	}
 
 	public void activar(int mutacion){
+		Debug.Log (Application.loadedLevelName);
+		if(Application.loadedLevelName.Equals("3")){
+			if (progresoActual==0&&Mutaciones[mutacion].enabled==false) {
+			
+				virus_mutacion=mutacion;	
+				Invoke ("liberar", 23f);
+				//Activar la animacion del ganglio.
+				animacion.enabled = true;
+			
+			} else {
+			
+				Debug.Log("Estoy Ocupado");
+			}
+		} else {
 
-		Debug.Log ("mutacion" + mutacion);
-		if (progresoActual==0&&Mutaciones[mutacion].enabled==false) {
-		
 			virus_mutacion=mutacion;	
 			Invoke ("liberar", 23f);
 			//Activar la animacion del ganglio.
 			animacion.enabled = true;
-		
-		} else {
-		
-			Debug.Log("Estoy Ocupado");
 		}
 
 

@@ -14,6 +14,7 @@ public class BacteriaMov : MonoBehaviour {
 	public void Awake(){
 	
 		ManejadorVirus.numeroVirus++;
+		ControladorBacterias.aumentar ();
 		Debug.Log ("virus:"+ManejadorVirus.numeroVirus);
 	
 	}

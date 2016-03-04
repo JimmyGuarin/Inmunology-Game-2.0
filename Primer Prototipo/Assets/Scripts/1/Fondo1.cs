@@ -49,7 +49,11 @@ public class Fondo1 : MonoBehaviour {
 				TCD4.seleccionadas=0;
 				TCD8.seleccionadas=0;
 				Killer.seleccionadas=0;
-				puntoDestino=hit.point;
+				Vector3 posVec = Input.mousePosition; 
+				posVec.z = -5 - Camera.main.transform.position.z; 
+				posVec = Camera.main.ScreenToWorldPoint(posVec);
+				puntoDestino=posVec;
+
 				/*
 				 * Condicion que pregunta si el collider
 				 * con el que colisiona el rayo es el 
@@ -64,7 +68,7 @@ public class Fondo1 : MonoBehaviour {
 					if(Nacimiento.seleccionado==true){
 
 						Nacimiento.seleccionado=false;
-						NotificationCenter.DefaultCenter ().PostNotification (this, "crearCelula",pulsacion.origin);
+						NotificationCenter.DefaultCenter ().PostNotification (this, "crearCelula",posVec);
 						
 						
 					}
@@ -93,8 +97,11 @@ public class Fondo1 : MonoBehaviour {
 			PosicionSeleccionada.posicionar=0;
 			if (Physics.Raycast(pulsacion,out hit)) {
 
-				
-				puntoDestino=hit.point;
+
+				Vector3 posVec = Input.mousePosition; 
+				posVec.z = -5 - Camera.main.transform.position.z; 
+				posVec = Camera.main.ScreenToWorldPoint(posVec);
+				puntoDestino=posVec;
 				/*
 				 * Condicion que pregunta si el collider
 				 * con el que colisiona el rayo es el 
