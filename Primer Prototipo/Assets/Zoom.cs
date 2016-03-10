@@ -5,42 +5,45 @@ using UnityEngine.UI;
 
 public class Zoom : MonoBehaviour {
 	
-	public Transform objeto;
-	public GameObject panel;
-	public GameObject minipanel;
-	Camera mycam;
+
+
+	private Transform objeto;
 	public Vector3 posicion_inicial;
 	public bool change;
+	public bool enfocador;
+	public bool desenfocador;
+	public GameObject panel1;
+	public GameObject minipanel;
+	private int x;
+	private int y;
+	private int z;
 	// Use this for initialization
 	void Start () {
 
+		z = 0;
 		change = false;
-		mycam = GetComponent<Camera> ();
-		posicion_inicial = new Vector3(0,0,-137.9f);
+		posicion_inicial = new Vector3(0,0,-137.2f);
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
-		if (change == false) {
-		
-			desenfocar ();
-			if(transform.position.z<-136){
-				panel.SetActive(true);
-				
-			}
-		} else {
 
-			enfocar(objeto);
-			if(transform.position.z>=-26){
+		if(transform.position.z>=-z){
 
-				minipanel.SetActive(true);
-			}
+			minipanel.SetActive(true);
+			enfocador=false;
+		}
 			                        	
+	
+		if (enfocador == true) {
+
+			transform.position= Vector3.Lerp(transform.position,this.objeto.position+new Vector3(x,y,-50),0.02f);
 		}
 
-		}
+	}
+
 	public void changeState(){
 	
 		if (change) {
@@ -49,20 +52,22 @@ public class Zoom : MonoBehaviour {
 		}
 			
 		else {
-			panel.SetActive (false);
+			//panel.SetActive (false);
 			change = true;
 		}
 	}
 
 
-	void enfocar(Transform objecto){
-
-
-		transform.position= Vector3.Lerp(transform.position,objeto.position+new Vector3(5,0,-20),0.05f);
-
+	public void enfocar(Transform obj,int axisx,int axisy,int profundidad){
+	
+		this.objeto = obj;
+		enfocador = true;
+		x = axisx;
+		y = axisy;
+		z = profundidad;
 	}
 
-	void desenfocar(){
+	public void desenfocar(){
 
 		transform.position= Vector3.Lerp(transform.position,posicion_inicial,0.05f);
 

@@ -11,7 +11,8 @@ public class ManejadorVirus : MonoBehaviour {
 	// Use this for initialization
 	public static bool analizado;
 	public static bool mutando;
-
+	public float tiempoSalidaPrimerVirus;
+	public float tiempoSalidaVirus;
 	public int virus_zona_afectada;
 	private int i;
 
@@ -22,7 +23,7 @@ public class ManejadorVirus : MonoBehaviour {
 			NotificationCenter.DefaultCenter ().AddObserver (this, "VirusDestruido");
 			analizado = false;
 			numeroVirus = 0;
-			InvokeRepeating("invocar",10,16f);
+			InvokeRepeating("invocar",tiempoSalidaPrimerVirus,tiempoSalidaVirus);
 			if(Application.loadedLevelName.Equals("3"))
 		   		mutando=true;
 	}

@@ -9,7 +9,7 @@ public class ControladorMenu : MonoBehaviour {
 	private AsyncOperation asyng;
 	private GameObject CanvasJuego;
 	private GameObject Creador;
-
+	public GameObject panel_tutorial;
 
 	void Start(){
 	
@@ -77,5 +77,20 @@ public class ControladorMenu : MonoBehaviour {
 		
 		Application.Quit();
 		
+	}
+
+	public void tutorial(){
+
+		panel_tutorial.SetActive (true);
+	}
+
+	public void cerrarTutorial(){
+		
+		panel_tutorial.SetActive (false);
+	}
+
+	public void cargarEntorno(){
+
+		Application.LoadLevel (4);
 	}
 }
