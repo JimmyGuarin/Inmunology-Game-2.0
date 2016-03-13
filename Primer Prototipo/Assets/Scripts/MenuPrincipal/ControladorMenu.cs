@@ -89,8 +89,8 @@ public class ControladorMenu : MonoBehaviour {
 		panel_tutorial.SetActive (false);
 	}
 
-	public void cargarEntorno(){
+	public void cargarTutorial(int numero){
 
-		Application.LoadLevel (4);
+		Application.LoadLevel (numero);
 	}
 }

@@ -14,15 +14,13 @@ public class LinfocitoB2 : MonoBehaviour {
 	
 	//Variable que almacena si la celula esta seleccionada o no.
 	public  bool isSeleted;
-	
-	public static int seleccionadas;
-	
+
 	//Si ya llego a su destino 
 	private bool llegoVaso=false;
 	public float vida=200;
 	public Texture2D imagen;
 	public Rect r;
-	public int ubicada;
+
 	
 	void Start () {
 
@@ -46,27 +44,7 @@ public class LinfocitoB2 : MonoBehaviour {
 	void Update () {
 		
 		
-		if (Input.GetMouseButtonDown (1)) {
-			
-			
-			Ray pulsacion;
-			RaycastHit hit;
-			pulsacion = Camera.main.ScreenPointToRay (Input.mousePosition);
-			if (Physics.Raycast (pulsacion, out hit) && hit.collider == this.GetComponent<Collider>()) {
-				
-				if (isSeleted == false&&this.GetComponent<Collider>()!=null) {
-					
-					seleccionadas++;
-					if(seleccionadas==1){
-						PosicionSeleccionada.posicionar++;
-					}
-					ubicada=PosicionSeleccionada.posicionar;
-					Debug.Log("1"+ubicada);
-					isSeleted = true;		
-				}
-			}
-			
-		}
+
 		
 		//se esta cambiando la posicion hasta que llega a destino
 		float step = speed * Time.deltaTime;
@@ -84,27 +62,10 @@ public class LinfocitoB2 : MonoBehaviour {
 	void OnGUI(){
 		
 		if (isSeleted == true) {
-			
-			if (ubicada == 1) {
-				
+							
 				GUI.Label (new Rect (10, 30, 110, 60), imagen);
-				GUI.Box(new Rect(10,10,110,100),""+seleccionadas);
-			}
-			if (ubicada == 2) {
-				
-				GUI.Label (new Rect (130, 30, 110, 60), imagen);
-				GUI.Box(new Rect(130,10,110,100),""+seleccionadas);
-			}
-			if (ubicada == 3) {
-				
-				GUI.Label (new Rect (250, 30, 110, 60), imagen);
-				GUI.Box(new Rect(250,10,110,100),""+seleccionadas);
-			}
-			if (ubicada == 4) {
-				
-				GUI.Label (new Rect (370, 30, 110, 60), imagen);
-				GUI.Box(new Rect(370,10,110,100),""+seleccionadas);
-			} 
+				GUI.Box(new Rect(10,10,110,100),"");
+			
 		}
 	}
 	
@@ -118,10 +79,9 @@ public class LinfocitoB2 : MonoBehaviour {
 		if (isSeleted == true) {
 			
 			llegoVaso=false;
-			
 			destino = new Vector3 (Fondo1.puntoDestino.x, Fondo1.puntoDestino.y, -5f);
 			isSeleted = false;
-			
+			Fondo1.seleccionada=false;
 			
 			
 		}
@@ -140,19 +100,8 @@ public class LinfocitoB2 : MonoBehaviour {
 			if (vida <= 0) {
 				
 				if (isSeleted == true)
+					Fondo1.seleccionada=false;
 					
-					ControladorRecursos.defensas--;
-				Destroy (this.gameObject);
-				
-				
-			}
-			
-		}
-
-		if (MyTrigger.gameObject.name.Equals ("NaturalKiller(Clone)")) {
-			
-			vida -= 0.5f;
-			if (vida <= 0) {
 				ControladorRecursos.defensas--;
 				Destroy (this.gameObject);
 				
@@ -160,6 +109,8 @@ public class LinfocitoB2 : MonoBehaviour {
 			}
 			
 		}
+
+
 	}
 	
 	void disparar(){

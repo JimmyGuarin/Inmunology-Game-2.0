@@ -160,6 +160,8 @@ public class BacteriaColis : MonoBehaviour {
 
 				if (MyTrigger.GetComponent<LinfocitoB> ().vida <= 0) {
 
+					if(MyTrigger.GetComponent<LinfocitoB>().isSeleted==true)
+						Fondo1.seleccionada=false;
 					DestruirDefensa (MyTrigger.gameObject);
 				}
 			}
@@ -172,6 +174,9 @@ public class BacteriaColis : MonoBehaviour {
 			
 				if (MyTrigger.GetComponent<LinfocitoB2> ().vida <= 0) {
 				
+					if(MyTrigger.GetComponent<LinfocitoB2>().isSeleted==true)
+						Fondo1.seleccionada=false;
+
 					DestruirDefensa (MyTrigger.gameObject);
 				}
 			}

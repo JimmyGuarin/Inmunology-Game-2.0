@@ -26,10 +26,8 @@ public class CrearUnidadInnata : MonoBehaviour {
 	public float vida=1000;
 	//Si esta en colision
 	public bool enColision;
-	public static int seleccionadas=0;
 	public Texture2D imagen;
 	public Rect r;
-	public int ubicada;
 
 	public ControladorInmuAdquirida activarAdquirida;
 	void Start () {
@@ -58,30 +56,7 @@ public class CrearUnidadInnata : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
-			
-	 if (Input.GetMouseButtonDown (1)) {
-				
-			
-			Ray pulsacion;
-			RaycastHit hit;
-			pulsacion = Camera.main.ScreenPointToRay (Input.mousePosition);
-			if (Physics.Raycast (pulsacion, out hit) && hit.collider == this.GetComponent<Collider>()) {
-				
-				if (isSeleted == false && this.GetComponent<Collider>() != null&&llevarBase==false) {
-
-					seleccionadas++;
-					if(seleccionadas==1){
-						PosicionSeleccionada.posicionar++;
-						ubicada=PosicionSeleccionada.posicionar;
-						GUI.Label (new Rect (10, 30, 110, 60), imagen);
-
-					}
-					isSeleted = true;
-				} 
-			}
-		
-		}
+	
 		//se esta cambiando la posicion hasta que llega a destino
 		float step = speed * Time.deltaTime;
 		this.transform.position = Vector3.MoveTowards (transform.position, destino, step);
@@ -107,26 +82,9 @@ public class CrearUnidadInnata : MonoBehaviour {
 	void OnGUI(){
 		
 		if (isSeleted == true) {
-			if (ubicada == 1) {
-				
+
 				GUI.Label (new Rect (10, 30, 110, 60), imagen);
-				GUI.Box(new Rect(10,10,110,100),""+seleccionadas);
-			}
-			if (ubicada == 2) {
-				
-				GUI.Label (new Rect (130, 30, 110, 60), imagen);
-				GUI.Box(new Rect(130,10,110,100),""+seleccionadas);
-			}
-			if (ubicada == 3) {
-				
-				GUI.Label (new Rect (250, 30, 110, 60), imagen);
-				GUI.Box(new Rect(250,10,110,100),""+seleccionadas);
-			}
-			if (ubicada == 4) {
-				
-				GUI.Label (new Rect (370, 30, 110, 60), imagen);
-				GUI.Box(new Rect(370,10,110,100),""+seleccionadas);
-			} 
+				GUI.Box(new Rect(10,10,110,100),"");
 		}
 	}
 	
@@ -138,13 +96,13 @@ public class CrearUnidadInnata : MonoBehaviour {
 		
 		//Si esta celula esta seleccionada	
 		
-		if (isSeleted == true) {
+		if (isSeleted == true&&Fondo1.seleccionada==true) {
 			
 			
 			//animator.SetInteger("vaso",0);
 			destino = new Vector3 (Fondo1.puntoDestino.x, Fondo1.puntoDestino.y, -5f);
 			isSeleted = false;
-			seleccionadas--;
+			Fondo1.seleccionada=false;
 
 		}
 		
@@ -172,7 +130,7 @@ public class CrearUnidadInnata : MonoBehaviour {
 			else destino=new Vector3(47.7f,this.transform.position.y,-5f  );
 			
 			if(isSeleted==true)
-				seleccionadas--;
+				Fondo1.seleccionada=false;
 			isSeleted=false;
 			NotificationCenter.DefaultCenter().PostNotification(this,"atrapado",destino);
 			

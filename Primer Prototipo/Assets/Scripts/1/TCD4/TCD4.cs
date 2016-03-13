@@ -13,12 +13,10 @@ public class TCD4 : MonoBehaviour {
 	//Variable que almacena si la celula esta seleccionada o no.
 	public  bool isSeleted;
 	
-	public static int seleccionadas;
-
 	public float vida=100;
 	public Texture2D imagen;
 	public Rect r;
-	public int ubicada;
+
 
 	public GameObject ayudado;
 	
@@ -47,34 +45,13 @@ public class TCD4 : MonoBehaviour {
 		if (vida <= 0) {
 			
 			if(isSeleted==true)
-				seleccionadas--;
+				Fondo1.seleccionada=false;
 			ControladorRecursos.defensas--;
 			Destroy(this.gameObject);
 			
 		}
 		
-		if (Input.GetMouseButtonDown (1)) {
-			
-			
-			Ray pulsacion;
-			RaycastHit hit;
-			pulsacion = Camera.main.ScreenPointToRay (Input.mousePosition);
-			if (Physics.Raycast (pulsacion, out hit) && hit.collider == this.GetComponent<Collider>()) {
-				
-				if (isSeleted == false&&this.GetComponent<Collider>()!=null) {
 
-					ayudado=null;
-					seleccionadas++;
-					if(seleccionadas==1){
-						PosicionSeleccionada.posicionar++;
-					}
-					ubicada=PosicionSeleccionada.posicionar;
-					Debug.Log("1"+ubicada);
-					isSeleted = true;
-				}
-			}
-			
-		}
 		
 		//se esta cambiando la posicion hasta que llega a destino
 		float step = speed * Time.deltaTime;
@@ -84,27 +61,9 @@ public class TCD4 : MonoBehaviour {
 	void OnGUI(){
 		
 		if (isSeleted == true) {
-			
-			if (ubicada == 1) {
-				
+
 				GUI.Label (new Rect (10, 30, 110, 60), imagen);
-				GUI.Box(new Rect(10,10,110,100),""+seleccionadas);
-			}
-			if (ubicada == 2) {
-				
-				GUI.Label (new Rect (130, 30, 110, 60), imagen);
-				GUI.Box(new Rect(130,10,110,100),""+seleccionadas);
-			}
-			if (ubicada == 3) {
-				
-				GUI.Label (new Rect (250, 30, 110, 60), imagen);
-				GUI.Box(new Rect(250,10,110,100),""+seleccionadas);
-			}
-			if (ubicada == 4) {
-				
-				GUI.Label (new Rect (370, 30, 110, 60), imagen);
-				GUI.Box(new Rect(370,10,110,100),""+seleccionadas);
-			} 
+				GUI.Box(new Rect(10,10,110,100),"");	
 		}
 	}
 	
@@ -119,7 +78,7 @@ public class TCD4 : MonoBehaviour {
 
 			destino = new Vector3 (Fondo1.puntoDestino.x, Fondo1.puntoDestino.y, -5f);
 			isSeleted = false;
-			
+			Fondo1.seleccionada=false;
 			
 			
 		}
@@ -134,13 +93,9 @@ public class TCD4 : MonoBehaviour {
 		
 
 			if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)")) {
-				
-				
-				
+
 				vida-=0.2f;
-				
-			
-		}
+			}
 
 	}
 

@@ -23,10 +23,8 @@ public class Macrofago : MonoBehaviour {
 	public float vida=1000;
 	//Si esta en colision
 	private bool enColision;
-	public static int seleccionadas=0;
 	public Texture2D imagen;
 	public Rect r;
-	public int ubicada;
 	public GameObject mivirus;
 	public GameObject ayudador;
 	public bool esperando_ayudador;
@@ -60,6 +58,21 @@ public class Macrofago : MonoBehaviour {
 			
 		}
 
+		
+		if (vida <= 0) {
+
+			if(mivirus!=null)
+				ManejadorVirus.numeroVirus-=(transform.childCount-3);
+
+
+			if(isSeleted==true)
+				Fondo1.seleccionada=false;
+			ControladorRecursos.defensas--;
+			Destroy(this.gameObject);
+			
+		}
+
+
 
 		if (speed == 0.5f) {
 		
@@ -74,32 +87,7 @@ public class Macrofago : MonoBehaviour {
 				animator.enabled=false;
 			}
 		}
-
-
 		
-		if (Input.GetMouseButtonDown (1)) {
-			
-			
-			Ray pulsacion;
-			RaycastHit hit;
-			pulsacion = Camera.main.ScreenPointToRay (Input.mousePosition);
-			if (Physics.Raycast (pulsacion, out hit) && hit.collider == this.GetComponent<Collider>()&&
-			    mivirus==null) {
-				
-				if (isSeleted == false && this.GetComponent<Collider>() != null) {
-					
-					seleccionadas++;
-					if(seleccionadas==1){
-						PosicionSeleccionada.posicionar++;
-						ubicada=PosicionSeleccionada.posicionar;
-						GUI.Label (new Rect (10, 30, 110, 60), imagen);
-						
-					}
-					isSeleted = true;
-				} 
-			}
-			
-		}
 		//se esta cambiando la posicion hasta que llega a destino
 		float step = speed * Time.deltaTime;
 
@@ -144,26 +132,11 @@ public class Macrofago : MonoBehaviour {
 	void OnGUI(){
 		
 		if (isSeleted == true) {
-			if (ubicada == 1) {
+
 				
 				GUI.Label (new Rect (10, 30, 110, 60), imagen);
-				GUI.Box(new Rect(10,10,110,100),""+seleccionadas);
-			}
-			if (ubicada == 2) {
-				
-				GUI.Label (new Rect (130, 30, 110, 60), imagen);
-				GUI.Box(new Rect(130,10,110,100),""+seleccionadas);
-			}
-			if (ubicada == 3) {
-				
-				GUI.Label (new Rect (250, 30, 110, 60), imagen);
-				GUI.Box(new Rect(250,10,110,100),""+seleccionadas);
-			}
-			if (ubicada == 4) {
-				
-				GUI.Label (new Rect (370, 30, 110, 60), imagen);
-				GUI.Box(new Rect(370,10,110,100),""+seleccionadas);
-			} 
+				GUI.Box(new Rect(10,10,110,100),"");
+
 		}
 	}
 	
@@ -181,7 +154,7 @@ public class Macrofago : MonoBehaviour {
 
 			destino = new Vector3 (Fondo1.puntoDestino.x, Fondo1.puntoDestino.y, -5f);
 			isSeleted = false;
-			seleccionadas--;
+			Fondo1.seleccionada=false;
 			
 		}
 		
@@ -303,7 +276,7 @@ public class Macrofago : MonoBehaviour {
 				else
 					mivirus.GetComponent<BacteriaColis>().vida-=daño;
 				mivirus.GetComponentInChildren<BarraVida>().modificarSprite();
-
+				vida-=0.05f;
 			}
 		}
 			

@@ -7,9 +7,7 @@ public class ManejarNeutrofilo : MonoBehaviour {
 	public Vector3 subir;
 	public float life=500;
 	public Texture2D imagen;
-	public static int seleccionadas=0;
 	private Rect r;
-	public int ubicada;
 	public bool llevarBase;
 	public float speed;
 	public bool enColision;
@@ -61,35 +59,7 @@ public class ManejarNeutrofilo : MonoBehaviour {
 			}
 		}
 	
-		//Click Derecho
-		if (Input.GetMouseButtonDown (1)) {
-			
-			
-			Ray pulsacion;
-			RaycastHit hit;
-			pulsacion = Camera.main.ScreenPointToRay (Input.mousePosition);
-			if (Physics.Raycast (pulsacion, out hit) && hit.collider == this.GetComponent<Collider>()&&
-			    mivirus==null) {
-				
-
-
-				if (isSeleted == false) {
-
-					seleccionadas++;
-					if(seleccionadas==1){
-						PosicionSeleccionada.posicionar++;
-
-					}
-					ubicada=PosicionSeleccionada.posicionar;
-					isSeleted = true;
-					
-				} else {
-					isSeleted = true;
-					
-				}
-			}
-			
-		}
+	
 
 		//Click Izquierdo
 		if(Input.GetMouseButtonDown (0)) {
@@ -132,7 +102,7 @@ public class ManejarNeutrofilo : MonoBehaviour {
 		if (life <= 0) {
 
 			if(isSeleted==true)
-				seleccionadas--;
+				Fondo1.seleccionada=false;
 			ControladorRecursos.defensas--;
 			if(mivirus!=null)
 				ManejadorVirus.numeroVirus-=(transform.childCount-3);
@@ -145,26 +115,9 @@ public class ManejarNeutrofilo : MonoBehaviour {
 	void OnGUI(){
 		
 		if (isSeleted == true) {
-			if (ubicada == 1) {
 				
 				GUI.Label (new Rect (10, 30, 110, 60), imagen);
-				GUI.Box(new Rect(10,10,110,100),""+seleccionadas);
-			}
-			if (ubicada == 2) {
-				
-				GUI.Label (new Rect (130, 30, 110, 60), imagen);
-				GUI.Box(new Rect(130,10,110,100),""+seleccionadas);
-			}
-			if (ubicada == 3) {
-				
-				GUI.Label (new Rect (250, 30, 110, 60), imagen);
-				GUI.Box(new Rect(250,10,110,100),""+seleccionadas);
-			}
-			if (ubicada == 4) {
-				
-				GUI.Label (new Rect (370, 30, 110, 60), imagen);
-				GUI.Box(new Rect(370,10,110,100),""+seleccionadas);
-			} 
+				GUI.Box(new Rect(10,10,110,100),"");	 
 		}
 	}
 
@@ -178,7 +131,7 @@ public class ManejarNeutrofilo : MonoBehaviour {
 
 			subir = new Vector3 (Fondo1.puntoDestino.x, Fondo1.puntoDestino.y, -5f);
 			isSeleted = false;
-			seleccionadas--;
+			Fondo1.seleccionada=false;
 		}
 	}
 
@@ -322,7 +275,7 @@ public class ManejarNeutrofilo : MonoBehaviour {
 				else
 					mivirus.GetComponent<BacteriaColis>().vida-=0.2f;
 				mivirus.GetComponentInChildren<BarraVida>().modificarSprite();
-		
+				life-=0.05f;
 			}
 		}
 

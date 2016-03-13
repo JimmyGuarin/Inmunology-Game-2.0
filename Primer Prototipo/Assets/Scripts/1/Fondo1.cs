@@ -13,13 +13,15 @@ public class Fondo1 : MonoBehaviour {
 	/// que movemos en pantalla
 	/// </summary>
 	public static Vector2 puntoDestino;
+	public static bool seleccionada;
 	Ray pulsacion;
 	RaycastHit hit ;
 
 
 	// Use this for initialization
 	void Start () {
-		
+	
+		seleccionada = false;
 	}
 	
 	
@@ -42,13 +44,6 @@ public class Fondo1 : MonoBehaviour {
 			if (Physics.Raycast(pulsacion,out hit)) {
 				
 				PosicionSeleccionada.posicionar=0;
-				CrearUnidadInnata.seleccionadas=0;
-				ManejarNeutrofilo.seleccionadas=0;
-				LinfocitoB.seleccionadas=0;
-				LinfocitoB2.seleccionadas=0;
-				TCD4.seleccionadas=0;
-				TCD8.seleccionadas=0;
-				Killer.seleccionadas=0;
 				Vector3 posVec = Input.mousePosition; 
 				posVec.z = -5 - Camera.main.transform.position.z; 
 				posVec = Camera.main.ScreenToWorldPoint(posVec);
@@ -64,7 +59,123 @@ public class Fondo1 : MonoBehaviour {
 
 				//if () {	
 					
+				if(seleccionada==true){
+
 					NotificationCenter.DefaultCenter().PostNotification(this,"cambiarPosCelula");
+				}
+				else{
+					GameObject objeto_seleccionado=hit.collider.gameObject;;
+
+					if(hit.collider.name.Equals("Dentrica(Clone)")){
+
+
+						if(objeto_seleccionado.GetComponent<CrearUnidadInnata>().llevarBase==false&&
+						   objeto_seleccionado.GetComponent<CrearUnidadInnata>().isSeleted==false){
+
+							objeto_seleccionado.GetComponent<CrearUnidadInnata>().isSeleted=true;
+							seleccionada=true;
+
+						}
+					}
+					if(hit.collider.name.Equals("Neutrofilo(Clone)")){
+						
+						
+						if(objeto_seleccionado.GetComponent<ManejarNeutrofilo>().isSeleted==false&&
+						   objeto_seleccionado.GetComponent<ManejarNeutrofilo>().mivirus==null&&
+						   objeto_seleccionado.transform.FindChild("mira").gameObject.activeSelf==false){
+							
+							objeto_seleccionado.GetComponent<ManejarNeutrofilo>().isSeleted=true;
+							seleccionada=true;
+							
+						}
+					}
+
+					if(hit.collider.name.Equals("Macrofago(Clone)")){
+						
+						
+						if(objeto_seleccionado.GetComponent<Macrofago>().isSeleted==false&&
+						   objeto_seleccionado.GetComponent<Macrofago>().mivirus==null&&
+						   objeto_seleccionado.transform.FindChild("mira").gameObject.activeSelf==false){
+							
+							objeto_seleccionado.GetComponent<Macrofago>().isSeleted=true;
+							seleccionada=true;
+							
+						}
+					}
+
+					if(hit.collider.name.Equals("NaturalK(Clone)")){
+						
+						
+						if(objeto_seleccionado.GetComponent<TCD8>().isSeleted==false){
+							
+							objeto_seleccionado.GetComponent<TCD8>().isSeleted=true;
+							seleccionada=true;
+							
+						}
+					}
+
+					if(hit.collider.name.Equals("LinfoncitoTCD8(Clone)")){
+						
+						
+						if(objeto_seleccionado.GetComponent<TCD8>().isSeleted==false){
+							
+							objeto_seleccionado.GetComponent<TCD8>().isSeleted=true;
+							seleccionada=true;
+							
+						}
+					}
+
+					if(hit.collider.name.Equals("LinfoncitoB(Clone)")){
+						
+						
+						if(objeto_seleccionado.GetComponent<LinfocitoB>().isSeleted==false&&
+						   objeto_seleccionado.transform.FindChild("mira").gameObject.activeSelf==false){
+							
+							objeto_seleccionado.GetComponent<LinfocitoB>().isSeleted=true;
+							seleccionada=true;
+							
+						}
+					}
+
+					if(hit.collider.name.Equals("linfocitoB(Clone)")){
+						
+						
+						if(objeto_seleccionado.GetComponent<LinfocitoB2>().isSeleted==false){
+							
+							objeto_seleccionado.GetComponent<LinfocitoB2>().isSeleted=true;
+							seleccionada=true;
+							
+						}
+					}
+
+
+
+
+					if(hit.collider.name.Equals("LinfoncitoTCD4(Clone)")){
+						
+						
+						if(objeto_seleccionado.GetComponent<TCD4>().isSeleted==false){
+							
+							objeto_seleccionado.GetComponent<TCD4>().isSeleted=true;
+							objeto_seleccionado.GetComponent<TCD4>().ayudado=null;
+							seleccionada=true;
+							
+						}
+					}
+					if (hit.collider.name.Equals ("puntoEncuentro")) {
+
+						if(objeto_seleccionado.GetComponent<MoverPuntoEncuentro>().isSeleted==false){
+							objeto_seleccionado.GetComponent<MoverPuntoEncuentro>().isSeleted=true;
+							seleccionada=true;
+						}
+
+					}
+
+
+
+				}
+
+					
 					if(Nacimiento.seleccionado==true){
 
 						Nacimiento.seleccionado=false;
@@ -73,67 +184,9 @@ public class Fondo1 : MonoBehaviour {
 						
 					}
 
-				//}
-				
-				
-				
 			}
 			
 		}
 		
 	}
-	
-
-	//Se llama cuando se hace click en el Fondo
-	void OnMouseDown(){
-
-		//Si el click es el clik derecho(0)
-		if (Input.GetMouseButtonDown (0)) {
-
-
-
-			pulsacion=Camera.main.ScreenPointToRay(Input.mousePosition);
-
-			PosicionSeleccionada.posicionar=0;
-			if (Physics.Raycast(pulsacion,out hit)) {
-
-
-				Vector3 posVec = Input.mousePosition; 
-				posVec.z = -5 - Camera.main.transform.position.z; 
-				posVec = Camera.main.ScreenToWorldPoint(posVec);
-				puntoDestino=posVec;
-				/*
-				 * Condicion que pregunta si el collider
-				 * con el que colisiona el rayo es el 
-				 * collider que tiene el fondo
-				 * */
-
-				if (hit.collider.name.Equals ("Fondo1")||hit.collider.name.Equals ("VirusFinal(Clone)")) {	
-
-					NotificationCenter.DefaultCenter().PostNotification(this,"cambiarPosCelula");
-					if(Nacimiento.seleccionado==true){
-
-						//Destroy(Nacimiento.neutrofilo);
-						//ControladorRecursos.oxigeno+=20;
-						//ControladorRecursos.nutrientes+=10;
-						//ControladorRecursos.sinllevar();
-					}
-					//Si el puntoDeEncuentro(MoverPuntoEncuentroPuntoEncuentroPuntoEncuentro) se encuentra seleccionado
-					if (MoverPuntoEncuentro.isSeleted == true){
-						Debug.Log ("MoverPuntoEncuentro");
-
-						//canviar la posicion del punto de encuentro
-						MoverPuntoEncuentro.cambiarPos (hit.point);
-
-					}
-			}
-
-
-			
-			
-		}
-		
-	}
-	
-}
 }

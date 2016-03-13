@@ -102,6 +102,7 @@
      <Compile Include="Assets\Scripts\MenuPrincipal\Puntajes.cs" />
      <Compile Include="Assets\Scripts\Registrar\Manejador.cs" />
      <Compile Include="Assets\Scripts\Tutorial\EstadoTutorial.cs" />
+     <Compile Include="Assets\Scripts\Tutorial\InnataTutorial.cs" />
      <Compile Include="Assets\TutorialEntorno.cs" />
      <Compile Include="Assets\Zoom.cs" />
      <Compile Include="Assets\cambioEscena.cs" />

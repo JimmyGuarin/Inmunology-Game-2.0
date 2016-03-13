@@ -19,7 +19,7 @@ public class FuncionesTCD4 : MonoBehaviour {
 		posicion = transform.position;	
 		
 		
-		if(Input.GetMouseButtonDown(2)){
+		if(Input.GetMouseButtonDown(1)){
 			
 			
 			Ray pulsacion;

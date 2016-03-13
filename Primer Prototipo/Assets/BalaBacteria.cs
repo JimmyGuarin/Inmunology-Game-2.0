@@ -38,13 +38,7 @@ public class BalaBacteria : MonoBehaviour {
 			
 			
 			MyTrigger.GetComponent<Macrofago>().vida-=ataque;
-			
-			if (MyTrigger.GetComponent<Macrofago>().vida<= 0) {
-				
-				DestruirDefensa(MyTrigger.gameObject);
-				if(MyTrigger.GetComponent<Macrofago>().mivirus!=null)
-					ManejadorVirus.numeroVirus-=(transform.childCount-3);
-			}
+
 			Destroy(this.gameObject);
 		}
 
@@ -62,6 +56,11 @@ public class BalaBacteria : MonoBehaviour {
 
 
 				}
+				if(MyTrigger.GetComponent<CrearUnidadInnata>().isSeleted==true){
+
+					Fondo1.seleccionada=false;
+				}
+
 				DestruirDefensa(MyTrigger.gameObject);
 			}
 			Destroy(this.gameObject);
@@ -73,11 +72,6 @@ public class BalaBacteria : MonoBehaviour {
 			
 			
 			MyTrigger.GetComponent<TCD8>().vida-=ataque;
-			
-			if (MyTrigger.GetComponent<TCD8>().vida<= 0) {
-				
-				DestruirDefensa(MyTrigger.gameObject);
-			}
 			Destroy(this.gameObject);
 		}
 
@@ -90,6 +84,9 @@ public class BalaBacteria : MonoBehaviour {
 			MyTrigger.GetComponent<LinfocitoB>().vida-=ataque;
 			
 			if (MyTrigger.GetComponent<LinfocitoB>().vida<= 0) {
+
+				if(MyTrigger.GetComponent<LinfocitoB>().isSeleted==true)
+					Fondo1.seleccionada=false;
 				
 				DestruirDefensa(MyTrigger.gameObject);
 			}
@@ -103,7 +100,11 @@ public class BalaBacteria : MonoBehaviour {
 			MyTrigger.GetComponent<LinfocitoB2>().vida-=ataque;
 			
 			if (MyTrigger.GetComponent<LinfocitoB2>().vida<= 0) {
-				
+
+
+				if(MyTrigger.GetComponent<LinfocitoB2>().isSeleted==true)
+					Fondo1.seleccionada=false;
+
 				DestruirDefensa(MyTrigger.gameObject);
 			}
 			Destroy(this.gameObject);
@@ -114,10 +115,6 @@ public class BalaBacteria : MonoBehaviour {
 		if (MyTrigger.gameObject.name.Equals ("LinfoncitoTCD4(Clone)")) {
 			
 			MyTrigger.GetComponent<TCD4>().vida-=ataque;
-			if (MyTrigger.GetComponent<TCD4>().vida<= 0) {
-				
-				DestruirDefensa(MyTrigger.gameObject);
-			}
 			Destroy(this.gameObject);
 		}
 		
@@ -126,10 +123,6 @@ public class BalaBacteria : MonoBehaviour {
 		if (MyTrigger.gameObject.name.Equals ("LinfoncitoTCD8(Clone)")) {
 			
 			MyTrigger.GetComponent<TCD8>().vida-=ataque;
-			if (MyTrigger.GetComponent<TCD8>().vida<= 0) {
-				
-				DestruirDefensa(MyTrigger.gameObject);
-			}
 			Destroy(this.gameObject);
 		}
 

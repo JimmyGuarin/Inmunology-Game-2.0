@@ -36,7 +36,7 @@ public class Zoom : MonoBehaviour {
 		if (enfocador == true) {
 
 			panel1.SetActive(false);
-			transform.position= Vector3.Lerp(transform.position,this.objeto.position+new Vector3(x,y,-50),0.02f);
+			transform.position= Vector3.Lerp(transform.position,this.objeto.position+new Vector3(x,y,-10),0.02f);
 			if(transform.position.z>=-z){
 				
 				minipanel.SetActive(true);
