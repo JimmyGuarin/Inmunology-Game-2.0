@@ -101,6 +101,7 @@
      <Compile Include="Assets\Scripts\MenuPrincipal\Instrucciones.cs" />
      <Compile Include="Assets\Scripts\MenuPrincipal\Puntajes.cs" />
      <Compile Include="Assets\Scripts\Registrar\Manejador.cs" />
+     <Compile Include="Assets\Scripts\Tutorial\DesafioDendritica.cs" />
      <Compile Include="Assets\Scripts\Tutorial\EstadoTutorial.cs" />
      <Compile Include="Assets\Scripts\Tutorial\InnataTutorial.cs" />
      <Compile Include="Assets\TutorialEntorno.cs" />

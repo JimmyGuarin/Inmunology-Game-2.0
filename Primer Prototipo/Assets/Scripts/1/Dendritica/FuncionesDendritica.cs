@@ -56,11 +56,16 @@ public class FuncionesDendritica : MonoBehaviour {
 
                 activar =false;
 			}
-			if(GUI.Button(new Rect(aux.x,aux.y+30,100,30), "Alertar Ganglio")){
-				
-				dendritica.llevarA(0,new Vector3(47.8f ,-22.2f  ,-10f  ));
-				activar=false;
+
+			if(dendritica.tutorial==false){
+				if(GUI.Button(new Rect(aux.x,aux.y+30,100,30), "Alertar Ganglio")){
+					
+					dendritica.llevarA(0,new Vector3(47.8f ,-22.2f  ,-10f  ));
+					activar=false;
+				}
+
 			}
+
 		}
 	}
 	

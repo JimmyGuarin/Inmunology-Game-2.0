@@ -9,7 +9,7 @@ public class InnataTutorial : MonoBehaviour {
 	public Zoom zoom;
 	Ray pulsacion;
 	RaycastHit hit ;
-	
+
 	
 	//Estados
 	public EstadoTutorial[] Estados;
@@ -43,6 +43,7 @@ public class InnataTutorial : MonoBehaviour {
 	public GameObject Macrofago;
 	public GameObject Nk;
 	//Manejador de Estados
+	public static int estado;
 	public int estadoActual;
 
 
@@ -55,7 +56,7 @@ public class InnataTutorial : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
-		estadoActual = 0;
+		estadoActual = estado;
 		Estados= new EstadoTutorial[5];
 		Estados [0] = new EstadoTutorial (flechaDendritica,Dendritica,"Células dendríticas" ,"Las células dendríticas (DC) son células fagocíticas presentes en tejidos que están en contacto con el medio externo, " +
 			"principalmente la y el revestimiento mucoso interno de la nariz, pulmones, estómago e intestino. Se llaman así por su analogía con las dendritas neuronales, pero las células dendríticas no están conectadas " +
@@ -77,6 +78,11 @@ public class InnataTutorial : MonoBehaviour {
 
 		zoom = this.GetComponent<Zoom> ();	
 
+		if (estadoActual> 0) {
+			Estados[estadoActual].Preparar();
+			panelPrincipal_1.SetActive(false);
+			textos.SetActive(true);
+		}
 	}
 	
 	// Update is called once per frame
@@ -166,9 +172,8 @@ public class InnataTutorial : MonoBehaviour {
 		case 5:
 			panelZoom.SetActive(false);
 			if(estadoActual<4){
-				zoom.desenfocar(false);
-				Estados[estadoActual].Preparar();
-				textos.SetActive(true);
+				Destroy(GameObject.Find("Canvas"));
+				Application.LoadLevel(estadoActual+5);
 			}
 			else{
 				

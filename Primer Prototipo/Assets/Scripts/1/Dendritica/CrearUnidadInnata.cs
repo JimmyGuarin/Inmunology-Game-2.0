@@ -13,6 +13,7 @@ public class CrearUnidadInnata : MonoBehaviour {
 	//Variable que almacena si la celula esta seleccionada o no.
 	public bool isSeleted;
 
+	public bool tutorial;
 	
 	//Variable que representa el animator de la celula
 	private Animator animator;
@@ -128,7 +129,10 @@ public class CrearUnidadInnata : MonoBehaviour {
 			   Vector3.Distance(transform.position,new Vector3(47.7f,10.8f,this.transform.position.z  )))
 				destino=new Vector3(47.8f ,-22.2f  ,-10f  );
 			else destino=new Vector3(47.7f,this.transform.position.y,-5f  );
-			
+
+			if(tutorial==true)
+				destino=new Vector3(47.7f,this.transform.position.y,-5f  );
+
 			if(isSeleted==true)
 				Fondo1.seleccionada=false;
 			isSeleted=false;

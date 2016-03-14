@@ -14,7 +14,9 @@ public class ManejadorVirus : MonoBehaviour {
 	public float tiempoSalidaPrimerVirus;
 	public float tiempoSalidaVirus;
 	public int virus_zona_afectada;
-	private int i;
+	public int i;
+	public bool tutorial;
+	public GameObject PanelTutorial;
 
 	void Start () {
 
@@ -43,11 +45,16 @@ public class ManejadorVirus : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		if (numeroVirus == 0&&i>=virus_zona_afectada&&celulas_infectadas==0) {
+		if (numeroVirus <= 0&&i>=virus_zona_afectada&&celulas_infectadas==0) {
 			
 			CancelInvoke();
-			ControladorRecursos.ganar();
-			
+			if(tutorial==false)
+				ControladorRecursos.ganar();
+			else{
+				Time.timeScale = 0;
+				PanelTutorial.SetActive(true);
+			}
+
 			Destroy(this);
 		}
 		

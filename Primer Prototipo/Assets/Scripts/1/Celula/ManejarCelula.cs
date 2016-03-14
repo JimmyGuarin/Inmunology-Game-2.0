@@ -181,6 +181,7 @@ public class ManejarCelula : MonoBehaviour {
 
 					}
 
+					NotificationCenter.DefaultCenter().PostNotification(this,"celulaMuerta");
                     
 				}
 
