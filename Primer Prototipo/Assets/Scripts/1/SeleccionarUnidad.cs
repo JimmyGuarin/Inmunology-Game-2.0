@@ -17,6 +17,7 @@ public class SeleccionarUnidad : MonoBehaviour {
     public Image linfoB_imagen;
     public Image tcd4_imagen;
     public Image tcd8_imagen;
+	public bool tutorial;
 
     // Use this for initialization
     void Start() {
@@ -75,6 +76,9 @@ public class SeleccionarUnidad : MonoBehaviour {
 			MovimientoElipse me=neutrofilo.GetComponent<MovimientoElipse>();
 			me.salir=true;
             inhabilitarButton(neutro_imagen);
+
+			if(tutorial)
+				NotificationCenter.DefaultCenter().PostNotification(this,"crearNeutrofilo");
 
         }
 	}
