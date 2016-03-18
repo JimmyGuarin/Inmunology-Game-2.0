@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class DesafioDendritica : MonoBehaviour {
+public class DestresaInnata : MonoBehaviour {
 
 	// Paneles Primarios de navegacion
 	public GameObject panelPrincipal_1;
@@ -12,15 +12,21 @@ public class DesafioDendritica : MonoBehaviour {
 	public GameObject panelPrincipal_14;
 	public GameObject panelPrincipal_15;
 
-
-
+	public GameObject boton_celula;
+	public GameObject boton_nk;
+	
 	// Use this for initialization
 	void Start () {
 	
-		NotificationCenter.DefaultCenter ().AddObserver (this, "celulaMuerta");
 
+		Time.timeScale = 0;
 	}
 	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+
 	public void cambiarPanelPrincipal(int num){
 		
 		switch (num) 
@@ -39,44 +45,46 @@ public class DesafioDendritica : MonoBehaviour {
 			panelPrincipal_13.SetActive(true);
 			panelPrincipal_12.SetActive(false);
 			break;
-
+			
 		case 4:
 			panelPrincipal_1.SetActive(false);
 			panelPrincipal_14.SetActive(true);
 			panelPrincipal_13.SetActive(false);
-			Time.timeScale = 0;
+			Time.timeScale = 1;
+			boton_celula.GetComponent<Button>().interactable=true;
+			boton_nk.GetComponent<Button>().interactable=true;
 			GameObject.Find("ManejadorVirus").GetComponent<ManejadorVirus>().enabled=true;
 			break;
-
+			
 		case 5:
 			InnataTutorial.estado=1;
 			Destroy(GameObject.Find("Canvas"));
 			Destroy(GameObject.Find("Creador"));
-			Application.LoadLevel(5);
+			Application.LoadLevel(0);
 			break;
-
+			
 		case 6:
 			Destroy(GameObject.Find("Canvas"));
 			Destroy(GameObject.Find("Creador"));
-			Application.LoadLevel(6);	
+			Application.LoadLevel(9);	
 			break;
-
+			
 		case 7:
 			Destroy(GameObject.Find("Canvas"));
 			Destroy(GameObject.Find("Creador"));
 			Application.LoadLevel(0);	
 			break;
+			
+		}
+	}
+
+  public void celulasMuertas()
+	{	
+		
+		StartCoroutine(Wait());
 		
 	}
-}
-
-	void celulaMuerta(Notification notification)
-	{	
-
-		StartCoroutine(Wait());
-
-	}
-
+	
 	
 	IEnumerator Wait(){
 		

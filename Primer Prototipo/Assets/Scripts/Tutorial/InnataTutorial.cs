@@ -181,15 +181,16 @@ public class InnataTutorial : MonoBehaviour {
 			//llamado por panel zoom
 		case 5:
 			panelZoom.SetActive(false);
-			if(estadoActual<4){
-				Destroy(GameObject.Find("Canvas"));
-				Destroy(GameObject.Find("Creador"));
-				Destroy(GameObject.Find("ManejadorVirus"));
-				ManejadorVirus.celulas.Clear ();
+			Destroy(GameObject.Find("Canvas"));
+			Destroy(GameObject.Find("Creador"));
+			Destroy(GameObject.Find("ManejadorVirus"));
+			ManejadorVirus.celulas.Clear ();
+			if(estadoActual<=4){
+
 				Application.LoadLevelAsync(estadoActual+5);
 			}
 			else{
-				
+				Application.LoadLevelAsync(9);
 				zoom.desenfocar(false);
 			}
 			break;

@@ -63,7 +63,9 @@ public class NotificationCenter:MonoBehaviour
 		if (aNotification.name == null || aNotification.name == "") { Debug.Log("Null name sent to PostNotification."); return; }
 		// Obtain the notification list, and make sure that it is valid as well
 		List<Component> notifyList = (List<Component>)notifications[aNotification.name]; //change from original
-		if (notifyList == null) { Debug.Log("Notify list not found in PostNotification."); return; }
+		if (notifyList == null) { 
+			//Debug.Log("Notify list not found in PostNotification."); 
+			return; }
 		
 		// Clone list, so there won't be an issue if an observer is added or removed while notifications are being sent
 		notifyList = new List<Component>(notifyList);

@@ -17,9 +17,11 @@ public class ManejadorVirus : MonoBehaviour {
 	public int i;
 	public bool tutorial;
 	public GameObject PanelTutorial;
-
+	public static bool tutorialStatic;
 	void Start () {
 
+			tutorialStatic = tutorial;
+			Debug.Log (tutorialStatic);
 			i = 0;
 			celulas_infectadas = 0;
 			NotificationCenter.DefaultCenter ().AddObserver (this, "VirusDestruido");
@@ -70,8 +72,15 @@ public class ManejadorVirus : MonoBehaviour {
 
 
 		celulas_objetivos = celulas;
-		if(celulas_objetivos.Count==0)
-			ControladorRecursos.invadido ();
+		if (celulas_objetivos.Count == 0) {
+		
+				if(tutorialStatic==false)
+					ControladorRecursos.invadido ();
+				else
+					Camera.main.GetComponent<DestresaInnata>().celulasMuertas();
+		
+		}
+			
 
 	}
 		
