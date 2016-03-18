@@ -9,7 +9,8 @@ public class FuncionesNeutrofilo : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+
+		NotificationCenter.DefaultCenter ().AddObserver (this, "QuitarFunciones");
 		activar = false;	
 		posicion = transform.position;
 
@@ -68,6 +69,8 @@ public class FuncionesNeutrofilo : MonoBehaviour {
 	void createNET(){
 		liberarCaptura ();
 		Instantiate(net,this.transform.position,net.transform.rotation);
+		if (this.GetComponent<ManejarNeutrofilo> ().daño_a_virus == 5.0f)
+			net.GetComponent<Net> ().tiempo = 30;
 		Destroy(this.gameObject);
 	}
 
@@ -109,6 +112,12 @@ public class FuncionesNeutrofilo : MonoBehaviour {
 
 
 	}
+
+	void QuitarFunciones(Notification notification)
+	{	
+		Destroy (this);
+	}
+
 }
 
 

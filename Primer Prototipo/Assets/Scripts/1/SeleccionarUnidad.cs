@@ -18,10 +18,14 @@ public class SeleccionarUnidad : MonoBehaviour {
     public Image tcd4_imagen;
     public Image tcd8_imagen;
 	public bool tutorial;
-
+	private float time_neutrofilo=0.005f;
     // Use this for initialization
     void Start() {
 
+		if (tutorial == true) {
+		
+			time_neutrofilo=0.01f;
+		}
 		DontDestroyOnLoad(transform.gameObject);
 	}
 	
@@ -36,7 +40,7 @@ public class SeleccionarUnidad : MonoBehaviour {
 
 
         bajarInhabilitador(macrofago_imagen, 0.005f);
-        bajarInhabilitador(neutro_imagen, 0.005f);
+        bajarInhabilitador(neutro_imagen, time_neutrofilo);
         bajarInhabilitador(killer_imagen, 0.01f);
         bajarInhabilitador(linfoB_imagen, 0.003f);
         bajarInhabilitador(tcd4_imagen, 0.001f);
@@ -54,11 +58,16 @@ public class SeleccionarUnidad : MonoBehaviour {
 		if (DisminuirRecursos (nut, oxigeno, puntajes) == true) {
 			
 			
-			GameObject neutrofilo=(GameObject)Instantiate(macrofago);
-			MovimientoElipse me=neutrofilo.GetComponent<MovimientoElipse>();
+			GameObject mac=(GameObject)Instantiate(macrofago);
+			MovimientoElipse me=mac.GetComponent<MovimientoElipse>();
 			me.salir=true;
             inhabilitarButton(macrofago_imagen);
-            
+			if(tutorial){
+				mac.GetComponent<Macrofago>().daño=0.6f;
+				mac.GetComponent<Animator>().enabled=true;
+				mac.GetComponent<FuncionesMacrofago>().dendritica.GetComponent<CrearUnidadInnata>().tutorial=true;
+				NotificationCenter.DefaultCenter().PostNotification(this,"crearMacrofago");
+			}
 			
 		}
 	
@@ -77,8 +86,13 @@ public class SeleccionarUnidad : MonoBehaviour {
 			me.salir=true;
             inhabilitarButton(neutro_imagen);
 
-			if(tutorial)
+			if(tutorial){
+				neutrofilo.GetComponent<ManejarNeutrofilo>().daño_a_virus=5.0f;
+				neutrofilo.GetComponent<ManejarNeutrofilo>().life=600;
+				neutrofilo.GetComponent<ManejarNeutrofilo>().speed=6;
 				NotificationCenter.DefaultCenter().PostNotification(this,"crearNeutrofilo");
+			}
+				
 
         }
 	}

@@ -9,21 +9,19 @@ public class ManejarNeutrofilo : MonoBehaviour {
 	public Texture2D imagen;
 	private Rect r;
 	public bool llevarBase;
-	public float speed;
+	public float speed=4;
 	public bool enColision;
 	public GameObject mivirus;
 	public GameObject ayudador;
 	public bool esperando_ayudador;
+	public float daño_a_virus=2.5f;
 
 	// Use this for initialization
 	void Start () {
 	
 		esperando_ayudador = false;
-
-		speed = 4;
 		llevarBase = false;
 		ControladorRecursos.defensas++;
-		life = 500;
 		isSeleted = false;
 		subir = new Vector3(MoverPuntoEncuentro.posicion.x,MoverPuntoEncuentro.posicion.y,-5f);
 
@@ -246,7 +244,7 @@ public class ManejarNeutrofilo : MonoBehaviour {
 			if(GetComponent<ParticleSystem>().enableEmission==true){
 	
 
-				MyTrigger.GetComponent<InteligenciaVirus> ().vida-=2.5f;
+				MyTrigger.GetComponent<InteligenciaVirus> ().vida-=daño_a_virus;
 				MyTrigger.GetComponentInChildren<BarraVida>().modificarSprite();
 				life-=1;
 

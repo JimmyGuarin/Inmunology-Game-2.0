@@ -235,6 +235,8 @@ public class Macrofago : MonoBehaviour {
 					mivirus.GetComponent<InteligenciaVirus>().capturado=true;
 					mivirus.GetComponent<InteligenciaVirus>().speed=0;
 					mivirus.GetComponent<ColisionesVirus>().enabled=false;
+
+					NotificationCenter.DefaultCenter().PostNotification(this,"MacrofagoTutorial",true);
 				}
 
 			}

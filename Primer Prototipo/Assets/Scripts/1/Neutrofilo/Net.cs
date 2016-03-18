@@ -12,6 +12,7 @@ public class Net : MonoBehaviour {
 	private float g;
 	private bool desvan;
 	public  float daño;
+	public float tiempo=15;
 
 	// Use this for initialization
 	void Start () {
@@ -22,7 +23,7 @@ public class Net : MonoBehaviour {
 		b=	render.materials [0].color.b;
 		g=	render.materials [0].color.g;
 		darktotal=render.materials [1].color.a;
-		Invoke ("desvanecer", 15f);
+		Invoke ("desvanecer", tiempo);
 	}
 	
 	// Update is called once per frame

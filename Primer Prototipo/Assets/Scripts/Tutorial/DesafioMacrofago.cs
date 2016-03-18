@@ -2,8 +2,9 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class DesafioNeutrofilo : MonoBehaviour {
+public class DesafioMacrofago : MonoBehaviour {
 
+	
 	// Paneles Primarios de navegacion
 	public GameObject panelPrincipal_1;
 	public GameObject panelPrincipal_11;
@@ -11,19 +12,22 @@ public class DesafioNeutrofilo : MonoBehaviour {
 	public GameObject panelPrincipal_13;
 	public GameObject panelPrincipal_14;
 	public GameObject panelPrincipal_15;
+	public GameObject panelPrincipal_16;
+	
+	public GameObject flecha_macrofago;
+	public GameObject boton_macrofago;
+	public Text textos;
 
-	public GameObject flecha_neutrofilo;
-	public Text tiempo_text;
-	private int tiempo;
+	private int fagocitados;
+	private int atrapados;
+	public int tiempo;
 
-
-	public GameObject boton_neutrofilo;
 	// Use this for initialization
 	void Start () {
 
-		tiempo = 90;
 		NotificationCenter.DefaultCenter ().AddObserver (this, "celulaMuerta");
-		NotificationCenter.DefaultCenter ().AddObserver (this, "crearNeutrofilo");
+		NotificationCenter.DefaultCenter ().AddObserver (this, "crearMacrofago");
+		NotificationCenter.DefaultCenter ().AddObserver (this, "MacrofagoTutorial");
 
 	}
 	
@@ -48,16 +52,16 @@ public class DesafioNeutrofilo : MonoBehaviour {
 			
 		case 4:
 			panelPrincipal_1.SetActive(false);
-			panelPrincipal_14.SetActive(true);
 			panelPrincipal_13.SetActive(false);
-			flecha_neutrofilo.SetActive(true);
-			boton_neutrofilo.GetComponent<Button>().interactable=true;
-			tiempo_text.gameObject.SetActive(true);
+			flecha_macrofago.SetActive(true);
+			boton_macrofago.GetComponent<Button>().interactable=true;
+			textos.gameObject.SetActive(true);
+			GameObject.Find("ManejadorVirus").GetComponent<ManejadorVirus>().enabled=true;
 			InvokeRepeating("ManejarTiempo",1f,1f);
 			break;
 			
 		case 5:
-			InnataTutorial.estado=2;
+			InnataTutorial.estado=3;
 			Destroy(GameObject.Find("Canvas"));
 			Destroy(GameObject.Find("Creador"));
 			Application.LoadLevel(5);
@@ -95,25 +99,57 @@ public class DesafioNeutrofilo : MonoBehaviour {
 		Time.timeScale = 0;
 	}
 
-	void crearNeutrofilo(Notification notification)
+	void crearMacrofago(Notification notification)
 	{	
-		if(flecha_neutrofilo.activeSelf==true)
-			flecha_neutrofilo.SetActive (false);
+		if(flecha_macrofago.activeSelf==true)
+			flecha_macrofago.SetActive (false);
+	}
+
+	void MacrofagoTutorial(Notification notification)
+	{	
+		bool fagocitado = (bool)notification.data;
+
+		if (fagocitado == true)
+			fagocitados++;
+		else
+			atrapados++;
+
+		textos.text = "" + atrapados;
+		textos.gameObject.transform.FindChild ("fagocitados").GetComponent<Text> ().text = "" + fagocitados;
+
+			
+		if (atrapados >= 3 && fagocitados >= 3) {
+				
+			Time.timeScale=0;
+			panelPrincipal_14.SetActive(true);
+			panelPrincipal_1.SetActive(true);
+		}
+
 	}
 
 	void ManejarTiempo(){
-	
-		tiempo--;
-
-		tiempo_text.gameObject.GetComponent<Text>().text=""+tiempo+".s";
-
-		if (tiempo == 0) {
 		
-			tiempo_text.gameObject.SetActive(false);
-			boton_neutrofilo.SetActive(false);
-			GameObject.Find("ManejadorVirus").GetComponent<ManejadorVirus>().enabled=true;
-			NotificationCenter.DefaultCenter ().PostNotification (this, "QuitarFunciones");
-			GameObject.Find("Fondo1").GetComponent<Fondo1>().enabled=false;
+		tiempo--;
+		textos.gameObject.transform.FindChild ("tiempo").GetComponent<Text>().text=""+tiempo+".s";
+		
+		if (tiempo == 0) {
+			
+			textos.gameObject.SetActive(false);
+			Time.timeScale=0;
+			panelPrincipal_1.SetActive(true);
+			if (atrapados >= 3 && fagocitados >= 3) {
+
+				panelPrincipal_14.SetActive(true);
+
+			}
+			else{
+
+				panelPrincipal_16.SetActive(true);
+
+			}
+
 		}
 	}
+
 }
+	

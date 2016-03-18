@@ -18,7 +18,8 @@ public class InnataTutorial : MonoBehaviour {
 	public GameObject panelPrincipal_1;
 	public GameObject panelPrincipal_11;
 	public GameObject panelPrincipal_12;
-	
+	public GameObject panelPrincipal_13;
+
 	//Panel para salir del tutorial
 	public GameObject panelSalida;
 
@@ -156,24 +157,36 @@ public class InnataTutorial : MonoBehaviour {
 		case 1:
 			panelPrincipal_11.SetActive(false);
 			panelPrincipal_12.SetActive(true);
+			panelPrincipal_13.SetActive(false);
 			break;
 		case 2:
 			panelPrincipal_11.SetActive(true);
 			panelPrincipal_12.SetActive(false);
 			break;
-			
+		
 		case 3:
+			panelPrincipal_13.SetActive(true);
+			panelPrincipal_12.SetActive(false);
+			break;
+		
+		case 4:
 			panelPrincipal_1.SetActive(false);
 			panelPrincipal_11.SetActive(true);
-			panelPrincipal_12.SetActive(false);
+			panelPrincipal_13.SetActive(false);
 			empezarVisualizar();
 			break;
+		
+
+
 			//llamado por panel zoom
 		case 5:
 			panelZoom.SetActive(false);
 			if(estadoActual<4){
 				Destroy(GameObject.Find("Canvas"));
-				Application.LoadLevel(estadoActual+5);
+				Destroy(GameObject.Find("Creador"));
+				Destroy(GameObject.Find("ManejadorVirus"));
+				ManejadorVirus.celulas.Clear ();
+				Application.LoadLevelAsync(estadoActual+5);
 			}
 			else{
 				

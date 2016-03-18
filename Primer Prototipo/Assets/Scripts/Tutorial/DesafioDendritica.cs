@@ -46,16 +46,19 @@ public class DesafioDendritica : MonoBehaviour {
 		case 5:
 			InnataTutorial.estado=1;
 			Destroy(GameObject.Find("Canvas"));
+			Destroy(GameObject.Find("Creador"));
 			Application.LoadLevel(5);
 			break;
 
 		case 6:
 			Destroy(GameObject.Find("Canvas"));
+			Destroy(GameObject.Find("Creador"));
 			Application.LoadLevel(6);	
 			break;
 
 		case 7:
 			Destroy(GameObject.Find("Canvas"));
+			Destroy(GameObject.Find("Creador"));
 			Application.LoadLevel(0);	
 			break;
 		

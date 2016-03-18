@@ -30,11 +30,13 @@ public class TutorialEntorno : MonoBehaviour {
 	//Flechas apuntando a objetos de Objetos
 	public GameObject flechaVaso;
 	public GameObject flechaGanglio;
+	public GameObject flechaCelula;
 	public GameObject flechaZAfectada;
 
 	//ObjetosInteractivos
 	public GameObject vaso;
 	public GameObject ganglio;
+	public GameObject celula;
 	public GameObject ZAfectada;
 	public ManejadorVirus activarVirus;
 	//Manejador de Estados
@@ -52,10 +54,14 @@ public class TutorialEntorno : MonoBehaviour {
 		Estados [0] = new EstadoTutorial (flechaVaso, vaso,"VASO SANGUINEO" ,"Un vaso sanguíneo es una estructura hueca y tubular que " +
 			"conduce la sangre impulsada por la acción del corazón, que recogen la sangre de todos los rincones " +
 			"del cuerpo. ");
-		Estados [1] = new EstadoTutorial (flechaGanglio,ganglio," GANGLIO LINFATICO" ,"Los nódulos linfáticos o ganglios linfáticos son unas estructuras nodulares que forman parte del sistema linfático y " +
+		Estados [1] = new EstadoTutorial (flechaGanglio,ganglio," GANGLIO LINFÁTICO" ,"Los nódulos linfáticos o ganglios linfáticos son unas estructuras nodulares que forman parte del sistema linfático y " +
 			"forman agrupaciones en forma de racimos. Los nódulos linfáticos actúan como filtros de la linfa, al poseer una estructura interna de tejido conectivo fino, en forma de red, rellena de linfocitos " +
 			"que recogen y destruyen bacterias y virus, por lo que estos nódulos también forman parte del sistema inmunitario, ayudando al cuerpo a reconocer y combatir gérmenes, infecciones y otras sustancias extrañas.");
-		Estados [2] = new EstadoTutorial (flechaZAfectada, ZAfectada, "ZONA AFECTADA", "¡SORPRESA! haz encontrado el lugar donde se rompió la matriz extracelular, de ahí llegaran los diferentes patógenos, no permitas que te invadan, destrúyelos con un CLICK.");
+
+		Estados [2] = new EstadoTutorial (flechaCelula, celula, "CÉLULAS", "Estas son las células que se encuentran en el epitelio respiratorio, producen nutrientes y ademas pueden ser destruidas por los virus atacantes  o por el contacto de los neutrófilos," +
+			"adicionalmente recuerda que son el objetivo fundamental del virus para reproducirse, evita que se infecten o se destruyan las menos posibles");
+
+		Estados [3] = new EstadoTutorial (flechaZAfectada, ZAfectada, "ZONA AFECTADA","¡SORPRESA! haz encontrado el lugar donde se rompió la matriz extracelular, de ahí llegarán los diferentes patógenos, no permitas que te invadan, destrúyelos con un CLICK.");
 		zoom = this.GetComponent<Zoom> ();	
 	}
 	
@@ -81,7 +87,7 @@ public class TutorialEntorno : MonoBehaviour {
 					Estados[estadoActual].Activar(estadoActual);
 					tituloZoom.text=Estados[estadoActual].titulo;
 					textoZoom.text=Estados[estadoActual].texto;
-					zoom.enfocar(vaso.transform,-20,0,70);
+					zoom.enfocar(vaso.transform,-4,3,70);
 					estadoActual++;
 				}
 				if (hit.collider.name.Equals ("Ganglio")) {	
@@ -89,7 +95,17 @@ public class TutorialEntorno : MonoBehaviour {
 					Estados[estadoActual].Activar(estadoActual);
 					tituloZoom.text=Estados[estadoActual].titulo;
 					textoZoom.text=Estados[estadoActual].texto;
-					zoom.enfocar(ganglio.transform,-10,2,70);
+					zoom.enfocar(ganglio.transform,1,-5,70);
+					estadoActual++;
+				}
+
+				if (hit.collider.name.Equals ("celula2")) {	
+					
+					Estados[estadoActual].Activar(estadoActual);
+					tituloZoom.text=Estados[estadoActual].titulo;
+					textoZoom.text=Estados[estadoActual].texto;
+					panelZoom.GetComponent<RectTransform>().anchoredPosition=new Vector2(100,4);
+					zoom.enfocar(celula.transform,5,0,50);
 					estadoActual++;
 				}
 
@@ -99,7 +115,7 @@ public class TutorialEntorno : MonoBehaviour {
 					tituloZoom.text=Estados[estadoActual].titulo;
 					textoZoom.text=Estados[estadoActual].texto;
 					panelZoom.GetComponent<RectTransform>().anchoredPosition=new Vector2(100,4);
-					zoom.enfocar(ZAfectada.transform,10,5,70);
+					zoom.enfocar(ZAfectada.transform,2,6,60);
 					estadoActual++;
 				}
 
@@ -142,12 +158,12 @@ public class TutorialEntorno : MonoBehaviour {
 				panelPrincipal_1.SetActive(false);
 				panelPrincipal_11.SetActive(true);
 				panelPrincipal_12.SetActive(false);
-				Invoke("empezarVisualizar",5f);
+				Invoke("empezarVisualizar",2f);
 				break;
 			//llamado por panel zoom
 			case 5:
 				panelZoom.SetActive(false);
-				if(estadoActual<3){
+				if(estadoActual<4){
 					zoom.desenfocar(false);
 					Estados[estadoActual].Preparar();
 				}

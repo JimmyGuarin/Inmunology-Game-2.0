@@ -130,8 +130,14 @@ public class CrearUnidadInnata : MonoBehaviour {
 				destino=new Vector3(47.8f ,-22.2f  ,-10f  );
 			else destino=new Vector3(47.7f,this.transform.position.y,-5f  );
 
-			if(tutorial==true)
-				destino=new Vector3(47.7f,this.transform.position.y,-5f  );
+			if(tutorial==true){
+
+				if(transform.position.y<-13)
+					destino=new Vector3(47.7f,Random.Range(0,-13),-5f  );
+				else
+					destino=new Vector3(47.7f,this.transform.position.y,-5f  );
+			}
+				
 
 			if(isSeleted==true)
 				Fondo1.seleccionada=false;
@@ -183,10 +189,9 @@ public class CrearUnidadInnata : MonoBehaviour {
 		    MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)"))
 		{
 				if (llevarBase == false) {
-
-
-				speed = 3f;
-				enColision = true;
+					speed = 3f;
+					enColision = true;
+					NotificationCenter.DefaultCenter().PostNotification(this,"MacrofagoTutorial",false);
 				}
 				
 		}	
