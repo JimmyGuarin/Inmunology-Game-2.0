@@ -14,6 +14,8 @@ public class DestresaInnata : MonoBehaviour {
 
 	public GameObject boton_celula;
 	public GameObject boton_nk;
+
+
 	
 	// Use this for initialization
 	void Start () {
@@ -94,4 +96,6 @@ public class DestresaInnata : MonoBehaviour {
 		panelPrincipal_1.SetActive (true);
 		Time.timeScale = 0;
 	}
+
+
 }

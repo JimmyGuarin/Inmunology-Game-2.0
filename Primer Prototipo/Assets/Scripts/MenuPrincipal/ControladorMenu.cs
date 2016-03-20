@@ -11,6 +11,16 @@ public class ControladorMenu : MonoBehaviour {
 	private GameObject Creador;
 	public GameObject panel_tutorial;
 
+
+	//Nombre del player
+	public static string username;
+	
+	
+	//Boton agregar player
+	public Button AddPlayer;
+
+
+
 	void Start(){
 	
 		CanvasJuego = GameObject.Find ("Canvas");
@@ -93,4 +103,17 @@ public class ControladorMenu : MonoBehaviour {
 
 		Application.LoadLevel (numero);
 	}
+
+	public void OnchangeName(Text nombre){
+
+		Debug.Log (nombre.text);
+
+		if (nombre.text != "") {
+			
+			AddPlayer.interactable = true;
+		} else 
+			AddPlayer.interactable = false;
+		
+	}
+
 }
