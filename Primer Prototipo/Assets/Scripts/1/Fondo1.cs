@@ -71,9 +71,9 @@ public class Fondo1 : MonoBehaviour {
 
 						if(objeto_seleccionado.GetComponent<CrearUnidadInnata>().llevarBase==false&&
 						   objeto_seleccionado.GetComponent<CrearUnidadInnata>().isSeleted==false){
-
 							objeto_seleccionado.GetComponent<CrearUnidadInnata>().isSeleted=true;
 							seleccionada=true;
+							NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaDendritica",1);
 
 						}
 					}

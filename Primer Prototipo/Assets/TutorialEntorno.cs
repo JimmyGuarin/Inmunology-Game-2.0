@@ -18,6 +18,23 @@ public class TutorialEntorno : MonoBehaviour {
 	public GameObject panelPrincipal_11;
 	public GameObject panelPrincipal_12;
 	public GameObject panelPrincipal_13;
+	public GameObject panelPrincipal_14;
+
+	//Panel Volver
+	public GameObject panel_volver;
+
+
+	//Panel info
+	public GameObject panel_info;
+
+	//Sonido al Hacer zoom
+	public AudioSource zoom_sound;
+
+	//Panel Matriz
+	public GameObject panel_matriz; 
+
+	//Primer Texto
+	public Text textoJefe;
 
 	//Panel para salir del tutorial
 	public GameObject panelSalida;
@@ -39,15 +56,29 @@ public class TutorialEntorno : MonoBehaviour {
 	public GameObject celula;
 	public GameObject ZAfectada;
 	public ManejadorVirus activarVirus;
+	public GameObject primerVirus;
 	//Manejador de Estados
 	public int estadoActual;
 
 	//ContadorVirus
 	public int contadorVirus;
 
+	//Tiempo
+	public Text tiempo_text;
+	private int tiempo;
+
+	//Estrellas
+	public RawImage Entorno;
+
+
+
+
 	// Use this for initialization
 	void Start () {
 	
+		tiempo = 0;
+
+		textoJefe.text = "Bienvenido " + PlayerPrefs.GetString("name") + textoJefe.text;
 		estadoActual = 0;
 		contadorVirus=10;
 		Estados= new EstadoTutorial[4];
@@ -63,6 +94,11 @@ public class TutorialEntorno : MonoBehaviour {
 
 		Estados [3] = new EstadoTutorial (flechaZAfectada, ZAfectada, "ZONA AFECTADA","¡SORPRESA! haz encontrado el lugar donde se rompió la matriz extracelular, de ahí llegarán los diferentes patógenos, no permitas que te invadan, destrúyelos con un CLICK.");
 		zoom = this.GetComponent<Zoom> ();	
+
+
+		NotificationCenter.DefaultCenter ().AddObserver (this, "celulaMuerta");
+		NotificationCenter.DefaultCenter ().AddObserver (this, "TerminarTutorial");
+
 	}
 	
 	// Update is called once per frame
@@ -88,7 +124,11 @@ public class TutorialEntorno : MonoBehaviour {
 					tituloZoom.text=Estados[estadoActual].titulo;
 					textoZoom.text=Estados[estadoActual].texto;
 					zoom.enfocar(vaso.transform,-4,3,70);
+					panel_matriz.SetActive(false);
+					zoom_sound.Play();
 					estadoActual++;
+
+
 				}
 				if (hit.collider.name.Equals ("Ganglio")) {	
 					
@@ -96,6 +136,8 @@ public class TutorialEntorno : MonoBehaviour {
 					tituloZoom.text=Estados[estadoActual].titulo;
 					textoZoom.text=Estados[estadoActual].texto;
 					zoom.enfocar(ganglio.transform,1,-5,70);
+					panel_matriz.SetActive(false);
+					zoom_sound.Play();
 					estadoActual++;
 				}
 
@@ -106,6 +148,8 @@ public class TutorialEntorno : MonoBehaviour {
 					textoZoom.text=Estados[estadoActual].texto;
 					panelZoom.GetComponent<RectTransform>().anchoredPosition=new Vector2(100,4);
 					zoom.enfocar(celula.transform,5,0,50);
+					panel_matriz.SetActive(false);
+					zoom_sound.Play();
 					estadoActual++;
 				}
 
@@ -116,16 +160,19 @@ public class TutorialEntorno : MonoBehaviour {
 					textoZoom.text=Estados[estadoActual].texto;
 					panelZoom.GetComponent<RectTransform>().anchoredPosition=new Vector2(100,4);
 					zoom.enfocar(ZAfectada.transform,2,6,60);
+					panel_matriz.SetActive(false);
+					zoom_sound.Play();
 					estadoActual++;
 				}
 
 				if (hit.collider.name.Equals ("VirusFinal(Clone)")) {	
 					
-					contadorVirus--;
-					Destroy(hit.collider.gameObject);
-					if(contadorVirus==0){
-						panelSalida.SetActive(true);
-					}
+					hit.collider.gameObject.GetComponent<InteligenciaVirus>().vida-=100;
+					hit.collider.gameObject.GetComponentInChildren<BarraVida>().modificarSprite();
+				
+					if(panel_info.activeSelf==true)
+						panel_info.SetActive(false);
+				
 				}
 				
 			}
@@ -158,26 +205,42 @@ public class TutorialEntorno : MonoBehaviour {
 				panelPrincipal_1.SetActive(false);
 				panelPrincipal_11.SetActive(true);
 				panelPrincipal_12.SetActive(false);
-				Invoke("empezarVisualizar",2f);
+				panel_matriz.SetActive(true);
+				Invoke("empezarVisualizar",5f);
 				break;
 			//llamado por panel zoom
 			case 5:
 				panelZoom.SetActive(false);
 				if(estadoActual<4){
 					zoom.desenfocar(false);
+					panel_matriz.SetActive(true);
 					Estados[estadoActual].Preparar();
 				}
 				else{
 					
 					zoom.desenfocar(false);
 					activarVirus.GetComponent<ManejadorVirus>().enabled=true;
+					primerVirus.SetActive(true);
+					panel_matriz.SetActive(false);
+					InvokeRepeating("ManejarTiempo",1f,1f);
+					celula.GetComponent<Collider>().enabled=true;
+					tiempo_text.transform.parent.gameObject.SetActive(true);
+					panel_info.SetActive(true);
 				}
 				break;
 				
 			case 6:
+				ControladorMenu.in_tutorial=true;
 				Application.LoadLevel(0);
 				break;
 				
+			case 7:
+				Destroy(GameObject.Find("Canvas"));
+				Destroy(GameObject.Find("Creador"));
+				Application.LoadLevel(4);	
+				break;
+
+
 		}
 	}
 
@@ -187,5 +250,61 @@ public class TutorialEntorno : MonoBehaviour {
 		vaso.GetComponent<Collider> ().enabled = true;
 	}
 
+	void ManejarTiempo(){
+		
+		tiempo++;
+		tiempo_text.gameObject.GetComponent<Text>().text=""+tiempo+"s.";
+	
+	}
 
+	void TerminarTutorial(Notification notification)
+	{	
+		if (tiempo <=30) {
+			
+			PlayerPrefs.SetString("Entorno","3");
+		}
+		if (tiempo >30&&tiempo<=50) {
+			
+			PlayerPrefs.SetString("Entorno","2");
+		}
+		if (tiempo >50) {
+			
+			PlayerPrefs.SetString("Entorno","1");
+		}
+		
+		Entorno.texture = Resources.Load (PlayerPrefs.GetString("Entorno")) as Texture;
+		QuitarSonidos ();
+		panel_volver.SetActive(true);
+
+	}
+
+
+	void celulaMuerta(Notification notification)
+	{	
+		
+		StartCoroutine(Wait());
+		
+	}
+	
+	
+	IEnumerator Wait(){
+		
+		yield return new WaitForSeconds(2);
+		panelPrincipal_13.SetActive (false);
+		panelPrincipal_14.SetActive (true);
+		panelPrincipal_1.SetActive (true);
+		QuitarSonidos ();
+		Time.timeScale = 0;
+	}
+
+	public void QuitarSonidos(){
+
+		GameObject [] celulas=GameObject.FindGameObjectsWithTag ("celula");
+		Camera.main.transform.FindChild("Audio Source").gameObject.SetActive(false);
+		foreach(GameObject celu in celulas){
+			
+			celu.GetComponent<AudioSource>().enabled=false;
+			
+		}
+	}
 }

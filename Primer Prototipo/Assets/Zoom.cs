@@ -47,6 +47,7 @@ public class Zoom : MonoBehaviour {
 		
 			transform.position= Vector3.Lerp(transform.position,posicion_inicial,0.05f);
 			if(transform.position.z<=-136&&change==true){
+
 				panel1.SetActive(true);
 			}		
 		}

@@ -54,7 +54,7 @@ public class ManejadorVirus : MonoBehaviour {
 				ControladorRecursos.ganar();
 			else{
 				Time.timeScale = 0;
-				PanelTutorial.SetActive(true);
+				NotificationCenter.DefaultCenter ().PostNotification (this, "TerminarTutorial");
 			}
 
 			Destroy(this);

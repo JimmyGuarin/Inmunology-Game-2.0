@@ -23,6 +23,9 @@ public class InnataTutorial : MonoBehaviour {
 	//Panel para salir del tutorial
 	public GameObject panelSalida;
 
+	//Panel Innata
+	public GameObject panel_innata; 
+
 
 	//Textos en Pantalla
 	public GameObject textos;
@@ -47,7 +50,8 @@ public class InnataTutorial : MonoBehaviour {
 	public static int estado;
 	public int estadoActual;
 
-
+	//Sonido al Hacer zoom
+	public AudioSource zoom_sound;
 
 
 
@@ -83,6 +87,7 @@ public class InnataTutorial : MonoBehaviour {
 			Estados[estadoActual].Preparar();
 			panelPrincipal_1.SetActive(false);
 			textos.SetActive(true);
+			panel_innata.SetActive(true);
 		}
 	}
 	
@@ -110,8 +115,10 @@ public class InnataTutorial : MonoBehaviour {
 					tituloZoom.text=Estados[estadoActual].titulo;
 					textoZoom.text=Estados[estadoActual].texto;
 					panelZoom.GetComponent<RectTransform>().anchoredPosition=new Vector2(100,4);
-					zoom.enfocar(Dendritica.transform,1,0,40);
+					zoom_sound.Play();
+					panel_innata.SetActive(false);
 					estadoActual++;
+					zoom.enfocar(Dendritica.transform,1,0,40);
 				}
 				if (hit.collider.name.Equals ("Neutrofilo")) {	
 					
@@ -119,8 +126,10 @@ public class InnataTutorial : MonoBehaviour {
 					tituloZoom.text=Estados[estadoActual].titulo;
 					textoZoom.text=Estados[estadoActual].texto;
 					panelZoom.GetComponent<RectTransform>().anchoredPosition=new Vector2(-100,4);
-					zoom.enfocar(Neutrofilo.transform,-15,0,40);
+					zoom_sound.Play();
+					panel_innata.SetActive(false);
 					estadoActual++;
+					zoom.enfocar(Neutrofilo.transform,-15,0,40);
 				}
 				
 				if (hit.collider.name.Equals ("Macrofago")) {	
@@ -129,8 +138,10 @@ public class InnataTutorial : MonoBehaviour {
 					tituloZoom.text=Estados[estadoActual].titulo;
 					textoZoom.text=Estados[estadoActual].texto;
 					panelZoom.GetComponent<RectTransform>().anchoredPosition=new Vector2(100,4);
-					zoom.enfocar(Macrofago.transform,15,0,40);
+					zoom_sound.Play();
+					panel_innata.SetActive(false);
 					estadoActual++;
+					zoom.enfocar(Macrofago.transform,15,0,40);
 				}
 
 				if (hit.collider.name.Equals ("NaturalK")) {	
@@ -139,8 +150,11 @@ public class InnataTutorial : MonoBehaviour {
 					tituloZoom.text=Estados[estadoActual].titulo;
 					textoZoom.text=Estados[estadoActual].texto;
 					panelZoom.GetComponent<RectTransform>().anchoredPosition=new Vector2(-100,4);
-					zoom.enfocar(Nk.transform,-3,0,30);
+					zoom_sound.Play();
+					panel_innata.SetActive(false);
 					estadoActual++;
+					zoom.enfocar(Nk.transform,-3,0,30);
+
 				}
 				
 

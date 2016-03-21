@@ -13,7 +13,10 @@ public class CrearUnidadInnata : MonoBehaviour {
 	//Variable que almacena si la celula esta seleccionada o no.
 	public bool isSeleted;
 
+	//Dendritica de tutorial
 	public bool tutorial;
+	//Dendritica de desafio Dendritica
+	public bool desafio_dendritica;
 	
 	//Variable que representa el animator de la celula
 	private Animator animator;
@@ -105,6 +108,9 @@ public class CrearUnidadInnata : MonoBehaviour {
 			isSeleted = false;
 			Fondo1.seleccionada=false;
 
+			if(desafio_dendritica==true)
+				NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaDendritica",2);
+
 		}
 		
 		
@@ -132,8 +138,8 @@ public class CrearUnidadInnata : MonoBehaviour {
 
 			if(tutorial==true){
 
-				if(transform.position.y<-13)
-					destino=new Vector3(47.7f,Random.Range(0,-13),-5f  );
+				if(transform.position.y<-10)
+					destino=new Vector3(47.7f,Random.Range(-10,0),-5f  );
 				else
 					destino=new Vector3(47.7f,this.transform.position.y,-5f  );
 			}
@@ -192,6 +198,7 @@ public class CrearUnidadInnata : MonoBehaviour {
 					speed = 3f;
 					enColision = true;
 					NotificationCenter.DefaultCenter().PostNotification(this,"MacrofagoTutorial",false);
+					NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaDendritica",3);
 				}
 				
 		}	

@@ -12,13 +12,20 @@ public class DesafioDendritica : MonoBehaviour {
 	public GameObject panelPrincipal_14;
 	public GameObject panelPrincipal_15;
 
+	public GameObject panel_volver;
 
+	public int index_guia;
+	public Text text_guia;
+
+	public GameObject first_virus;
 
 	// Use this for initialization
 	void Start () {
 	
+		index_guia = 1;
 		NotificationCenter.DefaultCenter ().AddObserver (this, "celulaMuerta");
-
+		NotificationCenter.DefaultCenter ().AddObserver (this, "CambiarGuiaDendritica");
+		NotificationCenter.DefaultCenter ().AddObserver (this, "TerminarTutorial");
 	}
 	
 	public void cambiarPanelPrincipal(int num){
@@ -44,8 +51,7 @@ public class DesafioDendritica : MonoBehaviour {
 			panelPrincipal_1.SetActive(false);
 			panelPrincipal_14.SetActive(true);
 			panelPrincipal_13.SetActive(false);
-			Time.timeScale = 0;
-			GameObject.Find("ManejadorVirus").GetComponent<ManejadorVirus>().enabled=true;
+			text_guia.transform.parent.gameObject.SetActive(true);
 			break;
 
 		case 5:
@@ -62,6 +68,7 @@ public class DesafioDendritica : MonoBehaviour {
 			break;
 
 		case 7:
+			ControladorMenu.in_tutorial=true;
 			Destroy(GameObject.Find("Canvas"));
 			Destroy(GameObject.Find("Creador"));
 			Application.LoadLevel(0);	
@@ -69,6 +76,39 @@ public class DesafioDendritica : MonoBehaviour {
 		
 	}
 }
+
+
+	void CambiarGuiaDendritica(Notification notification)
+	{	
+		if (index_guia == (int)notification.data) {
+		
+
+			if (index_guia == 1) 
+				text_guia.text="Preciona click izquierdo en el lugar a mover la célula dendrítica";
+			if (index_guia == 2) {
+				
+				text_guia.text="Intenta atrapar el virus moviento las células dendríticas";
+				first_virus.SetActive(true);
+
+			}
+			if (index_guia == 3) 
+				text_guia.text="Preciona click derecho sobre la célula dendrítica que atrapó el virus para alertar el vaso sanguineo";
+
+			if (index_guia == 4) {
+
+				text_guia.text="Captura los próximos 4 virus y alerta al vaso sanguineo";
+				GameObject.Find("ManejadorVirus").GetComponent<ManejadorVirus>().enabled=true;
+			}
+				
+
+			index_guia++;	
+		}
+
+
+
+		
+	}
+		
 
 	void celulaMuerta(Notification notification)
 	{	
@@ -85,5 +125,24 @@ public class DesafioDendritica : MonoBehaviour {
 		panelPrincipal_15.SetActive (true);
 		panelPrincipal_1.SetActive (true);
 		Time.timeScale = 0;
+	}
+
+	void TerminarTutorial(Notification notification)
+	{	
+		QuitarSonidos ();
+		text_guia.transform.parent.gameObject.SetActive(true);
+		panel_volver.SetActive(true);
+		
+	}
+
+	public void QuitarSonidos(){
+		
+		GameObject [] celulas = GameObject.FindGameObjectsWithTag ("celula");
+		Camera.main.transform.FindChild ("Audio Source").gameObject.SetActive (false);
+		foreach (GameObject celu in celulas) {
+			
+			celu.GetComponent<AudioSource> ().enabled = false;
+			
+		}
 	}
 }
