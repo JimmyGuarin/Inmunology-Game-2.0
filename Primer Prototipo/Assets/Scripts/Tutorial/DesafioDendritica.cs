@@ -49,6 +49,7 @@ public class DesafioDendritica : MonoBehaviour {
 
 		case 4:
 			panelPrincipal_1.SetActive(false);
+			panelPrincipal_11.SetActive(false);
 			panelPrincipal_14.SetActive(true);
 			panelPrincipal_13.SetActive(false);
 			text_guia.transform.parent.gameObject.SetActive(true);
@@ -96,17 +97,17 @@ public class DesafioDendritica : MonoBehaviour {
 
 			if (index_guia == 4) {
 
-				text_guia.text="Captura los próximos 4 virus y alerta al vaso sanguineo";
+				text_guia.text="Ahora la célula dendrítica se dirige al vaso sanguineo";
+
+			}
+			if (index_guia == 5) {
+
+				text_guia.text=PlayerPrefs.GetString("name")+ "Ya alertaste el vaso el cual activa dos unidades " +
+					"que conoceremos mas adelante,por ahora captura los demás virus para ganar el desafío";
 				GameObject.Find("ManejadorVirus").GetComponent<ManejadorVirus>().enabled=true;
 			}
-				
-
 			index_guia++;	
 		}
-
-
-
-		
 	}
 		
 

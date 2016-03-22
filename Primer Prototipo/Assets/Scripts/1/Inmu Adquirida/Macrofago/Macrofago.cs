@@ -29,6 +29,9 @@ public class Macrofago : MonoBehaviour {
 	public GameObject ayudador;
 	public bool esperando_ayudador;
 	public float daño=0.8f;
+
+	public bool desafio_macrofago;
+
 	void Start () {
 
 

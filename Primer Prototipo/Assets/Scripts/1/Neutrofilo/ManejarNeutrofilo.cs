@@ -16,6 +16,10 @@ public class ManejarNeutrofilo : MonoBehaviour {
 	public bool esperando_ayudador;
 	public float daño_a_virus=2.5f;
 
+	//Neutrofilo de desafio neutrofilo 
+	public bool desafio_neutrofilo;
+
+
 	// Use this for initialization
 	void Start () {
 	
@@ -130,6 +134,9 @@ public class ManejarNeutrofilo : MonoBehaviour {
 			subir = new Vector3 (Fondo1.puntoDestino.x, Fondo1.puntoDestino.y, -5f);
 			isSeleted = false;
 			Fondo1.seleccionada=false;
+
+			if(desafio_neutrofilo==true)
+				NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaNeutrofilo",2);
 		}
 	}
 

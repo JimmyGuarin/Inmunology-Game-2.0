@@ -13,14 +13,32 @@ public class DesafioMacrofago : MonoBehaviour {
 	public GameObject panelPrincipal_14;
 	public GameObject panelPrincipal_15;
 	public GameObject panelPrincipal_16;
-	
+
+	//Flecha apuntando al boton
 	public GameObject flecha_macrofago;
+
+	//Boton para crear macrofago
 	public GameObject boton_macrofago;
+
+	//Texto de numeros del desafio
 	public Text textos;
 
 	private int fagocitados;
 	private int atrapados;
 	public int tiempo;
+
+	//Panel de informacion sobre el macrofago
+	public GameObject panelInfoMacrofago;
+	//Texto del panelInfoMacrofago
+	public Text info_macrofago;
+
+
+	//Texto guia e index de la guia 
+	public Text text_guia;
+	public int index_guia;
+
+	//Boton para empezar el desafio
+	public GameObject comenzarDesafio;
 
 	// Use this for initialization
 	void Start () {
@@ -28,7 +46,13 @@ public class DesafioMacrofago : MonoBehaviour {
 		NotificationCenter.DefaultCenter ().AddObserver (this, "celulaMuerta");
 		NotificationCenter.DefaultCenter ().AddObserver (this, "crearMacrofago");
 		NotificationCenter.DefaultCenter ().AddObserver (this, "MacrofagoTutorial");
+		NotificationCenter.DefaultCenter ().AddObserver (this, "CambiarGuiaNeutrofilo");
 
+		flecha_macrofago.SetActive(true);
+		boton_macrofago.GetComponent<Button>().interactable=true;
+		text_guia.transform.parent.gameObject.SetActive(true);
+
+		index_guia = 1;
 	}
 	
 	public void cambiarPanelPrincipal(int num){
@@ -101,8 +125,22 @@ public class DesafioMacrofago : MonoBehaviour {
 
 	void crearMacrofago(Notification notification)
 	{	
-		if(flecha_macrofago.activeSelf==true)
+		if (flecha_macrofago.activeSelf == true) {
 			flecha_macrofago.SetActive (false);
+			text_guia.text="Preciona click izquierdo sobre el Macrófago para seleccionarlo";
+		}
+		if (index_guia == 1) {
+			
+			panelInfoMacrofago.SetActive (true);
+			info_macrofago.gameObject.SetActive (true);
+			boton_macrofago.GetComponent<Button>().interactable=false;
+		} else {
+			
+			GameObject macrofago=(GameObject)notification.data; 
+			macrofago.GetComponent<Macrofago>().desafio_macrofago=false;
+			
+			text_guia.transform.parent.gameObject.SetActive(false);
+		}
 	}
 
 	void MacrofagoTutorial(Notification notification)
@@ -151,5 +189,38 @@ public class DesafioMacrofago : MonoBehaviour {
 		}
 	}
 
+
+	void CambiarGuiaMacrofago(Notification notification)
+	{	
+		if (index_guia == (int)notification.data) {
+			
+			
+			if (index_guia == 1) {
+				
+				text_guia.text="Preciona click izquierdo en el lugar a mover el Macrófago";			
+			}
+			if (index_guia == 2) 
+				text_guia.text="Preciona click derecho sobre el Macrófago para ver su primera habilidad";
+			if (index_guia == 3) 
+				text_guia.text="Activa con click izquierdo la habilidad de degranulación";
+			if (index_guia == 4){
+				
+				text_guia.text="Ahora activa la habilidad de trampa extracelular";
+				info_macrofago.text="En este estado neutrófilos emiten granulocitos que atacan directamente al virus, " +
+					"recuerda que estas partículas también dañan tus células.";
+			}
+			if (index_guia == 5){
+				
+				info_macrofago.text="En este estado el neutrófilo se suicida formando una red o malla " +
+					"que captura el virus y disminuye la vida del mismo, pero ten cuidado pues al realizarlo perderás tu " +
+						"neutrófilo y le net desaparecerá con el paso del tiempo. ";
+				text_guia.text="Es hora de empezar el desafío";
+				comenzarDesafio.SetActive(true);
+				
+			} 
+			
+			index_guia++;	
+		}
+	}
 }
 	

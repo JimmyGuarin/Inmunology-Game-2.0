@@ -6,6 +6,7 @@ public class FuncionesNeutrofilo : MonoBehaviour {
 	public Vector3 posicion;
 	public bool activar;
 	public GameObject net;
+	public string texto_descrip;
 
 	// Use this for initialization
 	void Start () {
@@ -13,7 +14,6 @@ public class FuncionesNeutrofilo : MonoBehaviour {
 		NotificationCenter.DefaultCenter ().AddObserver (this, "QuitarFunciones");
 		activar = false;	
 		posicion = transform.position;
-
 	}
 	
 	// Update is called once per frame
@@ -24,14 +24,18 @@ public class FuncionesNeutrofilo : MonoBehaviour {
 		
 		if(Input.GetMouseButtonDown(1)){
 			
-			
+
 			Ray pulsacion;
 			RaycastHit hit;
 			pulsacion = Camera.main.ScreenPointToRay (Input.mousePosition);
 			if (Physics.Raycast (pulsacion, out hit) && hit.collider == this.GetComponent<Collider>()) {
 				
-				if(activar==false)
+				if(activar==false){
 					activar=true;
+					NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaNeutrofilo",3);
+					texto_descrip="";
+				}
+					
 				else activar=false;
 			}
 		}
@@ -40,29 +44,37 @@ public class FuncionesNeutrofilo : MonoBehaviour {
 	
 	
 	void OnGUI(){
-		
-		
+
 		if (activar==true) {
-			
+
 			Vector3 aux = Camera.main.WorldToScreenPoint(posicion);
 			aux.y=Screen.height-aux.y;
-			if(GUI.Button(new Rect(aux.x,aux.y,130,30), "Degranulacion")){
 
-				liberarCaptura();
-				GetComponent<ParticleSystem>().enableEmission=true;
-				GetComponent<SphereCollider>().radius=1.6f;
-				activar=false;
+			if(GetComponent<ParticleSystem>().enableEmission==false){
+
+				if(GUI.Button(new Rect(aux.x,aux.y,130,30), "Degranulacion")){
+					
+					liberarCaptura();
+					GetComponent<ParticleSystem>().enableEmission=true;
+					GetComponent<SphereCollider>().radius=1.6f;
+					NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaNeutrofilo",4);
+					activar=false;
+					GetComponent<ManejarNeutrofilo>().desafio_neutrofilo=false;
+
+				}
+
 			}
-			if(GUI.Button(new Rect(aux.x,aux.y+30,130,30), "Trampa Extracelular")){
-				
-				///instanciar trampa
-				Invoke("createNET",0.5f);
-				  activar=false;
+			if(GetComponent<ManejarNeutrofilo>().desafio_neutrofilo==false){
+				if(GUI.Button(new Rect(aux.x,aux.y+30,130,30), "Trampa Extracelular")){
+					
+					///instanciar trampa
+					Invoke("createNET",0.5f); 	
+					activar=false;
+					NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaNeutrofilo",5);	
+				}
+
 			}
-			
-			
-			
-			
+		
 		}
 	}
 	

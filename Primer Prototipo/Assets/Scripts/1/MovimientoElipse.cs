@@ -31,8 +31,12 @@ public class MovimientoElipse : MonoBehaviour {
 		if (salir==true&&angulo>rango&&angulo <(rango+0.05)){
 
 
-			if(gameObject.name.Equals("Neutrofilo(Clone)"))
+			if(gameObject.name.Equals("Neutrofilo(Clone)")){
+
 				GetComponent<ManejarNeutrofilo>().enabled=true;
+				GetComponent<FuncionesNeutrofilo>().enabled=true;
+			}
+				
 			if(gameObject.name.Equals("LinfoncitoTCD4(Clone)"))
 				GetComponent<TCD4>().enabled=true;
 			if(gameObject.name.Equals("LinfoncitoTCD8(Clone)"))

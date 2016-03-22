@@ -66,7 +66,7 @@ public class SeleccionarUnidad : MonoBehaviour {
 				mac.GetComponent<Macrofago>().daño=0.6f;
 				mac.GetComponent<Animator>().enabled=true;
 				mac.GetComponent<FuncionesMacrofago>().dendritica.GetComponent<CrearUnidadInnata>().tutorial=true;
-				NotificationCenter.DefaultCenter().PostNotification(this,"crearMacrofago");
+				NotificationCenter.DefaultCenter().PostNotification(this,"crearMacrofago",mac);
 			}
 			
 		}
@@ -89,8 +89,9 @@ public class SeleccionarUnidad : MonoBehaviour {
 			if(tutorial){
 				neutrofilo.GetComponent<ManejarNeutrofilo>().daño_a_virus=5.0f;
 				neutrofilo.GetComponent<ManejarNeutrofilo>().life=600;
+				neutrofilo.GetComponent<ManejarNeutrofilo>().desafio_neutrofilo=true;
 				neutrofilo.GetComponent<ManejarNeutrofilo>().speed=6;
-				NotificationCenter.DefaultCenter().PostNotification(this,"crearNeutrofilo");
+				NotificationCenter.DefaultCenter().PostNotification(this,"crearNeutrofilo",neutrofilo);
 			}
 				
 

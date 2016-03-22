@@ -86,6 +86,7 @@ public class Fondo1 : MonoBehaviour {
 							
 							objeto_seleccionado.GetComponent<ManejarNeutrofilo>().isSeleted=true;
 							seleccionada=true;
+							NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaNeutrofilo",1);
 							
 						}
 					}
@@ -99,6 +100,7 @@ public class Fondo1 : MonoBehaviour {
 							
 							objeto_seleccionado.GetComponent<Macrofago>().isSeleted=true;
 							seleccionada=true;
+							NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaMacrofago",1);
 							
 						}
 					}

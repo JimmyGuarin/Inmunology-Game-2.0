@@ -5,6 +5,7 @@ public class CelulasVaso : MonoBehaviour {
 
     public GameObject vaso;
     public static float tiempo_Oxigenar;
+	public bool desafioDendritica;
 
     // Use this for initialization
     void Start () {
@@ -43,6 +44,10 @@ public class CelulasVaso : MonoBehaviour {
 				ManejadorVirus.numeroVirus-=(amenazas-4);
 				Debug.Log("Virus Muerto.. Virus:"+ManejadorVirus.numeroVirus);
 				MyTrigger.gameObject.GetComponent<ParticleSystem>().enableEmission = true;
+
+				if(desafioDendritica)
+					NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaDendritica",5);
+
 				ControladorRecursos.puntaje+=300;
 	            if (tiempo_Oxigenar > 3)
 	            {
