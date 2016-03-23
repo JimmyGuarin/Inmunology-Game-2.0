@@ -53,6 +53,7 @@ public class InnataTutorial : MonoBehaviour {
 	//Sonido al Hacer zoom
 	public AudioSource zoom_sound;
 
+	public GameObject buton_desafio;
 
 
 
@@ -88,6 +89,7 @@ public class InnataTutorial : MonoBehaviour {
 			panelPrincipal_1.SetActive(false);
 			textos.SetActive(true);
 			panel_innata.SetActive(true);
+
 		}
 	}
 	
@@ -118,6 +120,7 @@ public class InnataTutorial : MonoBehaviour {
 					zoom_sound.Play();
 					panel_innata.SetActive(false);
 					estadoActual++;
+					buton_desafio.SetActive(false);
 					zoom.enfocar(Dendritica.transform,1,0,40);
 				}
 				if (hit.collider.name.Equals ("Neutrofilo")) {	
@@ -129,6 +132,7 @@ public class InnataTutorial : MonoBehaviour {
 					zoom_sound.Play();
 					panel_innata.SetActive(false);
 					estadoActual++;
+					buton_desafio.SetActive(false);
 					zoom.enfocar(Neutrofilo.transform,-15,0,40);
 				}
 				
@@ -141,6 +145,7 @@ public class InnataTutorial : MonoBehaviour {
 					zoom_sound.Play();
 					panel_innata.SetActive(false);
 					estadoActual++;
+					buton_desafio.SetActive(false);
 					zoom.enfocar(Macrofago.transform,15,0,40);
 				}
 
@@ -153,6 +158,7 @@ public class InnataTutorial : MonoBehaviour {
 					zoom_sound.Play();
 					panel_innata.SetActive(false);
 					estadoActual++;
+					buton_desafio.SetActive(false);
 					zoom.enfocar(Nk.transform,-3,0,30);
 
 				}
@@ -165,57 +171,65 @@ public class InnataTutorial : MonoBehaviour {
 
 	public void cambiarPanelPrincipal(int num){
 		
-		switch (num) 
-		{
+		switch (num) {
 			
 		case 1:
-			panelPrincipal_11.SetActive(false);
-			panelPrincipal_12.SetActive(true);
-			panelPrincipal_13.SetActive(false);
+			panelPrincipal_11.SetActive (false);
+			panelPrincipal_12.SetActive (true);
+			panelPrincipal_13.SetActive (false);
 			break;
 		case 2:
-			panelPrincipal_11.SetActive(true);
-			panelPrincipal_12.SetActive(false);
+			panelPrincipal_11.SetActive (true);
+			panelPrincipal_12.SetActive (false);
 			break;
 		
 		case 3:
-			panelPrincipal_13.SetActive(true);
-			panelPrincipal_12.SetActive(false);
+			panelPrincipal_13.SetActive (true);
+			panelPrincipal_12.SetActive (false);
 			break;
 		
 		case 4:
-			panelPrincipal_1.SetActive(false);
-			panelPrincipal_11.SetActive(true);
-			panelPrincipal_13.SetActive(false);
-			empezarVisualizar();
+			panelPrincipal_1.SetActive (false);
+			panelPrincipal_11.SetActive (true);
+			panelPrincipal_13.SetActive (false);
+			panel_innata.SetActive (true);
+			empezarVisualizar ();
 			break;
 		
 
 
-			//llamado por panel zoom
+		//llamado por panel zoom
 		case 5:
-			panelZoom.SetActive(false);
-			Destroy(GameObject.Find("Canvas"));
-			Destroy(GameObject.Find("Creador"));
-			Destroy(GameObject.Find("ManejadorVirus"));
+			panelZoom.SetActive (false);
+			Destroy (GameObject.Find ("Canvas"));
+			Destroy (GameObject.Find ("Creador"));
+			Destroy (GameObject.Find ("ManejadorVirus"));
 			ManejadorVirus.celulas.Clear ();
-			if(estadoActual<=4){
+			if (estadoActual <= 4) {
 
-				Application.LoadLevelAsync(estadoActual+5);
-			}
-			else{
-				Application.LoadLevelAsync(9);
-				zoom.desenfocar(false);
+				Application.LoadLevelAsync (estadoActual + 5);
+			} else {
+
+				Application.LoadLevelAsync (9);
+				zoom.desenfocar (false);
 			}
 			break;
 			
 		case 6:
-			Application.LoadLevel(0);
+			Destroy (GameObject.Find ("Canvas"));
+			Destroy (GameObject.Find ("Creador"));
+			Application.LoadLevel (0);
 			break;
 			
+		
+		case 7:
+			Destroy (GameObject.Find ("Canvas"));
+			Destroy (GameObject.Find ("Creador"));
+			Application.LoadLevelAsync (9);
+			break;
 		}
-	}
 
+	}
 	public void empezarVisualizar(){
 
 		textos.SetActive (true);
