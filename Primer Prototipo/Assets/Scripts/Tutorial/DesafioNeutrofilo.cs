@@ -120,10 +120,6 @@ public class DesafioNeutrofilo : MonoBehaviour {
 		panelPrincipal_14.SetActive (false);
 		panelPrincipal_15.SetActive (true);
 		panelPrincipal_1.SetActive (true);
-		boton_neutrofilo.GetComponent<Button>().interactable=false;
-		info_neutrofilo.gameObject.SetActive (false);
-		text_guia.transform.parent.gameObject.SetActive(false);
-		flecha_neutrofilo.SetActive (false);
 		Time.timeScale = 0;
 	}
 

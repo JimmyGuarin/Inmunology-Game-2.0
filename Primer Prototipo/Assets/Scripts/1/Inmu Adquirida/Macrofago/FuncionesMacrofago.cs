@@ -28,12 +28,8 @@ public class FuncionesMacrofago : MonoBehaviour {
 			pulsacion = Camera.main.ScreenPointToRay (Input.mousePosition);
 			if (Physics.Raycast (pulsacion, out hit) && hit.collider == this.GetComponent<Collider>()) {
 				
-				if(activar==false){
-
+				if(activar==false)
 					activar=true;
-					NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaMacrofago",5);
-				}
-					
 				else activar=false;
 			}
 		} 
@@ -51,7 +47,6 @@ public class FuncionesMacrofago : MonoBehaviour {
 			if (GUI.Button (new Rect (aux.x, aux.y, 160, 30), "Transformar a Dendritica")) {
 
 				liberarCaptura();
-				NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaMacrofago",6);
 				Instantiate(dendritica,this.transform.position,dendritica.transform.rotation);
 				Destroy(this.gameObject);
 				

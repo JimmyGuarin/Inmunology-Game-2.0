@@ -73,10 +73,6 @@ public class ManejarCelula : MonoBehaviour {
 				InvokeRepeating("invocar",4,20f);
 			this.gameObject.name="muerta";
 			ManejadorVirus.celulas_infectadas++;
-			if(ControladorRecursos.puntaje<1000)
-				ControladorRecursos.puntaje=0;
-			else
-				ControladorRecursos.puntaje-=1000;
 			Destroy(this.transform.FindChild ("nutriente").gameObject);
 
 		}

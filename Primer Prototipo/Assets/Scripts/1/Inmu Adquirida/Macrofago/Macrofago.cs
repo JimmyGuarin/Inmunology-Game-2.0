@@ -86,9 +86,6 @@ public class Macrofago : MonoBehaviour {
 				daño=0.8f;
 				destino=this.transform.position;
 				GetComponent<FuncionesMacrofago>().enabled=true;
-				if(desafio_macrofago)
-					NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaMacrofago",4);
-
 				speed=3f;
 				animator.enabled=false;
 			}
@@ -161,9 +158,6 @@ public class Macrofago : MonoBehaviour {
 			destino = new Vector3 (Fondo1.puntoDestino.x, Fondo1.puntoDestino.y, -5f);
 			isSeleted = false;
 			Fondo1.seleccionada=false;
-
-			if(desafio_macrofago)
-				NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaMacrofago",2);
 			
 		}
 		
@@ -246,9 +240,6 @@ public class Macrofago : MonoBehaviour {
 					mivirus.GetComponent<ColisionesVirus>().enabled=false;
 
 					NotificationCenter.DefaultCenter().PostNotification(this,"MacrofagoTutorial",true);
-					if(desafio_macrofago)
-						NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaMacrofago",3);
-
 				}
 
 			}

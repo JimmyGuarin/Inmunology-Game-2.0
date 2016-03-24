@@ -259,11 +259,11 @@ public class TutorialEntorno : MonoBehaviour {
 
 	void TerminarTutorial(Notification notification)
 	{	
-		if (tiempo <=35) {
+		if (tiempo <=30) {
 			
 			PlayerPrefs.SetString("Entorno","3");
 		}
-		if (tiempo >35&&tiempo<=50) {
+		if (tiempo >30&&tiempo<=50) {
 			
 			PlayerPrefs.SetString("Entorno","2");
 		}
