@@ -33,7 +33,7 @@ public class LinfocitoB2 : MonoBehaviour {
 		speed=6f;
 		NotificationCenter.DefaultCenter ().AddObserver (this, "cambiarPosCelula");
 		
-		
+		NotificationCenter.DefaultCenter().PostNotification(this,"TCD4Tutorial",3);
 		
 		
 		

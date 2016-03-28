@@ -26,29 +26,35 @@ public class AdquiridaTutorial : MonoBehaviour{
 	public Text info_macrofago;
 
 	//Panel Contenedor
-	public GameObject panelPrincipal_1;
+	public GameObject panelPrincipal;
 
 	//Panel Victoria
-	public GameObject panelPrincipal_13;
+	public GameObject panelPrincipal_victoria;
+
+	//Panel Celula Infectada
+	public GameObject panelPrincipal_ceulainfe;
 
 	//Panel Derrota
-	public GameObject panelPrincipal_14;
+	public GameObject panelPrincipal_derrota;
 
 	//Texto guia 
 	public Text text_guia;
 
+	public int index_guia;
+
+	public string nombrePersonaje;
+	
 	// Use this for initialization
 	void Start () {
 
+		index_guia = 3;
+
 		NotificationCenter.DefaultCenter ().AddObserver (this, "celulaMuerta");
 		NotificationCenter.DefaultCenter ().AddObserver (this, "TerminarTutorial");
-
+		NotificationCenter.DefaultCenter ().AddObserver (this, "CambiarGuiaDendritica");
 	
 	}
-
-
-
-
+	
 	public void cambiarPanelPrincipal(int num){
 		
 		switch (num) 
@@ -57,22 +63,27 @@ public class AdquiridaTutorial : MonoBehaviour{
 		case 1:
 			break;
 
-		//Ir a Menu Principal
-		Destroy(GameObject.Find("Canvas"));
-		Destroy(GameObject.Find("Creador"));
+		
 		case 2:
-			ControladorMenu.in_tutorial=true;
-			Application.LoadLevel(0);
+			//Ir a Adquirida
+			Destroy(GameObject.Find("Canvas"));
+			Destroy(GameObject.Find("Creador"));
+			Application.LoadLevel("Adquirida");
 			break;
 		
-			//Ir a Menu Innata
+			//Ir a Menu Adquirida
 		case 3:
-		
+			//Ir a Menu Principal
+			Destroy(GameObject.Find("Canvas"));
+			Destroy(GameObject.Find("Creador"));
+			Application.LoadLevel(0);
 			break;
 		
 		//Repetir Desafio
 		case 4:
-
+			//Ir a Menu Principal
+			Destroy(GameObject.Find("Canvas"));
+			Destroy(GameObject.Find("Creador"));
 			Application.LoadLevel(Application.loadedLevel);
 			break;
 
@@ -94,8 +105,13 @@ public class AdquiridaTutorial : MonoBehaviour{
 
 	void celulaMuerta(Notification notification)
 	{	
+
+		if (!this.enabled) {
 		
-		StartCoroutine(Wait());
+			Debug.Log("adquirda");	
+			StartCoroutine(Wait());
+		}
+			
 		
 	}
 	
@@ -103,8 +119,9 @@ public class AdquiridaTutorial : MonoBehaviour{
 	IEnumerator Wait(){
 		
 		yield return new WaitForSeconds(2);
-		panelPrincipal_13.SetActive (false);
-		panelPrincipal_1.SetActive (true);
+		panelPrincipal.SetActive (true);
+		panelPrincipal_victoria.SetActive (false);
+		panelPrincipal_ceulainfe.SetActive (true);
 		boton_personaje.GetComponent<Button>().interactable=false;
 		text_guia.transform.parent.gameObject.SetActive(false);
 		panelInfo.SetActive (false);
@@ -116,9 +133,9 @@ public class AdquiridaTutorial : MonoBehaviour{
 	{	
 		QuitarSonidos ();
 		text_guia.transform.parent.gameObject.SetActive(false);
-		panelPrincipal_1.SetActive (true);
-		panelPrincipal_13.SetActive (false);
-		panelPrincipal_14.SetActive (true);
+		panelInfo.SetActive (false);
+		panelPrincipal.SetActive (true);
+		panelPrincipal_victoria.SetActive (true);
 		
 	}
 	
@@ -130,6 +147,39 @@ public class AdquiridaTutorial : MonoBehaviour{
 			
 			celu.GetComponent<AudioSource> ().enabled = false;
 			
+		}
+	}
+
+	void CambiarGuiaDendritica(Notification notification)
+	{	
+		Debug.Log ((int)notification.data);
+		if (index_guia == (int)notification.data) {
+			
+		
+			if (index_guia == 3) 
+				text_guia.text="Presiona click derecho sobre la célula dendrítica  para alertar el Ganglio Linfatico";
+			
+			if (index_guia == 4) {
+				
+				text_guia.text="Ahora la célula dendrítica se dirige al Ganglio Linfatico";
+
+			}
+			if (index_guia == 5) {
+
+				panelInfo.SetActive(true);
+				text_guia.text=PlayerPrefs.GetString("name")+ " Espera que el ganglio haga su trabajo";
+				info_macrofago.text="En este momento se explica lo que esta haciendo el Ganglio Linfatico";
+
+			}
+			if (index_guia == 6) {
+
+				info_macrofago.text="Ahora los Linfocitos B estan disponibles";
+				text_guia.text="Preciona click izquierdo para crear un "+nombrePersonaje;
+				flecha_boton.SetActive(true);
+
+			}
+
+			index_guia++;	
 		}
 	}
 }

@@ -48,24 +48,30 @@ public class FuncionesDendritica : MonoBehaviour {
 				
 			Vector3 aux = Camera.main.WorldToScreenPoint(posicion);
 			aux.y=Screen.height-aux.y;
-			if(GUI.Button(new Rect(aux.x,aux.y,100,30), "Alertar Vaso")){
+		
+		
+			if(dendritica.tutorial_adquirida==false){
 
-                if (this.gameObject.transform.position.y < -12)
-      
-                    dendritica.llevarA(1, new Vector3(47.7f, Random.Range(-7f,4f), -5f));
+				if(GUI.Button(new Rect(aux.x,aux.y,110,30), "Alertar Vaso")){
 
-                else dendritica.llevarA(1, new Vector3(47.7f, this.gameObject.transform.position.y, -5f));
+	                if (this.gameObject.transform.position.y < -12)
+	      
+	                    dendritica.llevarA(1, new Vector3(47.7f, Random.Range(-7f,4f), -5f));
 
-                activar =false;
-				NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaDendritica",4);
+	                else dendritica.llevarA(1, new Vector3(47.7f, this.gameObject.transform.position.y, -5f));
 
+	                activar =false;
+					NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaDendritica",4);
+				}
 			}
 
+
 			if(dendritica.tutorial==false){
-				if(GUI.Button(new Rect(aux.x,aux.y+30,100,30), "Alertar Ganglio")){
+				if(GUI.Button(new Rect(aux.x,aux.y+30,110,30), "Alertar Ganglio")){
 					
 					dendritica.llevarA(0,new Vector3(47.8f ,-22.2f  ,-10f  ));
 					activar=false;
+					NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaDendritica",4);
 				}
 
 			}

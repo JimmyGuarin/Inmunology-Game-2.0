@@ -32,6 +32,7 @@ public class MoverPuntoEncuentro : MonoBehaviour {
 	{
 		if (isSeleted == true) {
 			transform.position=new Vector3 (Fondo1.puntoDestino.x, Fondo1.puntoDestino.y, -1f);
+			posicion=transform.position;
 			isSeleted=false;
 			Fondo1.seleccionada=false;
 		}

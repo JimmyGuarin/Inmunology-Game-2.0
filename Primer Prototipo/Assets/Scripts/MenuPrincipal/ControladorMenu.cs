@@ -53,7 +53,7 @@ public class ControladorMenu : MonoBehaviour {
 			}
 		}	
 		Entorno.texture = Resources.Load (PlayerPrefs.GetString("Entorno")) as Texture;
-		Innata.texture = Resources.Load ("0") as Texture;
+		Innata.texture = Resources.Load (PlayerPrefs.GetString("Innata")) as Texture;
 		Adquirida.texture = Resources.Load ("0") as Texture;
 		Amenazas.texture = Resources.Load ("0") as Texture;
 

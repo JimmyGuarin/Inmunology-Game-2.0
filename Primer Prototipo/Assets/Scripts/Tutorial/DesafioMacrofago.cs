@@ -40,14 +40,26 @@ public class DesafioMacrofago : MonoBehaviour {
 	//Boton para empezar el desafio
 	public GameObject comenzarDesafio;
 
+	//Virus de pruebas
+	public GameObject primer_virus;
+	
+	public Text texto_Desafio;
+
+
+
 	// Use this for initialization
 	void Start () {
 
 		NotificationCenter.DefaultCenter ().AddObserver (this, "celulaMuerta");
 		NotificationCenter.DefaultCenter ().AddObserver (this, "crearMacrofago");
 		NotificationCenter.DefaultCenter ().AddObserver (this, "MacrofagoTutorial");
-		NotificationCenter.DefaultCenter ().AddObserver (this, "CambiarGuiaNeutrofilo");
+		NotificationCenter.DefaultCenter ().AddObserver (this, "CambiarGuiaMacrofago");
+		NotificationCenter.DefaultCenter ().AddObserver (this, "TerminarTutorial");
 
+		texto_Desafio.text += " "+PlayerPrefs.GetString ("name") + ", " +
+			"tienes 90 segundos para comerte y capturar  la mayor cantidad de patógenos, " +
+			"como mínimo debes fagocitar 3 virus y capturar 3. ";
+		
 		flecha_macrofago.SetActive(true);
 		boton_macrofago.GetComponent<Button>().interactable=true;
 		text_guia.transform.parent.gameObject.SetActive(true);
@@ -70,11 +82,17 @@ public class DesafioMacrofago : MonoBehaviour {
 			panelPrincipal_12.SetActive(false);
 			break;
 		case 3:
-			panelPrincipal_13.SetActive(true);
-			panelPrincipal_12.SetActive(false);
+			panelPrincipal_1.SetActive(true);
+			panelInfoMacrofago.SetActive(false);
+			text_guia.transform.parent.gameObject.SetActive(false);
+			boton_macrofago.GetComponent<Button>().interactable=false;
 			break;
 			
 		case 4:
+			fagocitados=0;
+			atrapados=0;
+			textos.gameObject.transform.FindChild ("fagocitados").GetComponent<Text> ().text = " 0";
+			comenzarDesafio.SetActive(false);
 			panelPrincipal_1.SetActive(false);
 			panelPrincipal_13.SetActive(false);
 			flecha_macrofago.SetActive(true);
@@ -82,6 +100,14 @@ public class DesafioMacrofago : MonoBehaviour {
 			textos.gameObject.SetActive(true);
 			GameObject.Find("ManejadorVirus").GetComponent<ManejadorVirus>().enabled=true;
 			InvokeRepeating("ManejarTiempo",1f,1f);
+			text_guia.text="Preciona click izquierdo para desplegar los Macrófagos";
+			text_guia.transform.parent.gameObject.SetActive(true);
+			
+			text_guia.transform.parent.gameObject.GetComponent<RectTransform>().anchoredPosition=new Vector2(
+				text_guia.transform.parent.gameObject.GetComponent<RectTransform>().anchoredPosition.x,
+				text_guia.transform.parent.gameObject.GetComponent<RectTransform>().anchoredPosition.y+50);
+			
+			
 			break;
 			
 		case 5:
@@ -120,6 +146,10 @@ public class DesafioMacrofago : MonoBehaviour {
 		panelPrincipal_14.SetActive (false);
 		panelPrincipal_15.SetActive (true);
 		panelPrincipal_1.SetActive (true);
+		boton_macrofago.GetComponent<Button>().interactable=false;
+		text_guia.transform.parent.gameObject.SetActive(false);
+		panelInfoMacrofago.SetActive (false);
+		flecha_macrofago.SetActive (false);
 		Time.timeScale = 0;
 	}
 
@@ -199,27 +229,62 @@ public class DesafioMacrofago : MonoBehaviour {
 				
 				text_guia.text="Preciona click izquierdo en el lugar a mover el Macrófago";			
 			}
-			if (index_guia == 2) 
-				text_guia.text="Preciona click derecho sobre el Macrófago para ver su primera habilidad";
-			if (index_guia == 3) 
-				text_guia.text="Activa con click izquierdo la habilidad de degranulación";
+			if (index_guia == 2) {
+				
+				text_guia.text="Captura el patógeno para que el Macrófago lo fagocite";
+				primer_virus.SetActive(true);
+			}
+
+			if (index_guia == 3) {
+				
+				info_macrofago.text="En este momento puedes ver como el Macrófago fagocita el patógeno mientras disminuye la vida de este";
+				text_guia.text="Espera a que el patógeno esté destruido";
+			}
+
+
+
 			if (index_guia == 4){
 				
-				text_guia.text="Ahora activa la habilidad de trampa extracelular";
-				info_macrofago.text="En este estado neutrófilos emiten granulocitos que atacan directamente al virus, " +
-					"recuerda que estas partículas también dañan tus células.";
+				text_guia.text="Preciona click derecho sobre el Macrófago para ver la habilidad especial";
+				info_macrofago.text="El Macrófago ha fagocitado al patógeno, que impresionante no ?";
 			}
 			if (index_guia == 5){
 				
-				info_macrofago.text="En este estado el neutrófilo se suicida formando una red o malla " +
-					"que captura el virus y disminuye la vida del mismo, pero ten cuidado pues al realizarlo perderás tu " +
-						"neutrófilo y le net desaparecerá con el paso del tiempo. ";
-				text_guia.text="Es hora de empezar el desafío";
+				text_guia.text="Preciona click izquierdo para transformar el Macrófago a célula dendrítica";
+				
+			} 
+
+			if (index_guia == 6){
+				
+				info_macrofago.text="El Macrófago ahora es una célula dendrítica con la habilidad de CAPTURAR" +
+					"al patógeno y alertar al vaso sanguineo";
+				text_guia.text="Es hora de empezar el desafio "+PlayerPrefs.GetString("name");
 				comenzarDesafio.SetActive(true);
 				
 			} 
-			
+
 			index_guia++;	
+		}
+	}
+
+	void TerminarTutorial(Notification notification)
+	{	
+		QuitarSonidos ();
+		text_guia.transform.parent.gameObject.SetActive(false);
+		panelPrincipal_1.SetActive (true);
+		panelPrincipal_13.SetActive (false);
+		panelPrincipal_14.SetActive (true);
+		
+	}
+	
+	public void QuitarSonidos(){
+		
+		GameObject [] celulas = GameObject.FindGameObjectsWithTag ("celula");
+		Camera.main.transform.FindChild ("Audio Source").gameObject.SetActive (false);
+		foreach (GameObject celu in celulas) {
+			
+			celu.GetComponent<AudioSource> ().enabled = false;
+			
 		}
 	}
 }

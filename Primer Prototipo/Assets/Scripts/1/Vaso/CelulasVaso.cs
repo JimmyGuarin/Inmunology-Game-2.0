@@ -45,8 +45,12 @@ public class CelulasVaso : MonoBehaviour {
 				Debug.Log("Virus Muerto.. Virus:"+ManejadorVirus.numeroVirus);
 				MyTrigger.gameObject.GetComponent<ParticleSystem>().enableEmission = true;
 
-				if(desafioDendritica)
+				if(desafioDendritica){
+
+					NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaDendritica",4);
 					NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaDendritica",5);
+				}
+					
 
 				ControladorRecursos.puntaje+=300;
 	            if (tiempo_Oxigenar > 3)

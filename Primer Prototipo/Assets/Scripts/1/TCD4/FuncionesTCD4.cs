@@ -5,6 +5,7 @@ public class FuncionesTCD4 : MonoBehaviour {
 
 	public Vector3 posicion;
 	public bool activar;
+	public GUISkin custom;
 	// Use this for initialization
 	void Start () {
 		
@@ -38,12 +39,14 @@ public class FuncionesTCD4 : MonoBehaviour {
 	
 	void OnGUI(){
 		
-		
+		GUI.skin = custom;
+		GUI.skin.button.fontSize = 10;
+
 		if (activar==true) {
 			
 			Vector3 aux = Camera.main.WorldToScreenPoint(posicion);
 			aux.y=Screen.height-aux.y;
-			if(GUI.Button(new Rect(aux.x,aux.y,140,30), "Ayudar LinfocitoB")){
+			if(GUI.Button(new Rect(aux.x,aux.y,150,30), "Ayudar LinfocitoB")){
 
 				NotificationCenter.DefaultCenter().PostNotification(this,"activarMiraLB",this.gameObject);
 				NotificationCenter.DefaultCenter().PostNotification(this,"desactivarMiraNE",this.gameObject);
@@ -51,14 +54,14 @@ public class FuncionesTCD4 : MonoBehaviour {
 				activar=false;
 
 			}
-			if(GUI.Button(new Rect(aux.x,aux.y+30,140,30), "Ayudar Neutrofilo")){
+			if(GUI.Button(new Rect(aux.x,aux.y+30,150,30), "Ayudar Neutrofilo")){
 
 				NotificationCenter.DefaultCenter().PostNotification(this,"activarMiraNE",this.gameObject);
 				NotificationCenter.DefaultCenter().PostNotification(this,"desactivarMiraLB",this.gameObject);
 				NotificationCenter.DefaultCenter().PostNotification(this,"desactivarMiraMA",this.gameObject);
 				activar=false;
 			}
-			if(GUI.Button(new Rect(aux.x,aux.y+60,140,30), "Ayudar Macrofago")){
+			if(GUI.Button(new Rect(aux.x,aux.y+60,150,30), "Ayudar Macrofago")){
 				
 				NotificationCenter.DefaultCenter().PostNotification(this,"activarMiraMA",this.gameObject);
 				NotificationCenter.DefaultCenter().PostNotification(this,"desactivarMiraLB",this.gameObject);

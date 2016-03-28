@@ -36,7 +36,8 @@ public class BarraProgresoGanglio : MonoBehaviour {
 	void Start () {
 	
 		estadoBarra = this.gameObject.GetComponent<EstadoBarraGanglio> ();
-
+		NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaDendritica",4);
+		NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaDendritica",5);
 
 
 	}
@@ -82,6 +83,7 @@ public class BarraProgresoGanglio : MonoBehaviour {
 
 		activarAdquirida.desbloquearLinfocitos();
 		VasoGrande.activarLinfocitos=true;
+		NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaDendritica",6);
 		CancelInvoke ();
 
 		if(Application.loadedLevelName.Equals("3"))

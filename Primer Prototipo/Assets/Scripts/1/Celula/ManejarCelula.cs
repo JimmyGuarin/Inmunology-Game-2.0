@@ -69,10 +69,17 @@ public class ManejarCelula : MonoBehaviour {
 		if (vida == 0&&muerta==true) {
 
 			muerta=false;
-			if(!this.gameObject.name.Equals("muerta"))
+			if(!this.gameObject.name.Equals("muerta")){
+
 				InvokeRepeating("invocar",4,20f);
+				NotificationCenter.DefaultCenter().PostNotification(this,"celulaMuerta");
+			}				
 			this.gameObject.name="muerta";
 			ManejadorVirus.celulas_infectadas++;
+			if(ControladorRecursos.puntaje<1000)
+				ControladorRecursos.puntaje=0;
+			else
+				ControladorRecursos.puntaje-=1000;
 			Destroy(this.transform.FindChild ("nutriente").gameObject);
 
 		}
@@ -113,6 +120,7 @@ public class ManejarCelula : MonoBehaviour {
 
 				DefenzaFuera(c);
 				ManejadorVirus.celulas_infectadas--;
+				NotificationCenter.DefaultCenter().PostNotification(this,"TutorialTCD8");
 				Destroy(this.gameObject);
 
 			}
@@ -181,7 +189,7 @@ public class ManejarCelula : MonoBehaviour {
 
 					}
 
-					NotificationCenter.DefaultCenter().PostNotification(this,"celulaMuerta");
+
                     
 				}
 
@@ -233,4 +241,11 @@ public class ManejarCelula : MonoBehaviour {
 		ManejadorVirus.actualizarDefenza();
 	}
 
+	public void TutorialTCD8(){
+
+		vida=0;
+		nSprite=0;
+		muerta=true;
+		cambiar ();
+	}
 }

@@ -46,6 +46,8 @@ public class InnataTutorial : MonoBehaviour {
 	public GameObject Neutrofilo;
 	public GameObject Macrofago;
 	public GameObject Nk;
+
+
 	//Manejador de Estados
 	public static int estado;
 	public int estadoActual;
@@ -53,10 +55,7 @@ public class InnataTutorial : MonoBehaviour {
 	//Sonido al Hacer zoom
 	public AudioSource zoom_sound;
 
-	public GameObject buton_desafio;
-
-
-
+	public GameObject boton_empezar;
 
 
 	// Use this for initialization
@@ -84,12 +83,15 @@ public class InnataTutorial : MonoBehaviour {
 
 		zoom = this.GetComponent<Zoom> ();	
 
-		if (estadoActual> 0) {
-			Estados[estadoActual].Preparar();
+		if (estadoActual==1) {
+			Estados[0].objeto.GetComponent<Collider>().enabled=true;
 			panelPrincipal_1.SetActive(false);
 			textos.SetActive(true);
 			panel_innata.SetActive(true);
-
+			flechaDendritica.SetActive(true);
+			flechaMacrofago.SetActive(true);
+			flechaNeutrofilo.SetActive(true);
+			flechaNK.SetActive(true);
 		}
 	}
 	
@@ -113,54 +115,55 @@ public class InnataTutorial : MonoBehaviour {
 				
 				if (hit.collider.name.Equals ("Dentrica")) {	
 					
-					Estados[estadoActual].Activar(estadoActual+1);
-					tituloZoom.text=Estados[estadoActual].titulo;
-					textoZoom.text=Estados[estadoActual].texto;
+					Estados[0].Activar(1);
+					tituloZoom.text=Estados[0].titulo;
+					textoZoom.text=Estados[0].texto;
 					panelZoom.GetComponent<RectTransform>().anchoredPosition=new Vector2(100,4);
 					zoom_sound.Play();
+					estadoActual=1;
 					panel_innata.SetActive(false);
-					estadoActual++;
-					buton_desafio.SetActive(false);
+					boton_empezar.SetActive(false);
+
 					zoom.enfocar(Dendritica.transform,1,0,40);
 				}
 				if (hit.collider.name.Equals ("Neutrofilo")) {	
 					
-					Estados[estadoActual].Activar(estadoActual);
-					tituloZoom.text=Estados[estadoActual].titulo;
-					textoZoom.text=Estados[estadoActual].texto;
+					Estados[1].Activar(1);
+					tituloZoom.text=Estados[1].titulo;
+					textoZoom.text=Estados[1].texto;
 					panelZoom.GetComponent<RectTransform>().anchoredPosition=new Vector2(-100,4);
 					zoom_sound.Play();
 					panel_innata.SetActive(false);
-					estadoActual++;
-					buton_desafio.SetActive(false);
+					boton_empezar.SetActive(false);
+					estadoActual=2;
 					zoom.enfocar(Neutrofilo.transform,-15,0,40);
 				}
 				
 				if (hit.collider.name.Equals ("Macrofago")) {	
 					
-					Estados[estadoActual].Activar(estadoActual);
-					tituloZoom.text=Estados[estadoActual].titulo;
-					textoZoom.text=Estados[estadoActual].texto;
+					Estados[2].Activar(2);
+					tituloZoom.text=Estados[2].titulo;
+					textoZoom.text=Estados[2].texto;
 					panelZoom.GetComponent<RectTransform>().anchoredPosition=new Vector2(100,4);
 					zoom_sound.Play();
 					panel_innata.SetActive(false);
-					estadoActual++;
-					buton_desafio.SetActive(false);
+					boton_empezar.SetActive(false);
+					estadoActual=3;
 					zoom.enfocar(Macrofago.transform,15,0,40);
 				}
 
 				if (hit.collider.name.Equals ("NaturalK")) {	
 					
-					Estados[estadoActual].Activar(estadoActual);
-					tituloZoom.text=Estados[estadoActual].titulo;
-					textoZoom.text=Estados[estadoActual].texto;
+					Estados[3].Activar(3);
+					tituloZoom.text=Estados[3].titulo;
+					textoZoom.text=Estados[3].texto;
 					panelZoom.GetComponent<RectTransform>().anchoredPosition=new Vector2(-100,4);
 					zoom_sound.Play();
 					panel_innata.SetActive(false);
 					estadoActual++;
-					buton_desafio.SetActive(false);
+					boton_empezar.SetActive(false);
 					zoom.enfocar(Nk.transform,-3,0,30);
-
+					estadoActual=4;
 				}
 				
 
@@ -192,8 +195,6 @@ public class InnataTutorial : MonoBehaviour {
 			panelPrincipal_1.SetActive (false);
 			panelPrincipal_11.SetActive (true);
 			panelPrincipal_13.SetActive (false);
-			panel_innata.SetActive (true);
-			empezarVisualizar ();
 			break;
 		
 
@@ -201,35 +202,36 @@ public class InnataTutorial : MonoBehaviour {
 		//llamado por panel zoom
 		case 5:
 			panelZoom.SetActive (false);
-			Destroy (GameObject.Find ("Canvas"));
-			Destroy (GameObject.Find ("Creador"));
-			Destroy (GameObject.Find ("ManejadorVirus"));
-			ManejadorVirus.celulas.Clear ();
-			if (estadoActual <= 4) {
 
+			if (estadoActual != 4) {
+				Destroy (GameObject.Find ("Canvas"));
+				Destroy (GameObject.Find ("Creador"));
+				Destroy (GameObject.Find ("ManejadorVirus"));
+				ManejadorVirus.celulas.Clear ();
 				Application.LoadLevelAsync (estadoActual + 5);
-			} else {
-
-				Application.LoadLevelAsync (9);
+			}
+			if (estadoActual == 4) {
 				zoom.desenfocar (false);
+				textos.SetActive (true);
+				zoom_sound.Play();
+				panel_innata.SetActive(true);
+				boton_empezar.SetActive(true);
 			}
 			break;
 			
 		case 6:
-			Destroy (GameObject.Find ("Canvas"));
-			Destroy (GameObject.Find ("Creador"));
 			Application.LoadLevel (0);
 			break;
-			
-		
+
 		case 7:
 			Destroy (GameObject.Find ("Canvas"));
 			Destroy (GameObject.Find ("Creador"));
+			Destroy (GameObject.Find ("ManejadorVirus"));
 			Application.LoadLevelAsync (9);
 			break;
 		}
-
 	}
+
 	public void empezarVisualizar(){
 
 		textos.SetActive (true);

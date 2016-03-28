@@ -17,6 +17,8 @@ public class CrearUnidadInnata : MonoBehaviour {
 	public bool tutorial;
 	//Dendritica de desafio Dendritica
 	public bool desafio_dendritica;
+	//Dendritica de inmunidad adquirida
+	public bool tutorial_adquirida;  
 	
 	//Variable que representa el animator de la celula
 	private Animator animator;
@@ -143,7 +145,8 @@ public class CrearUnidadInnata : MonoBehaviour {
 				else
 					destino=new Vector3(47.7f,this.transform.position.y,-5f  );
 			}
-				
+			if(tutorial_adquirida)
+				destino=new Vector3(47.8f ,-22.2f  ,-10f  );
 
 			if(isSeleted==true)
 				Fondo1.seleccionada=false;

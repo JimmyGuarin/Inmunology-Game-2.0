@@ -125,6 +125,7 @@ public class TutorialEntorno : MonoBehaviour {
 					textoZoom.text=Estados[estadoActual].texto;
 					zoom.enfocar(vaso.transform,-4,3,70);
 					panel_matriz.SetActive(false);
+					flechaVaso.SetActive(false);
 					zoom_sound.Play();
 					estadoActual++;
 
@@ -137,6 +138,7 @@ public class TutorialEntorno : MonoBehaviour {
 					textoZoom.text=Estados[estadoActual].texto;
 					zoom.enfocar(ganglio.transform,1,-5,70);
 					panel_matriz.SetActive(false);
+					flechaGanglio.SetActive(false);
 					zoom_sound.Play();
 					estadoActual++;
 				}
@@ -149,6 +151,7 @@ public class TutorialEntorno : MonoBehaviour {
 					panelZoom.GetComponent<RectTransform>().anchoredPosition=new Vector2(100,4);
 					zoom.enfocar(celula.transform,5,0,50);
 					panel_matriz.SetActive(false);
+					flechaCelula.SetActive(false);
 					zoom_sound.Play();
 					estadoActual++;
 				}
@@ -162,6 +165,7 @@ public class TutorialEntorno : MonoBehaviour {
 					zoom.enfocar(ZAfectada.transform,2,6,60);
 					panel_matriz.SetActive(false);
 					zoom_sound.Play();
+					flechaZAfectada.SetActive(false);
 					estadoActual++;
 				}
 
@@ -170,8 +174,8 @@ public class TutorialEntorno : MonoBehaviour {
 					hit.collider.gameObject.GetComponent<InteligenciaVirus>().vida-=100;
 					hit.collider.gameObject.GetComponentInChildren<BarraVida>().modificarSprite();
 				
-					if(panel_info.activeSelf==true)
-						panel_info.SetActive(false);
+
+						
 				
 				}
 				
@@ -259,11 +263,11 @@ public class TutorialEntorno : MonoBehaviour {
 
 	void TerminarTutorial(Notification notification)
 	{	
-		if (tiempo <=30) {
+		if (tiempo <=40) {
 			
 			PlayerPrefs.SetString("Entorno","3");
 		}
-		if (tiempo >30&&tiempo<=50) {
+		if (tiempo >40&&tiempo<=50) {
 			
 			PlayerPrefs.SetString("Entorno","2");
 		}
@@ -274,6 +278,7 @@ public class TutorialEntorno : MonoBehaviour {
 		
 		Entorno.texture = Resources.Load (PlayerPrefs.GetString("Entorno")) as Texture;
 		QuitarSonidos ();
+		panel_info.SetActive(false);
 		panel_volver.SetActive(true);
 
 	}
@@ -290,6 +295,7 @@ public class TutorialEntorno : MonoBehaviour {
 	IEnumerator Wait(){
 		
 		yield return new WaitForSeconds(2);
+		panel_info.SetActive(false);
 		panelPrincipal_13.SetActive (false);
 		panelPrincipal_14.SetActive (true);
 		panelPrincipal_1.SetActive (true);

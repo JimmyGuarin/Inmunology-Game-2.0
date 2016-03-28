@@ -232,6 +232,7 @@ public class ManejarNeutrofilo : MonoBehaviour {
 				if(mivirus.GetComponent<InteligenciaVirus>()!=null){
 					mivirus.GetComponent<InteligenciaVirus>().enabled=true;
 					mivirus.GetComponent<InteligenciaVirus>().vida=0;
+					NotificationCenter.DefaultCenter().PostNotification(this,"TCD4Tutorial",2);
 				}
 				else
 					mivirus.GetComponent<BacteriaColis>().vida=0;

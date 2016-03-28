@@ -102,7 +102,7 @@ public class DesafioDendritica : MonoBehaviour {
 			}
 			if (index_guia == 5) {
 
-				text_guia.text=PlayerPrefs.GetString("name")+ "Ya alertaste el vaso el cual activa dos unidades " +
+				text_guia.text=PlayerPrefs.GetString("name")+ ", ya alertaste el vaso el cual activa dos unidades " +
 					"que conoceremos mas adelante,por ahora captura los demás virus para ganar el desafío";
 				GameObject.Find("ManejadorVirus").GetComponent<ManejadorVirus>().enabled=true;
 			}

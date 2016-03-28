@@ -30,7 +30,6 @@ using UnityEngine.UI;
 
 		public void Activar(int numero){
 
-				flecha.SetActive (false);
 				
 				switch (numero) {
 				
