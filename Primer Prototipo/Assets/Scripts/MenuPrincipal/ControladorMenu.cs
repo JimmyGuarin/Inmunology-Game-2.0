@@ -54,8 +54,8 @@ public class ControladorMenu : MonoBehaviour {
 		}	
 		Entorno.texture = Resources.Load (PlayerPrefs.GetString("Entorno")) as Texture;
 		Innata.texture = Resources.Load (PlayerPrefs.GetString("Innata")) as Texture;
-		Adquirida.texture = Resources.Load ("0") as Texture;
-		Amenazas.texture = Resources.Load ("0") as Texture;
+		Adquirida.texture = Resources.Load (PlayerPrefs.GetString("Adquirida")) as Texture;
+		Amenazas.texture = Resources.Load (PlayerPrefs.GetString("Amenazas")) as Texture;
 
 
 		CanvasJuego = GameObject.Find ("Canvas");

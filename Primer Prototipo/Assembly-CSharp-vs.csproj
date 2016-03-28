@@ -103,6 +103,7 @@
      <Compile Include="Assets\Scripts\Registrar\Manejador.cs" />
      <Compile Include="Assets\Scripts\Tutorial\Adquirida.cs" />
      <Compile Include="Assets\Scripts\Tutorial\AdquiridaTutorial.cs" />
+     <Compile Include="Assets\Scripts\Tutorial\Amenazas.cs" />
      <Compile Include="Assets\Scripts\Tutorial\DesafioDendritica.cs" />
      <Compile Include="Assets\Scripts\Tutorial\DesafioMacrofago.cs" />
      <Compile Include="Assets\Scripts\Tutorial\DesafioNeutrofilo.cs" />
