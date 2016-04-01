@@ -53,10 +53,13 @@ public class Adquirida : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
+		VasoGrande.activarLinfocitos = false;
 		Estados= new EstadoTutorial[3];
-		Estados [0] = new EstadoTutorial (flechaLinfoB,LinfoB, "Linfocito B", "Descripcion Linfocito B");
-		Estados [1] = new EstadoTutorial (flechaTCD4,TCD4,"Linfocito TCD4" ,"Descripcion TCD4");
-		Estados [2] = new EstadoTutorial (flechaTCD8,TCD8,"Linfocito TCD8","Descripcion TCD8");
+		Estados [0] = new EstadoTutorial (flechaLinfoB,LinfoB, "Linfocito B", "Los linfocitos B son los leucocitos que producen unas moléculas llamadas anticuerpos. \n\n"+
+											"Los anticuerpos te permiten atacar y neutralizar a los bichos.\n\n"+
+											"Actívalo ¡! Y combate directamente el virus.");
+		Estados [1] = new EstadoTutorial (flechaTCD4,TCD4,"Linfocito TCD4" ,"Colaboradores o ayudadores son células encargadas de modular la respuesta inmune y ayudar a otras células a que funcionen mejor.");
+		Estados [2] = new EstadoTutorial (flechaTCD8,TCD8,"Linfocito TCD8","Los linfocitos TCD8 o citotóxicos son los encargados de neutralizar las células infectadas por microorganismos intracelulares, mediante un ataque directo a estas células");
 		zoom = this.GetComponent<Zoom> ();	
 
 	}
@@ -139,6 +142,12 @@ public class Adquirida : MonoBehaviour {
 			break;
 			
 		case 3:
+			Destroy (GameObject.Find ("Canvas"));
+			Destroy (GameObject.Find ("Creador"));
+			Destroy (GameObject.Find ("ManejadorVirus"));
+			ManejadorVirus.celulas.Clear ();
+			Application.LoadLevelAsync (14);
+
 			break;
 
 		}

@@ -6,6 +6,7 @@ public class FuncionesMacrofago : MonoBehaviour {
 	public Vector3 posicion;
 	public bool activar;
 	public GameObject dendritica;
+	public GUISkin custom;
 	// Use this for initialization
 	void Start () {
 		
@@ -42,12 +43,13 @@ public class FuncionesMacrofago : MonoBehaviour {
 	
 	void OnGUI(){
 		
-		
+		GUI.skin = custom;
+		GUI.skin.button.fontSize = 7;
 		if (activar == true) {
 			
 			Vector3 aux = Camera.main.WorldToScreenPoint (posicion);
 			aux.y = Screen.height - aux.y;
-			if (GUI.Button (new Rect (aux.x, aux.y, 160, 30), "Transformar a Dendritica")) {
+			if (GUI.Button (new Rect (aux.x, aux.y, 170, 30), "Transformar a Dendritica")) {
 
 				liberarCaptura();
 				NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaMacrofago",6);

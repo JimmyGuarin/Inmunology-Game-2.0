@@ -28,7 +28,7 @@ public class TutorialTCD4 : MonoBehaviour {
 
 	public void EmpezarDesafio(){
 
-		Invoke ("EmpezarAyuda", 5);
+		Invoke ("EmpezarAyuda", 4);
 
 	}
 
@@ -36,8 +36,8 @@ public class TutorialTCD4 : MonoBehaviour {
 
 		macrofago.SetActive (true);
 		virus_macrofago.SetActive (true);
-		manejador.info_macrofago.text="El Linfocito TCD4  Ayuda al Macrofago de tal manera que";
-		manejador.text_guia.text="Presiona click derecho sobre el Linfocito TCD4 para activar la habilidad de ayudar al Macrofago";
+		manejador.info_macrofago.text="El Linfoncito TCD4 ayuda al macrófago para que la fagocitosis sea más eficiente.";
+		manejador.text_guia.text="Presiona click derecho sobre el Linfocito TCD4 para activar la habilidad de ayudar al Macrófago.";
 
 	}
 
@@ -47,8 +47,9 @@ public class TutorialTCD4 : MonoBehaviour {
 
 		if (index_receiver == 1) {
 		
-			manejador.info_macrofago.text="El Linfocito TCD4 Ayuda al Neutrofilo de tal manera que";
-			manejador.text_guia.text="Ahora ayuda al Neutrofilo de igual manera";
+			manejador.info_macrofago.text="El Linficito TCD4 ayuda al Neutrófilo, liberando citoquinas o moléculas mensajeras del sistema inmune.";
+			manejador.text_guia.text="Presiona click derecho sobre el Linfocito TCD4 para activar la habilidad de ayudar al Neutrófilo.";
+
 			neutrofilo.SetActive(true);
 			if(virus_neutrofilo!=null)
 				virus_neutrofilo.SetActive(true);
@@ -56,8 +57,8 @@ public class TutorialTCD4 : MonoBehaviour {
 
 		if (index_receiver == 2) {
 			
-			manejador.info_macrofago.text="El Linfocito TCD4 Ayuda al Linfocito B de tal manera que";
-			manejador.text_guia.text="Ahora ayuda al LinfocitoB de igual manera";
+			manejador.info_macrofago.text="El linfoncito TCD4 ayuda al Linfocito B convirtiéndolo en una celula plasmática,la cual es una célula profesional que solo produce anticuerpos. ";
+			manejador.text_guia.text="Presiona click derecho sobre el Linfocito TCD4 para activar la habilidad de ayudar al Linfocito B.";
 			linfocitoB.SetActive(true);
 			
 		}

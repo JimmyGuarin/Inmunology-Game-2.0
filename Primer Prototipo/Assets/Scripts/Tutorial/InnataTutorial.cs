@@ -57,31 +57,27 @@ public class InnataTutorial : MonoBehaviour {
 
 	public GameObject boton_empezar;
 
+	public static bool mostrarPanel;
 
 	// Use this for initialization
 	void Start () {
 	
 		estadoActual = estado;
 		Estados= new EstadoTutorial[5];
-		Estados [0] = new EstadoTutorial (flechaDendritica,Dendritica,"Células dendríticas" ,"Las células dendríticas (DC) son células fagocíticas presentes en tejidos que están en contacto con el medio externo, " +
-			"principalmente la y el revestimiento mucoso interno de la nariz, pulmones, estómago e intestino. Se llaman así por su analogía con las dendritas neuronales, pero las células dendríticas no están conectadas " +
-			"al sistema nervioso. Las células dendríticas son muy importantes en la presentación de antígenos, y sirven como enlace entre los sistemas inmunitarios innatos y adaptativo.");
+		Estados [0] = new EstadoTutorial (flechaDendritica,Dendritica,"Células dendríticas" ,"Las células dendríticas están presentes en los tejidos y patrullan constantemente tu cuerpo en busca de alguna enfermedad o daño");
 
-		Estados [1] = new EstadoTutorial (flechaNeutrofilo,Neutrofilo,"Neutrófilos" ,"Los neutrófilos son conocidos como granulocitos debido a la presencia de gránulos en su citoplasma, o como células polimorfo nuclear (PMNs) " +
-			"debido a sus distintivos núcleos lobulados. Los gránulos del neutrófilo contienen una variedad de sustancias tóxicas que matan o inhiben el crecimiento de bacterias y hongos. Similares a los macrófagos, los neutrófilos " +
-			"atacan a los patógenos mediante la activación de una 'brecha respiratoria'. Los productos principales de la brecha respiratoria del neutrófilo son fuertes agentes oxidantes incluyendo el peróxido de hidrógeno, los radicales " +
-			"libres de oxígeno y el hipoclorito. Los Neutrófilos son los tipos celulares fagocíticos más abundantes, normalmente representan el 50 a 60% del total de leucocitos circulantes, y son usualmente las primeras células en llegar al " +
-			"sitio de una infección.");
+		Estados [1] = new EstadoTutorial (flechaNeutrofilo,Neutrofilo,"Neutrófilos" ,"Los neutrófilos hacen parte de los granulocitos debido a la presencia de gránulos en su citoplasma, o como células polimorfo nuclear (PMNs) debido a sus distintivos núcleos lobulados. \n\n"+
+		                                  "Los Neutrófilos son las células  más abundantes del sistema inmune, normalmente representan el 50 a 60% del total de leucocitos circulantes, y son usualmente las primeras células en llegar al sitio de una infección.\n\n"+
+		                                  "Los gránulos del neutrófilo contienen una variedad de sustancias tóxicas que matan o inhiben el crecimiento de bacterias, hongos y virus.");
 
-		Estados [2] = new EstadoTutorial (flechaMacrofago,Macrofago,"Macrófagos","Los macrófagos, vocablo proveniente del Griego, significa 'gran célula comedora', son leucocitos fagocíticos grandes, que son capaces de moverse al exterior del " +
-			"sistema vascular al atravesar la membrana celular de los vasos capilares y entrando en áreas intercelulares en persecución de los patógenos invasores. Son los fagocitos más eficientes, y pueden fagocitar números substanciales de bacterias " +
-			"u otras células o microbios.");
+		Estados [2] = new EstadoTutorial (flechaMacrofago,Macrofago,"Macrófagos","Los macrófagos son células cuya función  principal es la fagocitosis y la reparación. \n\n"+
+		                                  "La fagocitosis  es la función de ingerir elementos externos y digerirlos en su interior. \n\n"+
+		                                  "Los macrófagos son los fagocitos más eficientes, y pueden fagocitar bacterias, hongos, y otras células muertas.");
 
-		Estados [3] = new EstadoTutorial (flechaNK,Nk, "Natural Killer", "Las células NK (por las siglas de su denominación en inglés, natural killer, 'asesina natural' en español) también conocidas como células asesinas son un tipo de linfocito pertenecientes al sistema inmunitario. " +
-			"Estas células no destruyen los microorganismos patógenos directamente, teniendo una función más relacionada con la destrucción de células infectadas o que puedan ser cancerígenas. No son células fagocíticas. Destruyen las otras células a través del ataque a su " +
-			"membrana plasmática causando difusión de iones y agua para el interior de la célula aumentando su volumen interno hasta un punto de ruptura en el cual ocurre la lisis.");
+		Estados [3] = new EstadoTutorial (flechaNK,Nk, "Natural Killer", "Las células NK, Natural Killer o asesina natural no destruyen los bichos directamente, pero si son capaces de destruir la célula infectada.");
 
-		zoom = this.GetComponent<Zoom> ();	
+		zoom = this.GetComponent<Zoom> ();
+
 
 		if (estadoActual==1) {
 			Estados[0].objeto.GetComponent<Collider>().enabled=true;
@@ -93,6 +89,8 @@ public class InnataTutorial : MonoBehaviour {
 			flechaNeutrofilo.SetActive(true);
 			flechaNK.SetActive(true);
 		}
+
+
 	}
 	
 	// Update is called once per frame

@@ -52,7 +52,7 @@ public class FuncionesDendritica : MonoBehaviour {
 		
 			if(dendritica.tutorial_adquirida==false){
 
-				if(GUI.Button(new Rect(aux.x,aux.y,110,30), "Alertar Vaso")){
+				if(GUI.Button(new Rect(aux.x,aux.y,130,30), "Alertar Vaso")){
 
 	                if (this.gameObject.transform.position.y < -12)
 	      
@@ -67,7 +67,7 @@ public class FuncionesDendritica : MonoBehaviour {
 
 
 			if(dendritica.tutorial==false){
-				if(GUI.Button(new Rect(aux.x,aux.y+30,110,30), "Alertar Ganglio")){
+				if(GUI.Button(new Rect(aux.x,aux.y+30,130,30), "Alertar Ganglio")){
 					
 					dendritica.llevarA(0,new Vector3(47.8f ,-22.2f  ,-10f  ));
 					activar=false;

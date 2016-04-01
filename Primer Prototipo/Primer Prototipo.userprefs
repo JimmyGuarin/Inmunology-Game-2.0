@@ -2,7 +2,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MenuPrincipal\ControladorMenu.cs">
     <Files>
-      <File FileName="Assets\Scripts\MenuPrincipal\ControladorMenu.cs" Line="58" Column="84" />
+      <File FileName="Assets\Scripts\MenuPrincipal\ControladorMenu.cs" Line="84" Column="32" />
+      <File FileName="Assets\Scripts\Tutorial\Adquirida.cs" Line="149" Column="34" />
+      <File FileName="Assets\Scripts\1\ControladorRecursos.cs" Line="169" Column="4" />
+      <File FileName="Assets\Scripts\1\Neutrofilo\FuncionesNeutrofilo.cs" Line="69" Column="46" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -74,6 +74,7 @@ public class AdquiridaTutorial : MonoBehaviour{
 			//Ir a Menu Adquirida
 		case 3:
 			//Ir a Menu Principal
+			ControladorMenu.in_tutorial=true;
 			Destroy(GameObject.Find("Canvas"));
 			Destroy(GameObject.Find("Creador"));
 			Application.LoadLevel(0);
@@ -157,24 +158,23 @@ public class AdquiridaTutorial : MonoBehaviour{
 			
 		
 			if (index_guia == 3) 
-				text_guia.text="Presiona click derecho sobre la célula dendrítica  para alertar el Ganglio Linfatico";
+				text_guia.text="Presiona click derecho sobre la célula dendrítica  para alertar el Ganglio Linfático";
 			
 			if (index_guia == 4) {
 				
-				text_guia.text="Ahora la célula dendrítica se dirige al Ganglio Linfatico";
+				text_guia.text="Ahora la célula dendrítica se dirige al Ganglio Linfático";
 
 			}
 			if (index_guia == 5) {
 
 				panelInfo.SetActive(true);
 				text_guia.text=PlayerPrefs.GetString("name")+ " Espera que el ganglio haga su trabajo";
-				info_macrofago.text="En este momento se explica lo que esta haciendo el Ganglio Linfatico";
 
 			}
 			if (index_guia == 6) {
 
-				info_macrofago.text="Ahora los Linfocitos B estan disponibles";
-				text_guia.text="Preciona click izquierdo para crear un "+nombrePersonaje;
+				info_macrofago.text="Ahora los "+nombrePersonaje+" estan disponibles";
+				text_guia.text="Presiona click izquierdo para crear un "+nombrePersonaje;
 				flecha_boton.SetActive(true);
 
 			}

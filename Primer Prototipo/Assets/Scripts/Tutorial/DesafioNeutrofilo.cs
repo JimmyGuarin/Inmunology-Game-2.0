@@ -73,7 +73,7 @@ public class DesafioNeutrofilo : MonoBehaviour {
 			panelPrincipal_13.SetActive(false);
 			flecha_neutrofilo.SetActive(true);
 			boton_neutrofilo.GetComponent<Button>().interactable=true;
-			text_guia.text="Preciona click izquierdo para desplegar los Neutrófilos";
+			text_guia.text="Presiona click izquierdo para desplegar los Neutrófilos";
 			text_guia.transform.parent.gameObject.SetActive(true);
 
 			text_guia.transform.parent.gameObject.GetComponent<RectTransform>().anchoredPosition=new Vector2(
@@ -85,7 +85,7 @@ public class DesafioNeutrofilo : MonoBehaviour {
 			break;
 			
 		case 5:
-			InnataTutorial.estado=2;
+			InnataTutorial.estado=1;
 			Destroy(GameObject.Find("Canvas"));
 			Destroy(GameObject.Find("Creador"));
 			Application.LoadLevel(5);
@@ -98,6 +98,7 @@ public class DesafioNeutrofilo : MonoBehaviour {
 			break;
 			
 		case 7:
+			ControladorMenu.in_tutorial=true;
 			Destroy(GameObject.Find("Canvas"));
 			Destroy(GameObject.Find("Creador"));
 			Application.LoadLevel(0);	
@@ -120,6 +121,7 @@ public class DesafioNeutrofilo : MonoBehaviour {
 		panelPrincipal_14.SetActive (false);
 		panelPrincipal_15.SetActive (true);
 		panelPrincipal_1.SetActive (true);
+		text_guia.transform.parent.gameObject.SetActive(false);
 		Time.timeScale = 0;
 	}
 
@@ -131,7 +133,7 @@ public class DesafioNeutrofilo : MonoBehaviour {
 	{	
 		if (flecha_neutrofilo.activeSelf == true) {
 			flecha_neutrofilo.SetActive (false);
-			text_guia.text="Preciona click izquierdo sobre el Neutrófilo para seleccionarlo";
+			text_guia.text="Presiona click izquierdo sobre el Neutrófilo para seleccionarlo";
 		}
 		if (index_guia == 1) {
 			
@@ -189,17 +191,20 @@ public class DesafioNeutrofilo : MonoBehaviour {
 
 	void CambiarGuiaNeutrofilo(Notification notification)
 	{	
-		if (index_guia == (int)notification.data) {
 
+
+		if(index_guia<=5){
+
+			index_guia = (int)notification.data;
 
 			if (index_guia == 1) {
 				
-				text_guia.text="Preciona click izquierdo en el lugar a mover el Neutrófilo";			
+				text_guia.text="Presiona click izquierdo en el lugar a mover el Neutrófilo";			
 			}
 			if (index_guia == 2) 
-				text_guia.text="Preciona click derecho sobre el Neutrófilo para ver su primera habilidad";
+				text_guia.text="Presiona click derecho sobre el Neutrófilo para ver su primera habilidad";
 			if (index_guia == 3) 
-				text_guia.text="Activa con click izquierdo la habilidad de degranulación";
+				text_guia.text="Activa con click izquierdo la habilidad";
 			if (index_guia == 4){
 			
 				text_guia.text="Ahora activa la habilidad de trampa extracelular";

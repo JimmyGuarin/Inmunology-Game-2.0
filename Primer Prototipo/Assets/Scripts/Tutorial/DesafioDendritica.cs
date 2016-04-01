@@ -85,7 +85,7 @@ public class DesafioDendritica : MonoBehaviour {
 		
 
 			if (index_guia == 1) 
-				text_guia.text="Preciona click izquierdo en el lugar a mover la célula dendrítica";
+				text_guia.text="Presiona click izquierdo en el lugar a mover la célula dendrítica";
 			if (index_guia == 2) {
 				
 				text_guia.text="Intenta atrapar el virus moviento las células dendríticas";
@@ -93,7 +93,7 @@ public class DesafioDendritica : MonoBehaviour {
 
 			}
 			if (index_guia == 3) 
-				text_guia.text="Preciona click derecho sobre la célula dendrítica que atrapó el virus para alertar el vaso sanguineo";
+				text_guia.text="Presiona click derecho sobre la célula dendrítica que atrapó el virus para alertar el vaso sanguineo";
 
 			if (index_guia == 4) {
 

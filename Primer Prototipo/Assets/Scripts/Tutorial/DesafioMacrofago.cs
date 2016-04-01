@@ -57,8 +57,8 @@ public class DesafioMacrofago : MonoBehaviour {
 		NotificationCenter.DefaultCenter ().AddObserver (this, "TerminarTutorial");
 
 		texto_Desafio.text += " "+PlayerPrefs.GetString ("name") + ", " +
-			"tienes 90 segundos para comerte y capturar  la mayor cantidad de patógenos, " +
-			"como mínimo debes fagocitar 3 virus y capturar 3. ";
+			"tienes 100 segundos para comerte y capturar  la mayor cantidad de bichos, " +
+				"como mínimo debes fagocitar 3 bichos y capturar 3 en forma de célula dendrítica. ";
 		
 		flecha_macrofago.SetActive(true);
 		boton_macrofago.GetComponent<Button>().interactable=true;
@@ -111,7 +111,7 @@ public class DesafioMacrofago : MonoBehaviour {
 			break;
 			
 		case 5:
-			InnataTutorial.estado=3;
+			InnataTutorial.estado=1;
 			Destroy(GameObject.Find("Canvas"));
 			Destroy(GameObject.Find("Creador"));
 			Application.LoadLevel(5);
@@ -120,10 +120,11 @@ public class DesafioMacrofago : MonoBehaviour {
 		case 6:
 			Destroy(GameObject.Find("Canvas"));
 			Destroy(GameObject.Find("Creador"));
-			Application.LoadLevel(7);	
+			Application.LoadLevel(8);	
 			break;
 			
 		case 7:
+			ControladorMenu.in_tutorial=true;
 			Destroy(GameObject.Find("Canvas"));
 			Destroy(GameObject.Find("Creador"));
 			Application.LoadLevel(0);	
@@ -157,7 +158,7 @@ public class DesafioMacrofago : MonoBehaviour {
 	{	
 		if (flecha_macrofago.activeSelf == true) {
 			flecha_macrofago.SetActive (false);
-			text_guia.text="Preciona click izquierdo sobre el Macrófago para seleccionarlo";
+			text_guia.text="Presiona click izquierdo sobre el Macrófago para seleccionarlo";
 		}
 		if (index_guia == 1) {
 			
@@ -227,30 +228,30 @@ public class DesafioMacrofago : MonoBehaviour {
 			
 			if (index_guia == 1) {
 				
-				text_guia.text="Preciona click izquierdo en el lugar a mover el Macrófago";			
+				text_guia.text="Presiona click izquierdo en el lugar a mover el Macrófago";			
 			}
 			if (index_guia == 2) {
 				
-				text_guia.text="Captura el patógeno para que el Macrófago lo fagocite";
+				text_guia.text="Captura el bicho para que el Macrófago lo fagocite";
 				primer_virus.SetActive(true);
 			}
 
 			if (index_guia == 3) {
 				
-				info_macrofago.text="En este momento puedes ver como el Macrófago fagocita el patógeno mientras disminuye la vida de este";
-				text_guia.text="Espera a que el patógeno esté destruido";
+				info_macrofago.text="En este momento puedes ver como el Macrófago fagocita el bicho mientras disminuye la vida de este";
+				text_guia.text="Espera a que el bicho esté destruido";
 			}
 
 
 
 			if (index_guia == 4){
 				
-				text_guia.text="Preciona click derecho sobre el Macrófago para ver la habilidad especial";
-				info_macrofago.text="El Macrófago ha fagocitado al patógeno, que impresionante no ?";
+				text_guia.text="Presiona click derecho sobre el Macrófago para ver la habilidad especial";
+				info_macrofago.text="El Macrófago ha fagocitado al bicho, que impresionante no ?";
 			}
 			if (index_guia == 5){
 				
-				text_guia.text="Preciona click izquierdo para transformar el Macrófago a célula dendrítica";
+				text_guia.text="Presiona click izquierdo para transformar el Macrófago a célula dendrítica";
 				
 			} 
 

@@ -7,7 +7,7 @@ public class FuncionesNeutrofilo : MonoBehaviour {
 	public bool activar;
 	public GameObject net;
 	public string texto_descrip;
-
+	public GUISkin custom;
 	// Use this for initialization
 	void Start () {
 
@@ -44,6 +44,7 @@ public class FuncionesNeutrofilo : MonoBehaviour {
 	
 	
 	void OnGUI(){
+		GUI.skin = custom;
 
 		if (activar==true) {
 
@@ -52,8 +53,8 @@ public class FuncionesNeutrofilo : MonoBehaviour {
 
 			if(GetComponent<ParticleSystem>().enableEmission==false){
 
-				if(GUI.Button(new Rect(aux.x,aux.y,130,30), "Degranulacion")){
-					
+				if(GUI.Button(new Rect(aux.x,aux.y,135,30), "Degranulación")){
+				
 					liberarCaptura();
 					GetComponent<ParticleSystem>().enableEmission=true;
 					GetComponent<SphereCollider>().radius=1.6f;
@@ -65,7 +66,7 @@ public class FuncionesNeutrofilo : MonoBehaviour {
 
 			}
 			if(GetComponent<ManejarNeutrofilo>().desafio_neutrofilo==false){
-				if(GUI.Button(new Rect(aux.x,aux.y+30,130,30), "Trampa Extracelular")){
+				if(GUI.Button(new Rect(aux.x,aux.y+30,135,30), "Trampa Extracelular")){
 					
 					///instanciar trampa
 					Invoke("createNET",0.5f); 	

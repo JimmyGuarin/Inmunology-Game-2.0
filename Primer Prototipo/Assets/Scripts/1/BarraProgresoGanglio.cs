@@ -34,6 +34,12 @@ public class BarraProgresoGanglio : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		if (VasoGrande.activarLinfocitos == true) {
+
+			this.gameObject.SetActive(false);
+		}
+
 	
 		estadoBarra = this.gameObject.GetComponent<EstadoBarraGanglio> ();
 		NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaDendritica",4);
@@ -111,10 +117,17 @@ public class BarraProgresoGanglio : MonoBehaviour {
 			}
 		} else {
 
-			virus_mutacion=mutacion;	
-			Invoke ("liberar", 23f);
-			//Activar la animacion del ganglio.
-			animacion.enabled = true;
+			if(!VasoGrande.activarLinfocitos){
+				virus_mutacion=mutacion;	
+				Invoke ("liberar", 23f);
+				//Activar la animacion del ganglio.
+				animacion.enabled = true;
+			}
+			else{
+
+				this.gameObject.SetActive(false);
+			}
+
 		}
 
 

@@ -83,6 +83,7 @@ public class InteligenciaVirus : MonoBehaviour {
 					destino = buscarObjetivo (this.gameObject.transform.position); // Buscar otra celula para comer
 					if(destino1==destino){
 						Debug.Log ("Error");
+						ManejadorVirus.actualizarDefenza ();
 						destino = buscarObjetivo (this.gameObject.transform.position); // Buscar otra celula para comer
 					}
 

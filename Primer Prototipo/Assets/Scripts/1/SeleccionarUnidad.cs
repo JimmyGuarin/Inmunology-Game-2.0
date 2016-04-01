@@ -83,6 +83,10 @@ public class SeleccionarUnidad : MonoBehaviour {
 				mac.GetComponent<Macrofago>().speed=6;
 			}
 
+			if(tutorial==false&&Innata==false){
+
+				mac.GetComponent<FuncionesMacrofago>().dendritica.GetComponent<CrearUnidadInnata>().tutorial=false;
+			}
 
 		}
 	

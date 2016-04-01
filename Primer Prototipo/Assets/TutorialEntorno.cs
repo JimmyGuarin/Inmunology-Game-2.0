@@ -82,18 +82,18 @@ public class TutorialEntorno : MonoBehaviour {
 		estadoActual = 0;
 		contadorVirus=10;
 		Estados= new EstadoTutorial[4];
-		Estados [0] = new EstadoTutorial (flechaVaso, vaso,"VASO SANGUINEO" ,"Un vaso sanguíneo es una estructura hueca y tubular que " +
-			"conduce la sangre impulsada por la acción del corazón, que recogen la sangre de todos los rincones " +
-			"del cuerpo. ");
-		Estados [1] = new EstadoTutorial (flechaGanglio,ganglio," GANGLIO LINFÁTICO" ,"Los nódulos linfáticos o ganglios linfáticos son unas estructuras nodulares que forman parte del sistema linfático y " +
-			"forman agrupaciones en forma de racimos. Los nódulos linfáticos actúan como filtros de la linfa, al poseer una estructura interna de tejido conectivo fino, en forma de red, rellena de linfocitos " +
-			"que recogen y destruyen bacterias y virus, por lo que estos nódulos también forman parte del sistema inmunitario, ayudando al cuerpo a reconocer y combatir gérmenes, infecciones y otras sustancias extrañas.");
+		Estados [0] = new EstadoTutorial (flechaVaso, vaso,"VASO SANGUINEO" ,"El vaso sanguíneo es una estructura que transporta la sangre, llevando nutrientes, oxígeno y células sanguíneas, aquí estás viendo " +
+			"la vénula post-capilar, compuesta por la células endoteliales. Es por donde las células de tu sistema inmune atraviesan a la Matriz Extracelular.  ");
+		Estados [1] = new EstadoTutorial (flechaGanglio,ganglio," GANGLIO LINFÁTICO" ,"El Sistema linfático está compuesto por una red de vasos pequeños, llamados vasos linfáticos. Estos llegan a un sitio llamado Ganglio Linfático, " +
+			"en donde se encuentra muchas células del sistema inmune, las cuales conocerás en el camino.");
 
-		Estados [2] = new EstadoTutorial (flechaCelula, celula, "CÉLULAS", "Estas son las células que se encuentran en el epitelio respiratorio, producen nutrientes y ademas pueden ser destruidas por los virus atacantes  o por el contacto de los neutrófilos," +
-			"adicionalmente recuerda que son el objetivo fundamental del virus para reproducirse, evita que se infecten o se destruyan las menos posibles");
+		Estados [2] = new EstadoTutorial (flechaCelula, celula, "CÉLULAS", "Estas son las células que se encuentran formando los órganos de tu cuerpo, las cuales pueden ser destruidas por los virus atacantes."+ 
+			"Estas células producen nutrientes, que son esenciales en la economía de tu cuerpo y te servirán como recurso para obtener diferentes celulas. "+
+			"Adicionalmente recuerda que son el objetivo fundamental del virus para reproducirse, evita que te infecten o te destruyan las menos posibles.");
 
-		Estados [3] = new EstadoTutorial (flechaZAfectada, ZAfectada, "ZONA AFECTADA","¡SORPRESA! haz encontrado el lugar donde se rompió la matriz extracelular, de ahí llegarán los diferentes patógenos, no permitas que te invadan, destrúyelos con un CLICK.");
-		zoom = this.GetComponent<Zoom> ();	
+		Estados [3] = new EstadoTutorial (flechaZAfectada, ZAfectada, "ZONA AFECTADA","¡SORPRESA!    haz encontrado el lugar por donde ha entrado la enfermedad. "+
+		     "La enfermedad en este caso, es un virus, y este va tratar de apoderarse de tus células, no permitas que te invadan, destrúyelos con algunos CLICKs.");
+
 
 
 		NotificationCenter.DefaultCenter ().AddObserver (this, "celulaMuerta");

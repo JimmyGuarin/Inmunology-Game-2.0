@@ -53,7 +53,7 @@ public class CelulasVaso : MonoBehaviour {
 					
 
 				ControladorRecursos.puntaje+=300;
-	            if (tiempo_Oxigenar > 3)
+	            if (tiempo_Oxigenar > 6)
 	            {
 	                vaso.GetComponent<VasoGrande>().activarVaso(tiempo_Oxigenar--);
 	            }

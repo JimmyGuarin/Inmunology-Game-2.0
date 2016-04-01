@@ -167,6 +167,7 @@ public class ControladorRecursos : MonoBehaviour {
 		if (Application.loadedLevelName.Equals ("3")) {
 		
 			GameObject.Find("CanvasGanglio").transform.GetChild(2).gameObject.SetActive(true);
+
 		}
 			
 		if (Application.loadedLevelName.Equals ("2")) {
