@@ -39,7 +39,7 @@ public class LinfocitoB : MonoBehaviour {
 		ControladorRecursos.defensas++;
 		isSeleted = false;
 		// el primer destino es el Punto de Encuentro
-		destino = new Vector3(MoverPuntoEncuentro.posicion.x,MoverPuntoEncuentro.posicion.y,-5f); 
+		destino = new Vector3(MoverPuntoEncuentro.posicion.x+Random.Range(-3,3),MoverPuntoEncuentro.posicion.y+Random.Range(-3,3),-5f); 
 
 		// Metodos que va a observar 
 		NotificationCenter.DefaultCenter ().AddObserver (this, "cambiarPosCelula");
@@ -104,6 +104,7 @@ public class LinfocitoB : MonoBehaviour {
 
 				destino = new Vector3 (Fondo1.puntoDestino.x, Fondo1.puntoDestino.y, -5f);
 				isSeleted = false;
+			    transform.FindChild("seleccionada").gameObject.SetActive(false);
 				Fondo1.seleccionada=false;
 				
 

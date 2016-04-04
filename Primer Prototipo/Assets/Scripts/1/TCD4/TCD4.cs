@@ -78,6 +78,7 @@ public class TCD4 : MonoBehaviour {
 
 			destino = new Vector3 (Fondo1.puntoDestino.x, Fondo1.puntoDestino.y, -5f);
 			isSeleted = false;
+			transform.FindChild("seleccionada").gameObject.SetActive(false);
 			Fondo1.seleccionada=false;
 			
 			

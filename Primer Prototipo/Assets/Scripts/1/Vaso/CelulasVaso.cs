@@ -32,7 +32,7 @@ public class CelulasVaso : MonoBehaviour {
 				int hijos=MyTrigger.gameObject.transform.childCount;
 				int amenazas=hijos;
 
-				while(hijos>4){
+				while(hijos>5){
 					if(MyTrigger.gameObject.transform.FindChild("Bacteria(Clone)")!=null){
 						Destroy(MyTrigger.gameObject.transform.FindChild("Bacteria(Clone)").gameObject);
 					}
@@ -41,7 +41,7 @@ public class CelulasVaso : MonoBehaviour {
 					}
 					hijos--;
 				}
-				ManejadorVirus.numeroVirus-=(amenazas-4);
+				ManejadorVirus.numeroVirus-=(amenazas-5);
 				Debug.Log("Virus Muerto.. Virus:"+ManejadorVirus.numeroVirus);
 				MyTrigger.gameObject.GetComponent<ParticleSystem>().enableEmission = true;
 

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class DesafioLinfoB : MonoBehaviour {
@@ -18,13 +19,36 @@ public class DesafioLinfoB : MonoBehaviour {
 
 	public AdquiridaTutorial manejador;
 
+	void Start () {
+
+		NotificationCenter.DefaultCenter ().AddObserver (this, "celulaMuerta");
+			
+	}
+
+
 	public void EmpezarDesafio(){
 
 		manejador = GetComponent<AdquiridaTutorial> ();
 
-
-
-
+	}
+	void celulaMuerta(Notification notification)
+	{	
+			StartCoroutine(Wait());
+	
+	}
+	
+	
+	IEnumerator Wait(){
+		
+		yield return new WaitForSeconds(2);
+		manejador.panelPrincipal.SetActive (true);
+		manejador.panelPrincipal_victoria.SetActive (false);
+		manejador.panelPrincipal_ceulainfe.SetActive (true);
+		manejador.boton_personaje.GetComponent<Button>().interactable=false;
+		manejador.text_guia.transform.parent.gameObject.SetActive(false);
+		manejador.panelInfo.SetActive (false);
+		manejador.flecha_boton.SetActive (false);
+		Time.timeScale = 0;
 	}
 
 

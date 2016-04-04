@@ -46,7 +46,6 @@ public class CrearUnidadInnata : MonoBehaviour {
 		enColision = false;
 		isSeleted = false;
 		animator = GetComponent<Animator> ();
-		speed = 7f;
 		destino = this.transform.position;
 		//PatronObserver:
 		// Metodos que va a observar 
@@ -108,6 +107,7 @@ public class CrearUnidadInnata : MonoBehaviour {
 			//animator.SetInteger("vaso",0);
 			destino = new Vector3 (Fondo1.puntoDestino.x, Fondo1.puntoDestino.y, -5f);
 			isSeleted = false;
+			transform.FindChild("seleccionada").gameObject.SetActive(false);
 			Fondo1.seleccionada=false;
 
 			if(desafio_dendritica==true)
@@ -129,7 +129,7 @@ public class CrearUnidadInnata : MonoBehaviour {
 			GetComponent<FuncionesDendritica>().enabled=true;
 			Vector3 nuevaPos=(Vector3)notificacion.data;
 			animator.SetInteger("vaso",1);
-			speed=3f;
+			speed=4f;
 			Invoke("nada",1.8f);
 			this.transform.position=new Vector3(nuevaPos.x,nuevaPos.y,-7f);
 
@@ -198,7 +198,7 @@ public class CrearUnidadInnata : MonoBehaviour {
 		    MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)"))
 		{
 				if (llevarBase == false) {
-					speed = 3f;
+					speed = 4f;
 					enColision = true;
 					NotificationCenter.DefaultCenter().PostNotification(this,"MacrofagoTutorial",false);
 					NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaDendritica",3);
@@ -210,7 +210,7 @@ public class CrearUnidadInnata : MonoBehaviour {
 
 		if (MyTrigger.gameObject.name.Equals ("LinfoncitoTCD4(Clone)")) {
 
-			speed=6;
+			speed=11;
 			animator.SetBool("mejorada",true);
 
 		}

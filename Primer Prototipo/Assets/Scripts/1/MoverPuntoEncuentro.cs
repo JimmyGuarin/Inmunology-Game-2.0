@@ -22,6 +22,7 @@ public class MoverPuntoEncuentro : MonoBehaviour {
 
 		NotificationCenter.DefaultCenter ().AddObserver (this, "cambiarPosCelula");
 		transform.position = new Vector3 (0, 0, -1);
+		posicion = new Vector2 (0, 0);
 		isSeleted = false;
 
 				
@@ -34,6 +35,7 @@ public class MoverPuntoEncuentro : MonoBehaviour {
 			transform.position=new Vector3 (Fondo1.puntoDestino.x, Fondo1.puntoDestino.y, -1f);
 			posicion=transform.position;
 			isSeleted=false;
+			transform.FindChild("seleccionada").gameObject.SetActive(false);
 			Fondo1.seleccionada=false;
 		}
 

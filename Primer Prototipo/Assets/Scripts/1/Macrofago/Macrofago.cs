@@ -40,8 +40,8 @@ public class Macrofago : MonoBehaviour {
 		enColision = false;
 		isSeleted = false;
 		animator = GetComponent<Animator> ();
-		speed = 3f;
-		destino = new Vector3(MoverPuntoEncuentro.posicion.x,MoverPuntoEncuentro.posicion.y,-5f); // el primer destino es el Punto de Encuentro
+		speed = 6f;
+		destino = new Vector3(MoverPuntoEncuentro.posicion.x+Random.Range(-3,3),MoverPuntoEncuentro.posicion.y+Random.Range(-3,3),-5f); // el primer destino es el Punto de Encuentro
 		//PatronObserver:
 		// Metodos que va a observar 
 		NotificationCenter.DefaultCenter ().AddObserver (this, "cambiarPosCelula");
@@ -90,7 +90,7 @@ public class Macrofago : MonoBehaviour {
 					NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaMacrofago",4);
 
 				NotificationCenter.DefaultCenter().PostNotification(this,"TCD4Tutorial",1);
-				speed=3f;
+				speed=6f;
 				animator.enabled=false;
 			}
 		}
@@ -161,6 +161,7 @@ public class Macrofago : MonoBehaviour {
 
 			destino = new Vector3 (Fondo1.puntoDestino.x, Fondo1.puntoDestino.y, -5f);
 			isSeleted = false;
+			transform.FindChild("seleccionada").gameObject.SetActive(false);
 			Fondo1.seleccionada=false;
 			if(desafio_macrofago)
 				NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaMacrofago",2);

@@ -50,6 +50,9 @@ public class TutorialEntorno : MonoBehaviour {
 	public GameObject flechaCelula;
 	public GameObject flechaZAfectada;
 
+	//Textos ayudando flechas de Objetos
+	public GameObject textoVaso;
+	
 	//ObjetosInteractivos
 	public GameObject vaso;
 	public GameObject ganglio;
@@ -126,6 +129,7 @@ public class TutorialEntorno : MonoBehaviour {
 					zoom.enfocar(vaso.transform,-4,3,70);
 					panel_matriz.SetActive(false);
 					flechaVaso.SetActive(false);
+					textoVaso.SetActive(false);
 					zoom_sound.Play();
 					estadoActual++;
 
@@ -207,10 +211,9 @@ public class TutorialEntorno : MonoBehaviour {
 
 			case 4:
 				panelPrincipal_1.SetActive(false);
-				panelPrincipal_11.SetActive(true);
 				panelPrincipal_12.SetActive(false);
 				panel_matriz.SetActive(true);
-				Invoke("empezarVisualizar",5f);
+				Invoke("empezarVisualizar",2f);
 				break;
 			//llamado por panel zoom
 			case 5:
@@ -251,6 +254,7 @@ public class TutorialEntorno : MonoBehaviour {
 	public void empezarVisualizar(){
 
 		flechaVaso.SetActive (true);
+		textoVaso.SetActive(true);
 		vaso.GetComponent<Collider> ().enabled = true;
 	}
 

@@ -171,6 +171,7 @@ public class ManejarCelula : MonoBehaviour {
                             audio1.Stop();
                             destruida.Play();
                             DefenzaFuera(c);
+							NotificationCenter.DefaultCenter().PostNotification(this,"celulaAsesinada");
                             Destroy(this.gameObject);
                         }
                         

@@ -1,8 +1,13 @@
 fileFormatVersion: 2
 guid: 6a8dba33effe8ca45aa9296d2cdffb73
+timeCreated: 1459666979
+licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - cursorImage: {fileID: 2800000, guid: 48329e550f588294abb1f2b3095ab80d, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -27,7 +27,7 @@ public class ManejarNeutrofilo : MonoBehaviour {
 		llevarBase = false;
 		ControladorRecursos.defensas++;
 		isSeleted = false;
-		subir = new Vector3(MoverPuntoEncuentro.posicion.x,MoverPuntoEncuentro.posicion.y,-5f);
+		subir = new Vector3(MoverPuntoEncuentro.posicion.x+Random.Range(-3,3),MoverPuntoEncuentro.posicion.y+Random.Range(-3,3),-5f);
 
 		NotificationCenter.DefaultCenter ().AddObserver (this, "cambiarPosCelula");
 		NotificationCenter.DefaultCenter ().AddObserver (this, "llevarABase");
@@ -133,6 +133,7 @@ public class ManejarNeutrofilo : MonoBehaviour {
 
 			subir = new Vector3 (Fondo1.puntoDestino.x, Fondo1.puntoDestino.y, -5f);
 			isSeleted = false;
+			transform.FindChild("seleccionada").gameObject.SetActive(false);
 			Fondo1.seleccionada=false;
 
 			if(desafio_neutrofilo==true)

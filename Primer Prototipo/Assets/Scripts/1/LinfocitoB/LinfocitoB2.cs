@@ -30,7 +30,6 @@ public class LinfocitoB2 : MonoBehaviour {
 			InvokeRepeating ("disparar", 1.0f, 1.5f);
 		isSeleted = false;
 		destino = this.transform.position;
-		speed=6f;
 		NotificationCenter.DefaultCenter ().AddObserver (this, "cambiarPosCelula");
 		
 		NotificationCenter.DefaultCenter().PostNotification(this,"TCD4Tutorial",3);
@@ -81,6 +80,7 @@ public class LinfocitoB2 : MonoBehaviour {
 			llegoVaso=false;
 			destino = new Vector3 (Fondo1.puntoDestino.x, Fondo1.puntoDestino.y, -5f);
 			isSeleted = false;
+			transform.FindChild("seleccionada").gameObject.SetActive(false);
 			Fondo1.seleccionada=false;
 			
 			

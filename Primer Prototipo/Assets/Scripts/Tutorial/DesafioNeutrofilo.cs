@@ -11,6 +11,7 @@ public class DesafioNeutrofilo : MonoBehaviour {
 	public GameObject panelPrincipal_13;
 	public GameObject panelPrincipal_14;
 	public GameObject panelPrincipal_15;
+	public GameObject panelPrincipal_16;
 
 	public GameObject panelInfoNeutrofilo;
 	public Text info_neutrofilo;
@@ -32,6 +33,7 @@ public class DesafioNeutrofilo : MonoBehaviour {
 		tiempo = 90;
 		index_guia = 1;
 		NotificationCenter.DefaultCenter ().AddObserver (this, "celulaMuerta");
+		NotificationCenter.DefaultCenter ().AddObserver (this, "celulaAsesinada");
 		NotificationCenter.DefaultCenter ().AddObserver (this, "crearNeutrofilo");
 		NotificationCenter.DefaultCenter ().AddObserver (this, "TerminarTutorial");
 		NotificationCenter.DefaultCenter ().AddObserver (this, "CambiarGuiaNeutrofilo");
@@ -125,8 +127,22 @@ public class DesafioNeutrofilo : MonoBehaviour {
 		Time.timeScale = 0;
 	}
 
+	void celulaAsesinada(Notification notification)
+	{	
+		
+		StartCoroutine(Wait2());
+		
+	}
 
-
+	IEnumerator Wait2(){
+		
+		yield return new WaitForSeconds(2);
+		panelPrincipal_14.SetActive (false);
+		panelPrincipal_16.SetActive (true);
+		panelPrincipal_1.SetActive (true);
+		text_guia.transform.parent.gameObject.SetActive(false);
+		Time.timeScale = 0;
+	}
 
 
 	void crearNeutrofilo(Notification notification)
