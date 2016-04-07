@@ -69,7 +69,7 @@ public class SeleccionarUnidad : MonoBehaviour {
 			me.salir=true;
             inhabilitarButton(macrofago_imagen);
 			if(tutorial){
-				mac.GetComponent<Macrofago>().daño=1f;
+				mac.GetComponent<Macrofago>().daño=1.5f;
 				mac.GetComponent<Macrofago>().speed=9;
 				mac.GetComponent<Animator>().enabled=true;
 				mac.GetComponent<Macrofago>().desafio_macrofago=true;
@@ -106,7 +106,7 @@ public class SeleccionarUnidad : MonoBehaviour {
             inhabilitarButton(neutro_imagen);
 
 			if(tutorial){
-				neutrofilo.GetComponent<ManejarNeutrofilo>().daño_a_virus=7.0f;
+				neutrofilo.GetComponent<ManejarNeutrofilo>().daño_a_virus=10.0f;
 				neutrofilo.GetComponent<ManejarNeutrofilo>().life=600;
 				neutrofilo.GetComponent<ManejarNeutrofilo>().desafio_neutrofilo=true;
 				neutrofilo.GetComponent<ManejarNeutrofilo>().speed=10;

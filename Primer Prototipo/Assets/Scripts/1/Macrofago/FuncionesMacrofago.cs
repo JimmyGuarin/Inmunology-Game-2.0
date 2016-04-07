@@ -53,6 +53,7 @@ public class FuncionesMacrofago : MonoBehaviour {
 
 				liberarCaptura();
 				NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaMacrofago",6);
+				Fondo1.seleccionada=false;
 				Instantiate(dendritica,this.transform.position,dendritica.transform.rotation);
 				Destroy(this.gameObject);
 				

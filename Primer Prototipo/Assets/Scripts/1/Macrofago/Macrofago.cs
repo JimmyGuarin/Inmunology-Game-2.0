@@ -68,8 +68,11 @@ public class Macrofago : MonoBehaviour {
 				ManejadorVirus.numeroVirus-=(transform.childCount-3);
 
 
-			if(isSeleted==true)
+			if(isSeleted==true){
 				Fondo1.seleccionada=false;
+				Cursor.visible=true;
+			}
+				
 			ControladorRecursos.defensas--;
 			Destroy(this.gameObject);
 			

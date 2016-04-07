@@ -47,6 +47,9 @@ public class Fondo1 : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if (seleccionada == false && Cursor.visible == false)
+			Cursor.visible = true;
+
 		//Si el click es el clik derecho(0)
 		if (Input.GetMouseButtonDown (0)) {
 
@@ -79,10 +82,11 @@ public class Fondo1 : MonoBehaviour {
 				if(seleccionada==true){
 
 					NotificationCenter.DefaultCenter().PostNotification(this,"cambiarPosCelula");
-					Cursor.visible=true;
+					Cursor.visible=false;
 				}
 				else{
 					GameObject objeto_seleccionado=hit.collider.gameObject;;
+
 
 					if(hit.collider.name.Equals("Dentrica(Clone)")){
 

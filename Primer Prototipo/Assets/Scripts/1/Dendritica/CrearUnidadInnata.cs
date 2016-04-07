@@ -129,7 +129,7 @@ public class CrearUnidadInnata : MonoBehaviour {
 			GetComponent<FuncionesDendritica>().enabled=true;
 			Vector3 nuevaPos=(Vector3)notificacion.data;
 			animator.SetInteger("vaso",1);
-			speed=4f;
+			speed=6f;
 			Invoke("nada",1.8f);
 			this.transform.position=new Vector3(nuevaPos.x,nuevaPos.y,-7f);
 
@@ -148,8 +148,11 @@ public class CrearUnidadInnata : MonoBehaviour {
 			if(tutorial_adquirida)
 				destino=new Vector3(47.8f ,-22.2f  ,-10f  );
 
-			if(isSeleted==true)
+			if(isSeleted==true){
 				Fondo1.seleccionada=false;
+				transform.FindChild("seleccionada").gameObject.SetActive(false);
+			}
+				
 			isSeleted=false;
 			NotificationCenter.DefaultCenter().PostNotification(this,"atrapado",destino);
 			
@@ -198,7 +201,7 @@ public class CrearUnidadInnata : MonoBehaviour {
 		    MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)"))
 		{
 				if (llevarBase == false) {
-					speed = 4f;
+					speed = 6f;
 					enColision = true;
 					NotificationCenter.DefaultCenter().PostNotification(this,"MacrofagoTutorial",false);
 					NotificationCenter.DefaultCenter().PostNotification(this,"CambiarGuiaDendritica",3);
@@ -232,7 +235,7 @@ public class CrearUnidadInnata : MonoBehaviour {
 			if (llevarBase == false) {
 			
 				enColision = true;
-				speed=4f;
+				speed=6f;
 			}
 			else{
 

@@ -176,7 +176,7 @@ public class DesafioNeutrofilo : MonoBehaviour {
 		if (tiempo == 0) {
 		
 			tiempo_text.gameObject.SetActive(false);
-			text_guia.text= PlayerPrefs.GetString("name")+" Esperemos que tu defenza funcione.";
+			text_guia.text= PlayerPrefs.GetString("name")+" Esperemos que tu defensa funcione.";
 			text_guia.transform.parent.gameObject.SetActive(true);
 			boton_neutrofilo.SetActive(false);
 			GameObject.Find("ManejadorVirus").GetComponent<ManejadorVirus>().enabled=true;
@@ -223,15 +223,15 @@ public class DesafioNeutrofilo : MonoBehaviour {
 				text_guia.text="Activa con click izquierdo la habilidad";
 			if (index_guia == 4){
 			
-				text_guia.text="Ahora activa la habilidad de trampa extracelular";
+				text_guia.text="Ahora presiona click derecho sobre el Neutrófilo para ver la habilidad de trampa extracelular";
 				info_neutrofilo.text="En este estado neutrófilos emiten granulocitos que atacan directamente al virus, " +
 					"recuerda que estas partículas también dañan tus células.";
 			}
 			if (index_guia == 5){
 				
-				info_neutrofilo.text="En este estado el neutrófilo se suicida formando una red o malla " +
+				info_neutrofilo.text="En este estado el neutrófilo se suicida formando una red o malla llamada trampa extracelular " +
 					"que captura el virus y disminuye la vida del mismo, pero ten cuidado pues al realizarlo perderás tu " +
-						"neutrófilo y le net desaparecerá con el paso del tiempo. ";
+						"neutrófilo y la trampa extracelular desaparecerá con el paso del tiempo. ";
 				text_guia.text="Es hora de empezar el desafío";
 				comenzarDesafio.SetActive(true);
 

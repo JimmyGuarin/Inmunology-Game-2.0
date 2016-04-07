@@ -46,6 +46,7 @@ public class DesafioMacrofago : MonoBehaviour {
 	public Text texto_Desafio;
 
 
+	private bool enCombate;
 
 	// Use this for initialization
 	void Start () {
@@ -99,8 +100,9 @@ public class DesafioMacrofago : MonoBehaviour {
 			boton_macrofago.GetComponent<Button>().interactable=true;
 			textos.gameObject.SetActive(true);
 			GameObject.Find("ManejadorVirus").GetComponent<ManejadorVirus>().enabled=true;
+			enCombate=true;
 			InvokeRepeating("ManejarTiempo",1f,1f);
-			text_guia.text="Preciona click izquierdo para desplegar los Macrófagos";
+			text_guia.text="Presiona click izquierdo para desplegar los Macrófagos";
 			text_guia.transform.parent.gameObject.SetActive(true);
 			
 			text_guia.transform.parent.gameObject.GetComponent<RectTransform>().anchoredPosition=new Vector2(
@@ -144,6 +146,7 @@ public class DesafioMacrofago : MonoBehaviour {
 	IEnumerator Wait(){
 		
 		yield return new WaitForSeconds(2);
+		panelPrincipal_13.SetActive (false);
 		panelPrincipal_14.SetActive (false);
 		panelPrincipal_15.SetActive (true);
 		panelPrincipal_1.SetActive (true);
@@ -159,6 +162,8 @@ public class DesafioMacrofago : MonoBehaviour {
 		if (flecha_macrofago.activeSelf == true) {
 			flecha_macrofago.SetActive (false);
 			text_guia.text="Presiona click izquierdo sobre el Macrófago para seleccionarlo";
+			if(!enCombate)
+				GameObject.Find("Macrofago(Clone)").GetComponent<FuncionesMacrofago>().enabled=false;
 		}
 		if (index_guia == 1) {
 			
@@ -224,7 +229,15 @@ public class DesafioMacrofago : MonoBehaviour {
 	void CambiarGuiaMacrofago(Notification notification)
 	{	
 		if (index_guia == (int)notification.data) {
-			
+
+			if(index_guia<=3){
+
+				if(enCombate==false){
+
+					GameObject.Find("Macrofago(Clone)").GetComponent<FuncionesMacrofago>().enabled=false;
+				}
+			}
+
 			
 			if (index_guia == 1) {
 				
@@ -245,7 +258,8 @@ public class DesafioMacrofago : MonoBehaviour {
 
 
 			if (index_guia == 4){
-				
+
+				GameObject.Find("Macrofago(Clone)").GetComponent<FuncionesMacrofago>().enabled=true;
 				text_guia.text="Presiona click derecho sobre el Macrófago para ver la habilidad especial";
 				info_macrofago.text="El Macrófago ha fagocitado al bicho, que impresionante no ?";
 			}
@@ -257,7 +271,7 @@ public class DesafioMacrofago : MonoBehaviour {
 
 			if (index_guia == 6){
 				
-				info_macrofago.text="El Macrófago ahora es una célula dendrítica con la habilidad de CAPTURAR" +
+				info_macrofago.text="El Macrófago ahora es una célula dendrítica con la habilidad de CAPTURAR " +
 					"al patógeno y alertar al vaso sanguineo";
 				text_guia.text="Es hora de empezar el desafio "+PlayerPrefs.GetString("name");
 				comenzarDesafio.SetActive(true);

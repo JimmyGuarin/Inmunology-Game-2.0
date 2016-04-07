@@ -81,6 +81,7 @@ public class FuncionesNeutrofilo : MonoBehaviour {
 	
 	void createNET(){
 		liberarCaptura ();
+		Fondo1.seleccionada=false;
 		Instantiate(net,this.transform.position,net.transform.rotation);
 		if (this.GetComponent<ManejarNeutrofilo> ().daño_a_virus == 5.0f)
 			net.GetComponent<Net> ().tiempo = 30;

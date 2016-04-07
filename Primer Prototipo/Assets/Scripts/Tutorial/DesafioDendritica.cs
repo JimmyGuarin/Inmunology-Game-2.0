@@ -131,7 +131,7 @@ public class DesafioDendritica : MonoBehaviour {
 	void TerminarTutorial(Notification notification)
 	{	
 		QuitarSonidos ();
-		text_guia.transform.parent.gameObject.SetActive(true);
+		text_guia.transform.parent.gameObject.SetActive(false);
 		panel_volver.SetActive(true);
 		
 	}
