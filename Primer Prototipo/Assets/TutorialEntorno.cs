@@ -85,17 +85,17 @@ public class TutorialEntorno : MonoBehaviour {
 		estadoActual = 0;
 		contadorVirus=10;
 		Estados= new EstadoTutorial[4];
-		Estados [0] = new EstadoTutorial (flechaVaso, vaso,"VASO SANGUINEO" ,"El vaso sanguíneo es una estructura que transporta la sangre, llevando nutrientes, oxígeno y células sanguíneas, aquí estás viendo " +
+		Estados [0] = new EstadoTutorial (flechaVaso, vaso,"VASO SANGUÍNEO" ,"El vaso sanguíneo es una estructura que transporta la sangre, llevando nutrientes, oxígeno y células sanguíneas, aquí estás viendo " +
 			"la vénula post-capilar, compuesta por la células endoteliales. Es por donde las células de tu sistema inmune atraviesan a la Matriz Extracelular.  ");
-		Estados [1] = new EstadoTutorial (flechaGanglio,ganglio," GANGLIO LINFÁTICO" ,"El Sistema linfático está compuesto por una red de vasos pequeños, llamados vasos linfáticos. Estos llegan a un sitio llamado Ganglio Linfático, " +
+		Estados [1] = new EstadoTutorial (flechaGanglio,ganglio," GANGLIO LINFÁTICO" ,"El Sistema Linfático está compuesto por una red de vasos pequeños, llamados vasos linfáticos. Estos llegan a un sitio llamado Ganglio Linfático, " +
 			"en donde se encuentra muchas células del sistema inmune, las cuales conocerás en el camino.");
 
 		Estados [2] = new EstadoTutorial (flechaCelula, celula, "CÉLULAS", "Estas son las células que se encuentran formando los órganos de tu cuerpo, las cuales pueden ser destruidas por los virus atacantes."+ 
-			"Estas células producen nutrientes, que son esenciales en la economía de tu cuerpo y te servirán como recurso para obtener diferentes celulas. "+
+		                                  "Estas células producen nutrientes, que son esenciales en la economía de tu cuerpo y te servirán como recurso para obtener diferentes células. "+
 			"Adicionalmente recuerda que son el objetivo fundamental del virus para reproducirse, evita que te infecten o te destruyan las menos posibles.");
 
-		Estados [3] = new EstadoTutorial (flechaZAfectada, ZAfectada, "ZONA AFECTADA","¡SORPRESA!    haz encontrado el lugar por donde ha entrado la enfermedad. "+
-		     "La enfermedad en este caso, es un virus, y este va tratar de apoderarse de tus células, no permitas que te invadan, destrúyelos con algunos CLICKs.");
+		Estados [3] = new EstadoTutorial (flechaZAfectada, ZAfectada, "ZONA AFECTADA","¡SORPRESA!    haz encontrado el lugar por donde ha entrado el patógeno, "+
+		     "en este caso es un virus,  este va tratar de apoderarse de tus células, no permitas que te invadan, destrúyelos con algunos CLICKs.");
 
 
 

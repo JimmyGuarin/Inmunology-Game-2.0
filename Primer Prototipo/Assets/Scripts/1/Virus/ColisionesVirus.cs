@@ -23,14 +23,32 @@ public class ColisionesVirus : MonoBehaviour {
 		
 		if(colision.collider.name.Equals("balaLifoncitoB(Clone)"))
 		{
-			this.gameObject.GetComponent<InteligenciaVirus> ().vida-=200;
-			colision.gameObject.GetComponent<Rigidbody>().isKinematic=true;
-			colision.gameObject.GetComponent<Collider>().enabled=false;
-			colision.gameObject.GetComponent<Bala>().CancelInvoke();
-			colision.gameObject.GetComponent<Bala>().enabled=false;
-			colision.gameObject.transform.parent=this.transform;
-			GetComponentInChildren<BarraVida>().modificarSprite();
-			
+			Debug.Log(mutacion+" mutacion");
+			if(ManejadorVirus.mutando){
+
+				if(BarraProgresoGanglio.Mutaciones!=null&&BarraProgresoGanglio.Mutaciones[mutacion].enabled==true){
+
+					this.gameObject.GetComponent<InteligenciaVirus> ().vida-=200;
+					colision.gameObject.GetComponent<Rigidbody>().isKinematic=true;
+					colision.gameObject.GetComponent<Collider>().enabled=false;
+					colision.gameObject.GetComponent<Bala>().CancelInvoke();
+					colision.gameObject.GetComponent<Bala>().enabled=false;
+					colision.gameObject.transform.parent=this.transform;
+					GetComponentInChildren<BarraVida>().modificarSprite();
+				}
+
+			}
+			else{
+
+				this.gameObject.GetComponent<InteligenciaVirus> ().vida-=200;
+				colision.gameObject.GetComponent<Rigidbody>().isKinematic=true;
+				colision.gameObject.GetComponent<Collider>().enabled=false;
+				colision.gameObject.GetComponent<Bala>().CancelInvoke();
+				colision.gameObject.GetComponent<Bala>().enabled=false;
+				colision.gameObject.transform.parent=this.transform;
+				GetComponentInChildren<BarraVida>().modificarSprite();
+			}
+
 		}
 		
 		

@@ -32,7 +32,7 @@ public class SeleccionarUnidad : MonoBehaviour {
 		
 			time_neutrofilo=0.01f;
 		}
-		DontDestroyOnLoad(transform.gameObject);
+
 	}
 	
 	// Update is called once per frame
@@ -115,7 +115,7 @@ public class SeleccionarUnidad : MonoBehaviour {
 			if(Innata){
 				neutrofilo.GetComponent<ManejarNeutrofilo>().daño_a_virus=5.0f;
 				neutrofilo.GetComponent<ManejarNeutrofilo>().life=600;
-				neutrofilo.GetComponent<ManejarNeutrofilo>().speed=6;
+				neutrofilo.GetComponent<ManejarNeutrofilo>().speed=8;
 			}
 				
 

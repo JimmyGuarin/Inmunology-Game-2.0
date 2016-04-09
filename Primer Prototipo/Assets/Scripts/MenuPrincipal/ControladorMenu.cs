@@ -70,29 +70,14 @@ public class ControladorMenu : MonoBehaviour {
 	}
 
 
-	public void jugar(){
+	public void jugar(string name_level){
 
 	
 		imagen_carga.SetActive (true);
-		StartCoroutine (LoadLevelslider());
-
-
-	}
-
-
-
-	IEnumerator LoadLevelslider(){
-
-		asyng = Application.LoadLevelAsync ("1");
-
-		while (!asyng.isDone) {
-			slider_carga.value=asyng.progress;
-			yield return null;
-			
-		}
-
+		Application.LoadLevelAsync (name_level);
 
 	}
+	
 
 
 

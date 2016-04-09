@@ -57,7 +57,7 @@ public class TutorialTCD4 : MonoBehaviour {
 
 		if (index_receiver == 2) {
 			
-			manejador.info_macrofago.text="El linfoncito TCD4 ayuda al Linfocito B convirtiéndolo en una celula plasmática,la cual es una célula profesional que solo produce anticuerpos. ";
+			manejador.info_macrofago.text="El linfoncito TCD4 ayuda al Linfocito B convirtiéndolo en una célula plasmática,la cual es una célula profesional que solo produce anticuerpos. ";
 			manejador.text_guia.text="Presiona click derecho sobre el Linfocito TCD4 para activar la habilidad de ayudar al Linfocito B.";
 			linfocitoB.SetActive(true);
 			
@@ -66,7 +66,7 @@ public class TutorialTCD4 : MonoBehaviour {
 		if (index_receiver == 3) {
 			
 			manejador.panelInfo.SetActive(false);
-			manejador.text_guia.text=PlayerPrefs.GetString("name")+" Defiendete de los patogenos ";
+			manejador.text_guia.text=PlayerPrefs.GetString("name")+" Defiendete de los patogenos con esas tres células solamente";
 			manejador.text_guia.transform.parent.gameObject.GetComponent<RectTransform>().anchoredPosition=new Vector2(
 				manejador.text_guia.transform.parent.gameObject.GetComponent<RectTransform>().anchoredPosition.x,
 				manejador.text_guia.transform.parent.gameObject.GetComponent<RectTransform>().anchoredPosition.y+80);

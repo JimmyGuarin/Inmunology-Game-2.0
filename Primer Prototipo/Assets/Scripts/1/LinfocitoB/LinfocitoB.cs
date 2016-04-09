@@ -155,7 +155,8 @@ public class LinfocitoB : MonoBehaviour {
 				Vector3 aux=this.gameObject.transform.position;
 				destino=aux;
 				Eventos.explosion(aux);
-				
+				if(isSeleted==true)
+					Fondo1.seleccionada=false;
 				StartCoroutine(Wait(2,fase2,aux));
 			}		
 		}

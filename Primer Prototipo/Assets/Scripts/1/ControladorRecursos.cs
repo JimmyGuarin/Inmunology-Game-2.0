@@ -32,7 +32,7 @@ public class ControladorRecursos : MonoBehaviour {
 	public static ControladorInmuAdquirida cia;
 
 	void Awake() {
-		DontDestroyOnLoad(transform.gameObject);
+	
 	}
 
 
@@ -132,17 +132,7 @@ public class ControladorRecursos : MonoBehaviour {
 		Time.timeScale = 1;
 		 
 	}
-	public static void sinvasoEstimulado(){
 
-		mensajesalertas.text ="No posees Vasos Estimulados";
-		mostrarAlerta.alpha = 2;
-	}
-
-	public static void sinllevar(){
-		
-		mensajesalertas.text ="Lleva el Neutrofilo a un Vaso Estimulado";
-		mostrarAlerta.alpha = 2;
-	}
 	public static void invadido(){
 
 		gameOver = true;
@@ -158,19 +148,14 @@ public class ControladorRecursos : MonoBehaviour {
 	public static void ganar(){
 
 		cia.bloqueartodo ();
-		if (Application.loadedLevelName.Equals ("1")) {
+		//if (Application.loadedLevelName.Equals ("1")) {
 
-			GameObject.Find("CanvasGanglio").transform.GetChild(1).gameObject.SetActive(true);
+		//	GameObject.Find("CanvasGanglio").transform.GetChild(1).gameObject.SetActive(true);
 
-		}
+		//}
 			
-		if (Application.loadedLevelName.Equals ("3")) {
-		
-			GameObject.Find("CanvasGanglio").transform.GetChild(2).gameObject.SetActive(true);
 
-		}
-			
-		if (Application.loadedLevelName.Equals ("2")) {
+		//if (Application.loadedLevelName.Equals ("2")) {
 		
 			gameOver = true;
 			AudioListener.volume = 0;
@@ -180,7 +165,7 @@ public class ControladorRecursos : MonoBehaviour {
 			puntaje += 300;
 			mensajesPantalla.text="GANASTE. \n "+mensaje+puntaje;
 
-		}
+		//}
 	
 	}
 	public static void virusAnalizado(){

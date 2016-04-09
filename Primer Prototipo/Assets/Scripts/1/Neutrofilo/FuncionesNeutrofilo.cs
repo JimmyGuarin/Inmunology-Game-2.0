@@ -53,7 +53,7 @@ public class FuncionesNeutrofilo : MonoBehaviour {
 
 			if(GetComponent<ParticleSystem>().enableEmission==false){
 
-				if(GUI.Button(new Rect(aux.x,aux.y,135,30), "Degranulación")){
+				if(GUI.Button(new Rect(aux.x,aux.y,145,30), "Degranulación")){
 				
 					liberarCaptura();
 					GetComponent<ParticleSystem>().enableEmission=true;
@@ -66,7 +66,7 @@ public class FuncionesNeutrofilo : MonoBehaviour {
 
 			}
 			if(GetComponent<ManejarNeutrofilo>().desafio_neutrofilo==false){
-				if(GUI.Button(new Rect(aux.x,aux.y+30,135,30), "Trampa Extracelular")){
+				if(GUI.Button(new Rect(aux.x,aux.y+30,145,30), "Trampa Extracelular")){
 					
 					///instanciar trampa
 					Invoke("createNET",0.5f); 	
@@ -81,7 +81,8 @@ public class FuncionesNeutrofilo : MonoBehaviour {
 	
 	void createNET(){
 		liberarCaptura ();
-		Fondo1.seleccionada=false;
+		if(GetComponent<ManejarNeutrofilo>().isSeleted==true)
+			Fondo1.seleccionada=false;
 		Instantiate(net,this.transform.position,net.transform.rotation);
 		if (this.GetComponent<ManejarNeutrofilo> ().daño_a_virus == 5.0f)
 			net.GetComponent<Net> ().tiempo = 30;

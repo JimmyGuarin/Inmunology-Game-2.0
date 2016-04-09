@@ -60,7 +60,7 @@ public class BacteriaColis : MonoBehaviour {
 					MyTrigger.GetComponent<ParticleSystem> ().enableEmission == false&&
 				    MyTrigger.GetComponent<ManejarNeutrofilo>().mivirus==null) {
 				
-					transform.position = MyTrigger.gameObject.transform.position;
+					//transform.position = MyTrigger.gameObject.transform.position;
 					GetComponent<BacteriaColis> ().capturado = true;
 				}
 			}

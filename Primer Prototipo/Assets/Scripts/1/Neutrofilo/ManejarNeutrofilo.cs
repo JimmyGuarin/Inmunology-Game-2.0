@@ -19,6 +19,7 @@ public class ManejarNeutrofilo : MonoBehaviour {
 	//Neutrofilo de desafio neutrofilo 
 	public bool desafio_neutrofilo;
 
+	private Vector3 posicion_capturado;
 
 	// Use this for initialization
 	void Start () {
@@ -36,6 +37,10 @@ public class ManejarNeutrofilo : MonoBehaviour {
 
 		imagen = Resources.Load ("Neutrofilo4") as Texture2D;
 
+		if(Application.loadedLevelName.Equals ("2"))
+			posicion_capturado=new Vector3(-0.75f,0,0);
+		else 
+			posicion_capturado=new Vector3(0,0,1);
 
 	}
 	
@@ -45,7 +50,8 @@ public class ManejarNeutrofilo : MonoBehaviour {
 
 		if (mivirus != null) {
 		
-			mivirus.transform.localPosition=new Vector3(0,0,1);
+
+			mivirus.transform.localPosition=posicion_capturado;
 		
 		}
 
@@ -56,7 +62,7 @@ public class ManejarNeutrofilo : MonoBehaviour {
 				llevarBase=false;
 				enColision=false;
 				subir=this.transform.position;
-				speed=4f;
+				speed=8f;
 
 			}
 		}
@@ -176,7 +182,7 @@ public class ManejarNeutrofilo : MonoBehaviour {
 					mivirus=MyTrigger.gameObject;
 					mivirus.gameObject.name="capturado";
 					mivirus.transform.parent=this.transform;
-					mivirus.transform.localPosition=new Vector3(-0.75f,0,0);
+					mivirus.transform.localPosition=posicion_capturado;
 					mivirus.GetComponent<BacteriaMov>().speed=0;
 					mivirus.GetComponent<BacteriaMov>().CancelInvoke();
 					mivirus.GetComponent<BacteriaDisparar>().CancelInvoke();
@@ -228,7 +234,7 @@ public class ManejarNeutrofilo : MonoBehaviour {
 					llevarBase=false;
 					Debug.Log("elimina");
 					subir=transform.position;
-					speed=4f;
+					speed=8f;
 					esperando_ayudador=false;
 				if(mivirus.GetComponent<InteligenciaVirus>()!=null){
 					mivirus.GetComponent<InteligenciaVirus>().enabled=true;

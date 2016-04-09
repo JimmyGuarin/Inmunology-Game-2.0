@@ -20,6 +20,7 @@ public class ManejadorVirus : MonoBehaviour {
 	public static bool tutorialStatic;
 	void Start () {
 
+			
 			numeroVirus = 0;
 			tutorialStatic = tutorial;
 			Debug.Log (tutorialStatic);
@@ -28,8 +29,10 @@ public class ManejadorVirus : MonoBehaviour {
 			NotificationCenter.DefaultCenter ().AddObserver (this, "VirusDestruido");
 			analizado = false;
 			InvokeRepeating("invocar",tiempoSalidaPrimerVirus,tiempoSalidaVirus);
-			if(Application.loadedLevelName.Equals("3"))
-		   		mutando=true;
+			if (Application.loadedLevelName.Equals ("3"))
+				mutando = true;
+			else
+				mutando = false;
 	}
 
 	void invocar(){

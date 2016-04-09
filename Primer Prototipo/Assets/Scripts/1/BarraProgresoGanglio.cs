@@ -23,7 +23,7 @@ public class BarraProgresoGanglio : MonoBehaviour {
 	public Image Mutacion1;
 	public Image Mutacion2;
 	public Image Mutacion3;
-	public Image [] Mutaciones;
+	public static Image [] Mutaciones;
 	public int virus_mutacion;
 
 	void Awake(){
@@ -112,8 +112,10 @@ public class BarraProgresoGanglio : MonoBehaviour {
 				animacion.enabled = true;
 			
 			} else {
-			
-				Debug.Log("Estoy Ocupado");
+				if(Mutaciones[mutacion].enabled==true)
+					this.gameObject.SetActive(false);
+
+				Debug.Log("Estoy Ocupado "+Mutaciones[mutacion].enabled);
 			}
 		} else {
 
