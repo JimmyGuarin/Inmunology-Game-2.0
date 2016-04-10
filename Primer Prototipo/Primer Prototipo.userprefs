@@ -1,19 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\1\Virus\ManejadorVirus.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Tutorial\Amenazas\ManejadorTutorialAmenazas.cs">
     <Files>
-      <File FileName="Assets\Scripts\1\Virus\ManejadorVirus.cs" Line="23" Column="4" />
+      <File FileName="Assets\Scripts\Tutorial\Amenazas\ManejadorTutorialAmenazas.cs" Line="16" Column="22" />
+      <File FileName="Assets\Scripts\Tutorial\Amenazas\TAMovimientoVirus.cs" Line="38" Column="17" />
+      <File FileName="Assets\Scripts\Tutorial\Amenazas\TAmovimientoDefenzas.cs" Line="48" Column="48" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="C:\Users\LAURA TABARQUINO\Desktop\JIMMY\Repositorio TG\Inmunology-Game-2.0\Primer Prototipo\Assets\Scripts\2\Bacteria\BacteriaColis.cs" line="59" />
-      <Breakpoint file="D:\Jimmy Guarín\UNIVERSIDAD DEL QUINDÍO\Uniquindio 2015\Trabajo de Grado\Repositorio TG\Inmunology-Game-2.0\Primer Prototipo\Assets\Scripts\1\Neutrofilo\ManejarNeutrofilo.cs" line="180" />
-      <Breakpoint file="D:\Jimmy Guarín\UNIVERSIDAD DEL QUINDÍO\Uniquindio 2015\Trabajo de Grado\Repositorio TG\Inmunology-Game-2.0\Primer Prototipo\Assets\Scripts\1\Neutrofilo\ManejarNeutrofilo.cs" line="186" />
-      <Breakpoint file="D:\Jimmy Guarín\UNIVERSIDAD DEL QUINDÍO\Uniquindio 2015\Trabajo de Grado\Repositorio TG\Inmunology-Game-2.0\Primer Prototipo\Assets\Scripts\1\Neutrofilo\ManejarNeutrofilo.cs" line="220" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
-    <Watch file="Assets\Scripts\1\BarraProgresoGanglio.cs" line="96" offsetX="605" offsetY="1615" expression="progresoActual" liveUpdate="False" />
-  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

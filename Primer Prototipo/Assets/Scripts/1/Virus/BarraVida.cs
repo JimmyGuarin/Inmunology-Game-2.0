@@ -64,4 +64,13 @@ public class BarraVida : MonoBehaviour {
 		spriteRenderer.sprite = Asprite[nSprite]; 
 
 	}
+
+	public void modificarSpriteDesafioAmenaza(){
+
+		vidaVirus=GetComponentInParent<TAMovimientoVirus> ().vida;
+		nSprite = (int)vidaVirus/ 100;
+		if(nSprite>=0&&nSprite<=9)
+			spriteRenderer.sprite = Asprite[nSprite]; 
+
+	}
 } 

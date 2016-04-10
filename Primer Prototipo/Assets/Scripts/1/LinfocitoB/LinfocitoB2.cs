@@ -117,7 +117,6 @@ public class LinfocitoB2 : MonoBehaviour {
 		
 		Rigidbody clone=(Rigidbody) Instantiate (Bala,(this.transform.position+new Vector3(-3,0,0)),Bala.transform.rotation);
 		clone.velocity = transform.TransformDirection ((new Vector3(0,1,0))*20);
-		
 		Rigidbody clone1=(Rigidbody) Instantiate (Bala,(this.transform.position+new Vector3(-3,-1,0)),Bala.transform.rotation);
 		clone1.velocity = transform.TransformDirection ((new Vector3(-0.2f,1,0))*20);
 		Rigidbody clone2=(Rigidbody) Instantiate (Bala,(this.transform.position+new Vector3(-3,1,0)),Bala.transform.rotation);
