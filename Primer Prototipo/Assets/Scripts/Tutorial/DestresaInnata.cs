@@ -97,6 +97,7 @@ public class DestresaInnata : MonoBehaviour {
 		panelPrincipal_14.SetActive (false);
 		panelPrincipal_15.SetActive (true);
 		panelPrincipal_1.SetActive (true);
+		PlayerPrefs.SetString("Innata","0");
 		Time.timeScale = 0;
 	}
 

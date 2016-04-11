@@ -232,7 +232,11 @@ public class ManejarCelula : MonoBehaviour {
 
 			CancelInvoke();
 			if(ManejadorVirus.tutorialStatic==true){
-				Camera.main.GetComponent<DestresaInnata>().celulasMuertas();
+
+				if(Camera.main.GetComponent<DestresaInnata>()!=null)
+					Camera.main.GetComponent<DestresaInnata>().celulasMuertas();
+				else
+					Camera.main.GetComponent<DestresaAdquirida>().celulasMuertas();
 			}
 			else{
 				ControladorRecursos.invadido();

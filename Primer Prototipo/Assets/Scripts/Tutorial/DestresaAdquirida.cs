@@ -51,6 +51,7 @@ public class DestresaAdquirida : MonoBehaviour {
 		yield return new WaitForSeconds(2);
 		panel_derrota.SetActive (true);
 		panel_ppal.SetActive (true);
+		PlayerPrefs.SetString("Adquirida","0");
 		Time.timeScale = 0;
 	}
 	
@@ -78,7 +79,7 @@ public class DestresaAdquirida : MonoBehaviour {
 			PlayerPrefs.SetString("Adquirida","3");
 			
 		}
-		Adquirida.texture = Resources.Load (PlayerPrefs.GetString("Innata")) as Texture;
+		Adquirida.texture = Resources.Load (PlayerPrefs.GetString("Adquirida")) as Texture;
 		
 		
 	}

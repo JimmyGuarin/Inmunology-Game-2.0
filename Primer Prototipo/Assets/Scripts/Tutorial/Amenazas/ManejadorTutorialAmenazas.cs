@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ManejadorTutorialAmenazas : MonoBehaviour {
@@ -9,6 +10,8 @@ public class ManejadorTutorialAmenazas : MonoBehaviour {
 
 	public GameObject panel_ppal;
 	public GameObject panel_fin;
+	public RawImage estrellasAmenazas;
+
 
 	// Use this for initialization
 	void Start () {
@@ -26,12 +29,28 @@ public class ManejadorTutorialAmenazas : MonoBehaviour {
 		numero_virus--;
 
 		if (numero_virus == 0) {
-		
+
+			PlayerPrefs.SetString("Amenazas","0");
+			Camera.main.transform.FindChild("Audio Source").gameObject.SetActive(false);
+
+			switch(celulas_infectadas){
+
+			case 1:
+				PlayerPrefs.SetString("Amenazas","1");
+				break;
+			case 2:
+				PlayerPrefs.SetString("Amenazas","2");
+				break;
+			case 3:
+				PlayerPrefs.SetString("Amenazas","3");
+				break;
+
+			}
+			estrellasAmenazas.texture = Resources.Load (PlayerPrefs.GetString("Amenazas")) as Texture;
 
 			panel_ppal.SetActive(true);
 			panel_fin.SetActive(true);
 			Time.timeScale=0;
-
 
 		}
 		else{
@@ -42,8 +61,10 @@ public class ManejadorTutorialAmenazas : MonoBehaviour {
 
 	}
 
-	void crearVirus(){
 
+	public void crearVirus(){
+
+		Time.timeScale = 1;
 		Instantiate(viruss);
 	}
 
@@ -51,4 +72,20 @@ public class ManejadorTutorialAmenazas : MonoBehaviour {
 
 		Invoke ("DesplegarVirus", 2f);
 	}
+
+	public void CambioEscena(int num){
+	
+	
+		Time.timeScale = 1;
+		ControladorMenu.in_tutorial = true;
+		Application.LoadLevel (num);
+	
+	
+	}
+
+
+
+		
+
+
 }

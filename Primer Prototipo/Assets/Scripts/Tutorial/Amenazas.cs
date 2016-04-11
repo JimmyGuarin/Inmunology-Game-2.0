@@ -142,6 +142,8 @@ public class Amenazas: MonoBehaviour {
 			break;
 			
 		case 3:
+
+			Application.LoadLevel(16);
 			break;
 			
 		}

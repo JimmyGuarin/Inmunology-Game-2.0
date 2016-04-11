@@ -128,7 +128,14 @@ public class TAMovimientoVirus : MonoBehaviour {
 			atrapadas++;
 			MyTrigger.GetComponent<Collider>().enabled=false;
 			MyTrigger.GetComponent<SpriteRenderer>().sprite=celula_muerta; 
-			GameObject.Find("Canvas").GetComponent<ManejadorTutorialAmenazas>().DesplegarVirus();
+			GameObject.Find("Canvas").GetComponent<ManejadorTutorialAmenazas>().celulas_infectadas++;
+			if(GameObject.Find("Canvas").GetComponent<ManejadorTutorialAmenazas>().numero_virus==1){
+				
+				GameObject.Find("Canvas").GetComponent<ManejadorTutorialAmenazas>().Ultimo();
+				
+			}else{
+				GameObject.Find("Canvas").GetComponent<ManejadorTutorialAmenazas>().DesplegarVirus();
+			}
 			Destroy(this);
 
 
