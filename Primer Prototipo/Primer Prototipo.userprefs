@@ -1,11 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\1\Celula\ManejarCelula.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\1\ControladorRecursos.cs">
     <Files>
-      <File FileName="Assets\Scripts\MenuPrincipal\ControladorMenu.cs" Line="34" Column="5" />
-      <File FileName="Assets\Scripts\Tutorial\Amenazas.cs" Line="156" Column="1" />
-      <File FileName="Assets\Scripts\Tutorial\DestresaInnata.cs" Line="101" Column="22" />
-      <File FileName="Assets\Scripts\1\Celula\ManejarCelula.cs" Line="242" Column="36" />
+      <File FileName="Assets\Scripts\1\ControladorRecursos.cs" Line="212" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

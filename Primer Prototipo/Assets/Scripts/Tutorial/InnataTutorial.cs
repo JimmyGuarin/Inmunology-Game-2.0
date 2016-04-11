@@ -55,8 +55,10 @@ public class InnataTutorial : MonoBehaviour {
 	//Sonido al Hacer zoom
 	public AudioSource zoom_sound;
 
+	//Boton para empezar el desafio
 	public GameObject boton_empezar;
 
+	//Boton para mostrar o no el panel.
 	public static bool mostrarPanel;
 
 	// Use this for initialization
@@ -66,8 +68,8 @@ public class InnataTutorial : MonoBehaviour {
 		Estados= new EstadoTutorial[5];
 		Estados [0] = new EstadoTutorial (flechaDendritica,Dendritica,"Células dendríticas" ,"Las células dendríticas están presentes en los tejidos y patrullan constantemente tu cuerpo en busca de alguna enfermedad o daño");
 
-		Estados [1] = new EstadoTutorial (flechaNeutrofilo,Neutrofilo,"Neutrófilos" ,"Los neutrófilos hacen parte de los granulocitos debido a la presencia de gránulos en su citoplasma, o como células polimorfo nuclear (PMNs) debido a sus distintivos núcleos lobulados. \n\n"+
-		                                  "Los Neutrófilos son las células  más abundantes del sistema inmune, normalmente representan el 50 a 60% del total de leucocitos circulantes, y son usualmente las primeras células en llegar al sitio de una infección.\n\n"+
+		Estados [1] = new EstadoTutorial (flechaNeutrofilo,Neutrofilo,"Neutrófilos" ,"Los neutrófilos hacen parte de los granulocitos debido a la presencia de gránulos en su citoplasma. \n\n"+
+		                                  "Son las células  más abundantes del sistema inmune, normalmente representan el 50 a 60% del total de leucocitos circulantes.\n\n"+
 		                                  "Los gránulos del neutrófilo contienen una variedad de sustancias tóxicas que matan o inhiben el crecimiento de bacterias, hongos y virus.");
 
 		Estados [2] = new EstadoTutorial (flechaMacrofago,Macrofago,"Macrófagos","Los macrófagos son células cuya función  principal es la fagocitosis y la reparación. \n\n"+

@@ -16,17 +16,24 @@ public class DesafioNeutrofilo : MonoBehaviour {
 	public GameObject panelInfoNeutrofilo;
 	public Text info_neutrofilo;
 
-
+	//Flecha apuntando al boton neutrofilo
 	public GameObject flecha_neutrofilo;
+
+	//Texto del tiempo del desafio
 	public Text tiempo_text;
 	private int tiempo;
 
+	//Manejo de los Textos 
 	public Text text_guia;
 	public int index_guia;
 
-	public GameObject boton_neutrofilo;
 
+	//Empezar el desafio
+	public GameObject boton_neutrofilo;
 	public GameObject comenzarDesafio;
+
+	//El neutrofilo ya esta granulando ?
+	private bool granulando=false;
 	// Use this for initialization
 	void Start () {
 
@@ -208,10 +215,14 @@ public class DesafioNeutrofilo : MonoBehaviour {
 	void CambiarGuiaNeutrofilo(Notification notification)
 	{	
 
-
 		if(index_guia<=5){
-
 			index_guia = (int)notification.data;
+
+			if (granulando == true) {
+				
+				if(index_guia<=4)
+					index_guia = 4;
+			}
 
 			if (index_guia == 1) {
 				
@@ -223,6 +234,7 @@ public class DesafioNeutrofilo : MonoBehaviour {
 				text_guia.text="Activa con click izquierdo la habilidad";
 			if (index_guia == 4){
 			
+				granulando=true;
 				text_guia.text="Ahora presiona click derecho sobre el Neutrófilo para ver la habilidad de trampa extracelular";
 				info_neutrofilo.text="En este estado neutrófilos emiten granulocitos que atacan directamente al virus, " +
 					"recuerda que estas partículas también dañan tus células.";

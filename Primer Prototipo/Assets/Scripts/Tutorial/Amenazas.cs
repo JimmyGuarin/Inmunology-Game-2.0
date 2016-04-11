@@ -55,7 +55,7 @@ public class Amenazas: MonoBehaviour {
 		
 		Estados= new EstadoTutorial[3];
 		Estados [0] = new EstadoTutorial (flechavirus,virus, "Flu Virus", "El virus es un bicho que siempre utiliza las células de tu cuerpo para reproducirse.");
-		Estados [1] = new EstadoTutorial (flechamutante,mutante," Virus Mutante" ,"El virus mutante es un virus que tiene la capacidad de cambiar rápidamente y tu organismo se debe adaptar a los diferentes mutantes que generes, pues los anticuerpos y las células del sistema inmune adaptativo, deben adaptarse a cada nuevo mutante. ");
+		Estados [1] = new EstadoTutorial (flechamutante,mutante," Virus Mutante" ,"El virus mutante es un virus que tiene la capacidad de cambiar rápidamente y tu organismo se debe adaptar a los diferentes mutantes.\n\n "+ "Los anticuerpos y las células del sistema inmune adquirido deben adaptarse a cada nuevo mutante. Para esto debes presentar cada mutante al Ganglio Linfático. ");
 		Estados [2] = new EstadoTutorial (flechabacteria,bacteria,"Bacteria","La bacteria es un bicho que se replica por sí solo, y puede infectar tu cuerpo en grandes cantidades, liberando toxinas que dañan tus células.");
 		zoom = this.GetComponent<Zoom> ();	
 		

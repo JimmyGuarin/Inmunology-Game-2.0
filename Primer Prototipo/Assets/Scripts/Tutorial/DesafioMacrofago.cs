@@ -58,8 +58,7 @@ public class DesafioMacrofago : MonoBehaviour {
 		NotificationCenter.DefaultCenter ().AddObserver (this, "TerminarTutorial");
 
 		texto_Desafio.text += " "+PlayerPrefs.GetString ("name") + ", " +
-			"tienes 100 segundos para comerte y capturar  la mayor cantidad de bichos, " +
-				"como mínimo debes fagocitar 3 bichos y capturar 3 en forma de célula dendrítica. ";
+			"tienes 100 segundos para fagocitar 3 bichos en forma de Macrófago y capturar 3 en forma de Célula Dendrítica. ";
 		
 		flecha_macrofago.SetActive(true);
 		boton_macrofago.GetComponent<Button>().interactable=true;
@@ -162,6 +161,7 @@ public class DesafioMacrofago : MonoBehaviour {
 		if (flecha_macrofago.activeSelf == true) {
 			flecha_macrofago.SetActive (false);
 			text_guia.text="Presiona click izquierdo sobre el Macrófago para seleccionarlo";
+			info_macrofago.text="En este estado los macrófagos capturan los bichos  y los fagocitan (comen) lentamente hasta destruirlos por completo.";
 			if(!enCombate)
 				GameObject.Find("Macrofago(Clone)").GetComponent<FuncionesMacrofago>().enabled=false;
 		}

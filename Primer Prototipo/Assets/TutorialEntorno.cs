@@ -44,7 +44,7 @@ public class TutorialEntorno : MonoBehaviour {
 	public Text	tituloZoom;
 	public Text textoZoom;
 
-	//Flechas apuntando a objetos de Objetos
+	//Flechas apuntando a los Elementos
 	public GameObject flechaVaso;
 	public GameObject flechaGanglio;
 	public GameObject flechaCelula;
@@ -90,12 +90,12 @@ public class TutorialEntorno : MonoBehaviour {
 		Estados [1] = new EstadoTutorial (flechaGanglio,ganglio," GANGLIO LINFÁTICO" ,"El Sistema Linfático está compuesto por una red de vasos pequeños, llamados vasos linfáticos. Estos llegan a un sitio llamado Ganglio Linfático, " +
 			"en donde se encuentra muchas células del sistema inmune, las cuales conocerás en el camino.");
 
-		Estados [2] = new EstadoTutorial (flechaCelula, celula, "CÉLULAS", "Estas son las células que se encuentran formando los órganos de tu cuerpo, las cuales pueden ser destruidas por los virus atacantes."+ 
-		                                  "Estas células producen nutrientes, que son esenciales en la economía de tu cuerpo y te servirán como recurso para obtener diferentes células. "+
+		Estados [2] = new EstadoTutorial (flechaCelula, celula, "CÉLULAS", "Estas son las células que se encuentran formando los órganos de tu cuerpo, las cuales pueden ser infectadas por los virus atacantes.\n\n"+ 
+		                                  "Estas células producen nutrientes, que son esenciales en la economía de tu cuerpo y te servirán como recurso para obtener diferentes células. \n\n"+
 			"Adicionalmente recuerda que son el objetivo fundamental del virus para reproducirse, evita que te infecten o te destruyan las menos posibles.");
 
 		Estados [3] = new EstadoTutorial (flechaZAfectada, ZAfectada, "ZONA AFECTADA","¡SORPRESA!    haz encontrado el lugar por donde ha entrado el patógeno, "+
-		     "en este caso es un virus,  este va tratar de apoderarse de tus células, no permitas que te invadan, destrúyelos con algunos CLICKs.");
+		     "en este caso es un virus,  éste va a tratar de apoderarse de tus células, no permitas que te invadan, destrúyelos con algunos CLICKs.");
 
 
 

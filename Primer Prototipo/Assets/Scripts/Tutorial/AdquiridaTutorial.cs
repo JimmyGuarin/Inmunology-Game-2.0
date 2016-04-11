@@ -173,7 +173,7 @@ public class AdquiridaTutorial : MonoBehaviour{
 			}
 			if (index_guia == 6) {
 
-				info_macrofago.text="Ahora los "+nombrePersonaje+" estan disponibles";
+				info_macrofago.text="Ahora los "+nombrePersonaje+" están disponibles";
 				text_guia.text="Presiona click izquierdo para crear un "+nombrePersonaje;
 				flecha_boton.SetActive(true);
 

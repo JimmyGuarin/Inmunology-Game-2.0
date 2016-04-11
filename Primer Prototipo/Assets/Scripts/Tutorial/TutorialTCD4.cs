@@ -66,7 +66,7 @@ public class TutorialTCD4 : MonoBehaviour {
 		if (index_receiver == 3) {
 			
 			manejador.panelInfo.SetActive(false);
-			manejador.text_guia.text=PlayerPrefs.GetString("name")+" Defiendete de los patogenos con esas tres células solamente";
+			manejador.text_guia.text=PlayerPrefs.GetString("name")+" Defiendete de los patogenos.";
 			manejador.text_guia.transform.parent.gameObject.GetComponent<RectTransform>().anchoredPosition=new Vector2(
 				manejador.text_guia.transform.parent.gameObject.GetComponent<RectTransform>().anchoredPosition.x,
 				manejador.text_guia.transform.parent.gameObject.GetComponent<RectTransform>().anchoredPosition.y+80);

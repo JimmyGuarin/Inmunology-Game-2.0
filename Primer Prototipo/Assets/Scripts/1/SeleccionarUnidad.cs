@@ -23,14 +23,17 @@ public class SeleccionarUnidad : MonoBehaviour {
 	
 	//En destresa innata
 	public bool Innata;
-	
+
+	//Tiempos reducidos para cuando son tutoriales
 	private float time_neutrofilo=0.005f;
+	private float time_linfoB=0.003f;
     // Use this for initialization
     void Start() {
 
 		if (tutorial == true) {
 		
 			time_neutrofilo=0.01f;
+			time_linfoB=time_neutrofilo;
 		}
 
 	}
@@ -39,16 +42,10 @@ public class SeleccionarUnidad : MonoBehaviour {
 	void Update () {
 
 
-
-        //if (macrofago_imagen.fillAmount <= 0)
-          //  macrofago_imagen.gameObject.SetActive(false);
-        //else macrofago_imagen.fillAmount -= 005f;
-
-
         bajarInhabilitador(macrofago_imagen, time_neutrofilo);
         bajarInhabilitador(neutro_imagen, time_neutrofilo);
         bajarInhabilitador(killer_imagen, 0.01f);
-        bajarInhabilitador(linfoB_imagen, 0.003f);
+        bajarInhabilitador(linfoB_imagen,time_linfoB);
         bajarInhabilitador(tcd4_imagen, 0.001f);
         bajarInhabilitador(tcd8_imagen, 0.001f);
 

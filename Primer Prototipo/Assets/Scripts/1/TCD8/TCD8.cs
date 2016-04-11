@@ -16,8 +16,10 @@ public class TCD8 : MonoBehaviour {
 	//Variable que almacena si la celula esta seleccionada o no.
 	public  bool isSeleted;
 
-
+	//Vida del personaje
 	public float vida=100;
+
+	//Textura para el GUI personaje seleccionado
 	public Texture2D imagen;
 	public Rect r;
 
@@ -88,30 +90,16 @@ public class TCD8 : MonoBehaviour {
 		
 	}
 	
-	
-	
+
+	//Esta en collision con el virus
 	
 	void OnTriggerStay(Collider MyTrigger) {
 		
 		if (MyTrigger.gameObject.name.Equals ("VirusFinal(Clone)")
 		    || MyTrigger.gameObject.name.Equals ("VirusFinalCelula(Clone)")) {
-			
-
-			
-			vida -= 0.2f;
-
-
-		}
-		if (MyTrigger.gameObject.name.Equals ("NaturalKiller(Clone)")) {
-			
+		
 			vida -= 2f;
-			if (vida <= 0) {
-				ControladorRecursos.defensas--;
-				Destroy (this.gameObject);
-				
-				
-			}
-			
+
 		}
 	}
 

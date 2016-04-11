@@ -22,9 +22,10 @@ public class ControladorRecursos : MonoBehaviour {
 	public static CanvasGroup c;
 	public Canvas cc1;
 	public static Canvas c1;
+	public static int defensas;
 
 	private static bool gameOver;
-	public static int defensas;
+
 	// Use this for initialization
 
 
@@ -148,15 +149,6 @@ public class ControladorRecursos : MonoBehaviour {
 	public static void ganar(){
 
 		cia.bloqueartodo ();
-		//if (Application.loadedLevelName.Equals ("1")) {
-
-		//	GameObject.Find("CanvasGanglio").transform.GetChild(1).gameObject.SetActive(true);
-
-		//}
-			
-
-		//if (Application.loadedLevelName.Equals ("2")) {
-		
 			gameOver = true;
 			AudioListener.volume = 0;
 			c.alpha = 4;
@@ -164,9 +156,6 @@ public class ControladorRecursos : MonoBehaviour {
 			string mensaje=finalizarJuego ();
 			puntaje += 300;
 			mensajesPantalla.text="GANASTE. \n "+mensaje+puntaje;
-
-		//}
-	
 	}
 	public static void virusAnalizado(){
 		
@@ -219,7 +208,7 @@ public class ControladorRecursos : MonoBehaviour {
 		
 		if (PlayerPrefs.GetInt ("highscorePos1") < puntaje) {
 			
-			return "Nuevo Record: ";
+			return "Nuevo Récord: ";
 		} 
 		else {
 			
