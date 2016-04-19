@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ControladorMenu : MonoBehaviour {
 
-	public GameObject imagen_carga;
+	public GameObject [] imagenes_carga;
 	public Slider slider_carga;
 	private AsyncOperation asyng;
 	private GameObject CanvasJuego;
@@ -31,7 +31,7 @@ public class ControladorMenu : MonoBehaviour {
 
 	void Start(){
 
-		//PlayerPrefs.DeleteAll ();
+		PlayerPrefs.DeleteAll ();
 
 
 		ControladorRecursos.puntaje = 0;
@@ -72,8 +72,13 @@ public class ControladorMenu : MonoBehaviour {
 
 	public void jugar(string name_level){
 
-	
-		imagen_carga.SetActive (true);
+		if (name_level.Equals ("1"))
+			imagenes_carga [0].SetActive (true);
+		if (name_level.Equals ("2"))
+			imagenes_carga [1].SetActive (true);
+		if (name_level.Equals ("3"))
+			imagenes_carga [2].SetActive (true);
+		
 		Application.LoadLevelAsync (name_level);
 
 	}
