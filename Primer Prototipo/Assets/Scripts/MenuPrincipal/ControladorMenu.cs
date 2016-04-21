@@ -31,7 +31,7 @@ public class ControladorMenu : MonoBehaviour {
 
 	void Start(){
 
-		PlayerPrefs.DeleteAll ();
+		//PlayerPrefs.DeleteAll ();
 
 
 		ControladorRecursos.puntaje = 0;

@@ -16,7 +16,6 @@ public class InnataTutorial : MonoBehaviour {
 	
 	// Paneles Primarios de navegacion
 	public GameObject panelPrincipal_1;
-	public GameObject panelPrincipal_11;
 	public GameObject panelPrincipal_12;
 	public GameObject panelPrincipal_13;
 
@@ -177,12 +176,12 @@ public class InnataTutorial : MonoBehaviour {
 		switch (num) {
 			
 		case 1:
-			panelPrincipal_11.SetActive (false);
+
 			panelPrincipal_12.SetActive (true);
 			panelPrincipal_13.SetActive (false);
 			break;
 		case 2:
-			panelPrincipal_11.SetActive (true);
+		
 			panelPrincipal_12.SetActive (false);
 			break;
 		
@@ -193,7 +192,6 @@ public class InnataTutorial : MonoBehaviour {
 		
 		case 4:
 			panelPrincipal_1.SetActive (false);
-			panelPrincipal_11.SetActive (true);
 			panelPrincipal_13.SetActive (false);
 			break;
 		

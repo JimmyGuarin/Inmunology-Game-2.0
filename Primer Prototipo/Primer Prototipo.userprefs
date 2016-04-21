@@ -1,11 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MenuPrincipal\ControladorMenu.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Tutorial\InnataTutorial.cs">
     <Files>
-      <File FileName="Primer Prototipo.sln" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MenuPrincipal\ControladorMenu.cs" Line="82" Column="43" />
-      <File FileName="..\..\..\..\..\..\..\Juegos\Mis Creaciones\Cars Splash\Cars Splah\Assets\Scripts\Car\Velocidad.cs" Line="1" Column="1" />
-      <File FileName="..\..\..\..\..\..\..\Juegos\Mis Creaciones\Cars Splash\Cars Splah\Assets\Scripts\Camara\Seguir.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MenuPrincipal\ControladorMenu.cs" Line="34" Column="3" />
+      <File FileName="Assets\Scripts\1\ControladorRecursos.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\1\Virus\ManejadorVirus.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Tutorial\InnataTutorial.cs" Line="194" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
