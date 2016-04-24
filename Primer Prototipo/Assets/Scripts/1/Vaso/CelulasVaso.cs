@@ -35,6 +35,7 @@ public class CelulasVaso : MonoBehaviour {
 				while(hijos>5){
 					if(MyTrigger.gameObject.transform.FindChild("Bacteria(Clone)")!=null){
 						Destroy(MyTrigger.gameObject.transform.FindChild("Bacteria(Clone)").gameObject);
+                        ControladorBacterias.disminuir();
 					}
 					else{
 						Destroy(MyTrigger.gameObject.transform.FindChild("virusFinalFracture(Clone)").gameObject);

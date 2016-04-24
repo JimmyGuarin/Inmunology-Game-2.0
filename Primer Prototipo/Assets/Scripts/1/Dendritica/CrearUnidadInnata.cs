@@ -74,7 +74,16 @@ public class CrearUnidadInnata : MonoBehaviour {
 					if(Application.loadedLevelName.Equals ("2")){
 
 						canvas_Ganglio.GetComponent<BarraProgresoGanglio>().activar(0);
-					}
+                        int hijos =transform.childCount;
+                        while (hijos > 5)
+                        {
+                           
+                                ControladorBacterias.disminuir();
+                                 hijos--;
+
+                         }
+
+                    }
 					else{
 						
 						canvas_Ganglio.GetComponent<BarraProgresoGanglio>().activar(virus.GetComponent<Fracture>().mutacion);	

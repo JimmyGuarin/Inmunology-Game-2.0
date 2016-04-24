@@ -28,9 +28,13 @@ public class BacteriaColis : MonoBehaviour {
 			ControladorRecursos.puntaje+=40;
 			ManejadorVirus.numeroVirus--;
 			Debug.Log("virusMuerto...Virus: "+ManejadorVirus.numeroVirus);
+            ControladorBacterias.disminuir();
 			Destroy(this.gameObject);
 			
 		}
+
+        if (transform.parent == null)
+            capturado = false;
 
 
 	}
@@ -70,7 +74,7 @@ public class BacteriaColis : MonoBehaviour {
 			
 				if (this.gameObject.GetComponent<BacteriaColis> ().capturado == false) {
 
-					transform.position = MyTrigger.gameObject.transform.position;
+					//transform.position = MyTrigger.gameObject.transform.position;
 					GetComponent<BacteriaColis> ().capturado = true;
 				}
 			}

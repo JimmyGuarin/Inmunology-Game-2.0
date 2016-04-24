@@ -29,4 +29,10 @@ public class ControladorBacterias : MonoBehaviour {
 
 	}
 
+    public static void disminuir()
+    {
+
+        invasion.value--;
+    }
+
 }

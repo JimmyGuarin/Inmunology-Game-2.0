@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: d3af5d213cc6bc54bb57906d859d1932
 ModelImporter:
-  serializedVersion: 16
+  serializedVersion: 18
   fileIDToRecycleName:
     100000: Bone
     100002: Bone.001
@@ -33,6 +33,7 @@ ModelImporter:
     100054: Esqueleto
     100056: Lamp
     100058: //RootNode
+    100060: "Esfera geod\xE9sica"
     400000: Bone
     400002: Bone.001
     400004: Bone.002
@@ -63,10 +64,13 @@ ModelImporter:
     400054: Esqueleto
     400056: Lamp
     400058: //RootNode
+    400060: "Esfera geod\xE9sica"
     4300000: Esfera geod__sica
+    4300002: "Esfera geod\xE9sica"
     7400000: Esqueleto|EsqueletoAction.001
     9500000: //RootNode
     13700000: Esfera geod__sica
+    13700002: "Esfera geod\xE9sica"
   materials:
     importMaterials: 1
     materialName: 0
@@ -76,6 +80,10 @@ ModelImporter:
     bakeSimulation: 0
     optimizeGameObjects: 0
     motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
     animationCompression: 1
     animationRotationError: .5
     animationPositionError: .5
@@ -180,11 +188,13 @@ ModelImporter:
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
+    keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
@@ -207,3 +217,5 @@ ModelImporter:
   animationType: 2
   additionalBone: 0
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 
